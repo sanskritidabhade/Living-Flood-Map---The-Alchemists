@@ -173,7 +173,20 @@ function Pins({
     // react-leaflet has no v5 cluster binding, so drive the plugin directly.
     void loadClusterPlugin().then(() => {
       if (cancelled) return;
-      cluster = L.markerClusterGroup({ showCoverageOnHover: false, maxClusterRadius: 45 });
+      cluster = L.markerClusterGroup({
+        showCoverageOnHover: false,
+        maxClusterRadius: 60,
+        // Inserting thousands of markers in one go freezes the browser. Chunked
+        // loading yields between slices, so the map stays interactive while the
+        // pins land — this is what made a large dataset feel like a hang.
+        chunkedLoading: true,
+        chunkInterval: 120,
+        chunkDelay: 20,
+        removeOutsideVisibleBounds: true,
+        // A starburst of identically-placed pins reads as broken, not helpful.
+        spiderfyOnMaxZoom: false,
+        disableClusteringAtZoom: 15,
+      });
       clusterRef.current = cluster;
       map.addLayer(cluster);
       setClusterReady(true);

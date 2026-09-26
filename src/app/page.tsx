@@ -12,7 +12,7 @@ import { StartScreen } from "@/components/start-screen";
 import type { Classified, Profile, ResolvedPlace, Verification } from "@/lib/ai/schema";
 import { classifyAll, fanOutToDuplicates, type ClassifiedRow } from "@/lib/pipeline/batch";
 import { FALLBACK_BANNER, quickSort } from "@/lib/pipeline/fallback";
-import { droppedResult, sieve } from "@/lib/pipeline/sieve";
+import { droppedResult, placeCandidates, sieve } from "@/lib/pipeline/sieve";
 import { cleanRows, sampleForProfile, type CleanRow } from "@/lib/pipeline/clean";
 import type { IngestResult } from "@/lib/pipeline/ingest";
 import {
@@ -217,6 +217,26 @@ export default function Home() {
          * file cannot run away with credits.
          */
         let placesSoFar: ResolvedPlace[] = [];
+        /**
+         * Coordinates are fetched up front from locally-extracted candidates, so
+         * the first classify batch already has somewhere to put its pins. Waiting
+         * for a full classify round before asking for places is what made the map
+         * sit empty for minutes on a large file.
+         */
+        try {
+          const candidates = placeCandidates(send, confirmed);
+          if (candidates.length > 0) {
+            setStage("Finding places");
+            const upfront = (await postTask("places", { places: candidates }, confirmed)) as {
+              places: ResolvedPlace[];
+            };
+            placesSoFar = upfront.places;
+            console.log(`[places] pre-resolved ${placesSoFar.length} of ${candidates.length}`);
+          }
+        } catch {
+          // Not fatal: streaming resolution below still fills these in.
+        }
+        setStage("Reading tweets");
         let placeCallsMade = 0;
         let placeCallInFlight = false;
         const MAX_STREAMING_PLACE_CALLS = 6;
