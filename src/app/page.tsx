@@ -12,7 +12,12 @@ import { StartScreen } from "@/components/start-screen";
 import type { Classified, Profile, ResolvedPlace, Verification } from "@/lib/ai/schema";
 import { classifyAll, fanOutToDuplicates, type ClassifiedRow } from "@/lib/pipeline/batch";
 import { FALLBACK_BANNER, quickSort } from "@/lib/pipeline/fallback";
-import { droppedResult, placeCandidates, sieve } from "@/lib/pipeline/sieve";
+import {
+  DEFERRED_REASON,
+  droppedResult,
+  placeCandidates,
+  sieve,
+} from "@/lib/pipeline/sieve";
 import { cleanRows, sampleForProfile, type CleanRow } from "@/lib/pipeline/clean";
 import type { IngestResult } from "@/lib/pipeline/ingest";
 import {
@@ -200,14 +205,23 @@ export default function Home() {
       } else {
         // A local keyword pass first: on the provided dataset this resolves
         // ~45% of tweets without a model call, for a measured 1.9% recall loss.
-        const { send, dropped, bypassed } = sieve(unique, confirmed);
-        if (!bypassed && dropped.length > 0) {
+        const { send, dropped, bypassed, deferred } = sieve(unique, confirmed);
+        if (bypassed) {
+          console.log("[sieve] bypassed — event vocabulary not recognised, sending everything");
+        } else if (dropped.length > 0) {
           toast.info(
             `${dropped.length.toLocaleString()} posts had no event keywords — sorted locally, no AI call.`,
           );
         }
-        setTotal(unique.length);
-        setDone(dropped.length);
+        if (deferred.length > 0) {
+          toast.info(
+            `Large file: reading the ${send.length.toLocaleString()} most informative posts first.`,
+          );
+        }
+        // Only the rows actually going to the model drive the progress bar, so
+        // the estimate reflects real work rather than the whole file.
+        setTotal(send.length);
+        setDone(0);
 
         /**
          * Places have to be resolved *while* classifying, not after. Passing an
@@ -262,7 +276,7 @@ export default function Home() {
           send,
           confirmed,
           (p) => {
-            setDone(dropped.length + p.done);
+            setDone(p.done);
             setFound(p.found);
             // Pins land with whatever coordinates we already have.
             setReports(buildReports(p.rows, placesSoFar, new Map()));
@@ -288,10 +302,13 @@ export default function Home() {
         }
         // Locally-dropped rows rejoin here so they stay in the dataset and the
         // Excluded audit export, rather than vanishing.
-        const localRows: ClassifiedRow[] = dropped.map((row, i) => ({
-          ...row,
-          result: droppedResult(i),
-        }));
+        const localRows: ClassifiedRow[] = [
+          ...dropped.map((row, i) => ({ ...row, result: droppedResult(i) })),
+          ...deferred.map((row, i) => ({
+            ...row,
+            result: droppedResult(i, DEFERRED_REASON),
+          })),
+        ];
         // Duplicates and retweets inherit their group's classification.
         classified = fanOutToDuplicates(rows, [...classifiedUnique, ...localRows]);
 

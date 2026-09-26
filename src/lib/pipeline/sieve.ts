@@ -94,6 +94,28 @@ export function placeCandidates(rows: CleanRow[], profile: Profile, limit = 60):
     .map(([name]) => name);
 }
 
+/**
+ * How much signal a tweet carries, used to decide what the model sees first.
+ * On a very large file an analyst wants the reports that can actually reach the
+ * map — ones naming a place and describing something happening — long before
+ * they want the long tail of commentary.
+ */
+const URGENT_WORDS = /\b(rescue|trapped|stranded|missing|evacuat|emergency|urgent|help|sos|collapse|closed|washed|danger)\b/i;
+const HAS_PLACE_SHAPE = /\b[A-Z][a-z]{2,}\b/;
+
+export function signalScore(row: CleanRow, matches: (t: string) => boolean): number {
+  const text = row.clean_text;
+  let score = 0;
+  if (matches(text)) score += 3;
+  if (URGENT_WORDS.test(text)) score += 4;
+  if (HAS_PLACE_SHAPE.test(text)) score += 2;
+  if (row.hashtags.length > 0) score += 1;
+  if (row.echo_count > 1) score += 1;
+  // Link-only and very short posts rarely carry a mappable report.
+  if (text.replace(/https?:\/\/\S+/g, "").trim().length < 30) score -= 3;
+  return score;
+}
+
 export type SieveResult = {
   /** Rows worth spending a model call on. */
   send: CleanRow[];
@@ -101,12 +123,21 @@ export type SieveResult = {
   dropped: CleanRow[];
   /** True when the sieve was bypassed because it matched too little. */
   bypassed: boolean;
+  /** Rows beyond the classification cap, left unprocessed but still exported. */
+  deferred: CleanRow[];
 };
+
+/**
+ * Above this many tweets, classify the highest-signal ones first and stop.
+ * An unseen 18,000-row file is otherwise close to an hour of API time, which is
+ * no use to anyone during an emergency or a two-minute demo.
+ */
+export const CLASSIFY_CAP = 4000;
 
 export function sieve(rows: CleanRow[], profile: Profile): SieveResult {
   const keep = matcher(profile);
-  const send: CleanRow[] = [];
-  const dropped: CleanRow[] = [];
+  let send: CleanRow[] = [];
+  let dropped: CleanRow[] = [];
 
   for (const row of rows) {
     if (keep(row.clean_text)) send.push(row);
@@ -114,21 +145,35 @@ export function sieve(rows: CleanRow[], profile: Profile): SieveResult {
   }
 
   // If almost nothing matched, the event vocabulary is not one we recognise.
-  // Classifying everything slowly beats discarding a judge's dataset.
+  // Classifying everything beats discarding a judge's dataset.
+  let bypassed = false;
   if (rows.length > 0 && send.length / rows.length < MIN_KEEP_RATIO) {
-    return { send: rows, dropped: [], bypassed: true };
+    send = [...rows];
+    dropped = [];
+    bypassed = true;
   }
 
-  return { send, dropped, bypassed: false };
+  // Best signal first, so the map fills with useful reports immediately.
+  send.sort((a, b) => signalScore(b, keep) - signalScore(a, keep));
+
+  let deferred: CleanRow[] = [];
+  if (send.length > CLASSIFY_CAP) {
+    deferred = send.slice(CLASSIFY_CAP);
+    send = send.slice(0, CLASSIFY_CAP);
+  }
+
+  return { send, dropped, bypassed, deferred };
 }
 
+export const DEFERRED_REASON = "Beyond the classification cap for this file";
+
 /** The classification a locally-dropped row carries. */
-export function droppedResult(index: number): Classified {
+export function droppedResult(index: number, why = SIEVE_REASON): Classified {
   return {
     i: index,
     rel: false,
     conf: "m",
-    why: SIEVE_REASON,
+    why,
     cat: "Other related",
     urg: "information",
     eye: false,

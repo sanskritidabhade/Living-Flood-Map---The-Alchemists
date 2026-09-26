@@ -14,7 +14,7 @@ type Props = {
 };
 
 /** Measured aggregate throughput against the organizers' endpoint. */
-const TWEETS_PER_SECOND = 6;
+const TWEETS_PER_SECOND = 5;
 
 function remainingLabel(done: number, total: number): string | null {
   const left = total - done;
@@ -76,8 +76,8 @@ export function SortingScreen({ stage, done, total, found }: Props) {
         </p>
         {total > 1000 ? (
           <p className="text-xs text-muted-foreground">
-            Large file. The first reports appear on the map within about twenty seconds — you can
-            start reading them while the rest finish.
+            The most informative posts are read first, so the map is useful well before this
+            finishes. You can start reading reports as soon as the first appear.
           </p>
         ) : null}
       </div>
