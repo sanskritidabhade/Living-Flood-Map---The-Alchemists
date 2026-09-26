@@ -249,6 +249,16 @@ export default function Home() {
       await new Promise((r) => setTimeout(r, 400));
 
       const built = buildReports(classified, places, verifications);
+      const withPlace = built.filter((r) => r.place).length;
+      const roles = built.reduce<Record<string, number>>((a, r) => {
+        const role = r.result.places[0]?.role ?? "none";
+        a[role] = (a[role] ?? 0) + 1;
+        return a;
+      }, {});
+      console.log(
+        `[join] ${withPlace}/${built.length} reports got coordinates from ${places.length} places`,
+        roles,
+      );
       setReports(built);
       setStage("Done");
       setStep("explorer");

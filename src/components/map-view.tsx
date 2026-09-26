@@ -263,17 +263,19 @@ export default function MapView({
   hazards: boolean;
   onSelect: (id: string) => void;
 }) {
-  const plotted = useMemo(
-    () =>
-      reports.filter((r) => {
-        if (!r.place) return false;
-        // The hazard layer is a separate toggle, not an urgency pin.
-        if (isHazard(r)) return hazards;
-        if (!affectedOnly) return true;
-        return r.result.places[0]?.role === "affected";
-      }),
-    [reports, affectedOnly, hazards],
-  );
+  const plotted = useMemo(() => {
+    const located = reports.filter((r) => r.place);
+    const visible = located.filter((r) => {
+      // The hazard layer is a separate toggle, not an urgency pin.
+      if (isHazard(r)) return hazards;
+      if (!affectedOnly) return true;
+      return r.result.places[0]?.role === "affected";
+    });
+    // Never show an empty map when we do have coordinates: if this event's
+    // places are all "mentioned" or "help_from", showing them beats showing
+    // nothing, and the toggle still explains what is on screen.
+    return visible.length === 0 && located.length > 0 ? located : visible;
+  }, [reports, affectedOnly, hazards]);
 
   // Leaflet needs a real viewport; an empty state is better than a blank grey box.
   if (plotted.length === 0) {
