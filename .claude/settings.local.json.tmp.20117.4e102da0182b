@@ -71,7 +71,9 @@
       "Bash(sed -i 's/^  routes: {$/  evacuation: {/' src/lib/ai/schema.ts)",
       "Bash(sed -i 's/export const zRoutesResult/export const zEvacuationResult/; s/return zRoutesResult.parse\\(data\\);/return zEvacuationResult.parse\\(data\\);/' src/lib/ai/schema.ts)",
       "Bash(git -c 'user.name=Sanskriti Dabhade' -c user.email=projectsofsanskriti@gmail.com commit -q -m 'Slice 2: Leaflet map, report card, filters, situation brief, evacuation routes *)",
-      "Bash(git -c 'user.name=Sanskriti Dabhade' -c user.email=projectsofsanskriti@gmail.com commit -q -m 'Design review fixes 1-3: single evidence highlight, sentence-case label, confidence icons *)"
+      "Bash(git -c 'user.name=Sanskriti Dabhade' -c user.email=projectsofsanskriti@gmail.com commit -q -m 'Design review fixes 1-3: single evidence highlight, sentence-case label, confidence icons *)",
+      "Bash(rm -f .claude/settings.local.json.tmp.20117.edb340e2a504)",
+      "Bash(git -c user.name=\"Sanskriti Dabhade\" -c user.email=\"projectsofsanskriti@gmail.com\" commit -q -m \"chore: remove stray temp file\")"
     ]
   }
 }
