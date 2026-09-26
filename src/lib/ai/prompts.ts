@@ -30,19 +30,40 @@ Do not assume the event is a flood. Read the tweets.`;
 export function classifyPrompt(profile: Profile): string {
   return `${eventContext(profile)}
 
-For each numbered tweet, return one object. Judge relatedness to THIS event by content.
+For each numbered tweet below, return one object. Judge relatedness to THIS event, by content.
 
-Rules that matter:
-- A hashtag alone is not enough. Job ads, spam, sports and celebrity chatter using the event hashtag are NOT related.
-- places[].text must be copied EXACTLY from the tweet, character for character. It is highlighted in the interface as evidence.
-- Never invent a place that is not in the text. Do not return coordinates.
-- Hashtag places count (#yyc, #highriver) with a lower-precision type.
-- role: "affected" if the place is being hit, "help_from" if aid, donations or commentary originate there, "mentioned" otherwise.
-- urg: "critical" for immediate danger, rescue needed or infrastructure failure. "urgent" for evacuation routes, shelters, closures. "information" for donations, sympathy, general updates.
-- eye: true only for firsthand eyewitness accounts.
-- claim: true ONLY when the tweet asserts something about official status (${CLAIM_TYPES.join(", ")}). Ordinary eyewitness reports are not claims.
-- fn: name the First Nation only if the tweet names it or names its community.
-- why: at most 12 words, and only when conf is not "h".
+NOT RELATED — reject these even when they carry the event hashtag:
+- job postings and recruitment, promotional or marketing content, contests and giveaways
+- sports, celebrity and entertainment chatter
+- holidays and greetings (Canada Day, birthdays) with no mention of the event
+- purely personal tweets about someone's day
+- sarcasm or humour that borrows disaster language ("drowning in homework", "this exam is a disaster")
+A tweet that merely uses the hashtag is not related. A holiday greeting that also refers to people
+affected by the event IS related.
+
+NEGATION AND TENSE: read what the tweet actually says. "Roads are clear now" or "water has gone
+down" describes a resolved situation, not current danger — still related, but urg "information".
+
+places[].text MUST be copied character for character from the tweet. Never invent, correct or
+expand it. If no place is named, return an empty places array. Do not return coordinates.
+- Hashtag places count (#yyc, #yycflood) and take type "city", never "street".
+- role "affected": the place is being hit. role "help_from": aid, donations, volunteers or
+  commentary originate there — a city sending help is help_from, never affected. role "mentioned":
+  named in passing, or watching from elsewhere.
+
+FIRST NATIONS: name the community in fn whenever the tweet names one, including Siksika, Stoney
+Nakoda, Tsuut'ina, Morley and Eden Valley. These are a priority for this tool — do not miss them.
+
+CONFIDENCE: conf "h" only when the signal is unambiguous. Use "m" or "l" whenever the tweet is
+vague, sarcastic, secondhand or the place is uncertain — and whenever conf is not "h" you MUST
+give why, at most 12 words.
+
+urg "critical" = immediate danger, rescue needed, infrastructure failure.
+urg "urgent" = evacuation routes, shelters, closures.
+urg "information" = donations, sympathy, resolved situations, general updates.
+eye true only for firsthand eyewitness accounts.
+claim true ONLY when the tweet asserts something about official status (${CLAIM_TYPES.join(", ")}).
+Ordinary eyewitness reports are not claims.
 
 category must be one of: ${CATEGORY_LIST}`;
 }
