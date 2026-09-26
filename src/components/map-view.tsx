@@ -116,10 +116,12 @@ function pinIcon(report: Report, flagged: boolean): L.DivIcon {
 function Pins({
   reports,
   flagged,
+  bbox,
   onSelect,
 }: {
   reports: Report[];
   flagged: Set<string>;
+  bbox?: [number, number, number, number];
   onSelect: (id: string) => void;
 }) {
   const map = useMap();
@@ -180,19 +182,14 @@ function Pins({
     // extremes: one tweet mentioning Ontario should not zoom the map out to
     // continental scale and push the real cluster off screen.
     if (!fitted.current && markers.length > 0) {
-      const lats = reports.map((r) => r.place!.lat).sort((a, b) => a - b);
-      const lngs = reports.map((r) => r.place!.lng).sort((a, b) => a - b);
-      const at = (arr: number[], q: number) => arr[Math.min(arr.length - 1, Math.floor(arr.length * q))];
-      const bounds =
-        markers.length >= 8
-          ? L.latLngBounds(
-              [at(lats, 0.05), at(lngs, 0.05)],
-              [at(lats, 0.95), at(lngs, 0.95)],
-            )
-          : cluster.getBounds();
-      map.fitBounds(bounds.pad(0.25), { maxZoom: 11 });
+      // The event brief's bounding box is the affected area the model identified,
+      // so it frames the disaster rather than the furthest-flung mention.
+      const bounds = bbox
+        ? L.latLngBounds([bbox[1], bbox[0]], [bbox[3], bbox[2]])
+        : cluster.getBounds();
+      map.fitBounds(bounds.pad(0.05), { maxZoom: 11 });
     }
-  }, [reports, flagged, map, onSelect, clusterReady]);
+  }, [reports, flagged, map, onSelect, clusterReady, bbox]);
 
   return null;
 }
@@ -201,11 +198,13 @@ export default function MapView({
   reports,
   flagged,
   affectedOnly,
+  bbox,
   onSelect,
 }: {
   reports: Report[];
   flagged: Set<string>;
   affectedOnly: boolean;
+  bbox?: [number, number, number, number];
   onSelect: (id: string) => void;
 }) {
   const plotted = useMemo(
@@ -251,7 +250,7 @@ export default function MapView({
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         maxZoom={19}
       />
-      <Pins reports={plotted} flagged={flagged} onSelect={onSelect} />
+      <Pins reports={plotted} flagged={flagged} bbox={bbox} onSelect={onSelect} />
     </MapContainer>
   );
 }

@@ -123,6 +123,7 @@ export function Explorer({
             reports={visible}
             flagged={flagged}
             affectedOnly={filters.affectedOnly}
+            bbox={profile?.bbox}
             onSelect={setSelectedId}
           />
         </div>
