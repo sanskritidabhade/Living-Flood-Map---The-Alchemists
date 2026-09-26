@@ -15,7 +15,6 @@ import {
   type Report,
 } from "@/lib/pipeline/reports";
 import { AnalystChat } from "./analyst-chat";
-import { EvacuationRoutes } from "./evacuation-routes";
 import { FilterBar } from "./filter-bar";
 import { ReportCard } from "./report-card";
 import { SituationBrief } from "./situation-brief";
@@ -31,7 +30,7 @@ const MapView = dynamic(() => import("./map-view"), {
   ),
 });
 
-type Tab = "reports" | "brief" | "evacuation" | "ask" | "unmapped";
+type Tab = "reports" | "brief" | "ask" | "unmapped";
 
 export function Explorer({
   reports,
@@ -84,7 +83,6 @@ export function Explorer({
   const tabs: { key: Tab; label: string }[] = [
     { key: "reports", label: "Reports" },
     { key: "brief", label: "Situation brief" },
-    { key: "evacuation", label: "Evacuation routes" },
     { key: "ask", label: "Ask" },
   ];
 
@@ -282,10 +280,8 @@ export function Explorer({
             cacheKey={filterKey}
             onCite={(id) => setSelectedId(id)}
           />
-        ) : tab === "brief" ? (
-          <SituationBrief reports={notFlagged} filterKey={filterKey} profile={profile} />
         ) : (
-          <EvacuationRoutes origins={origins} profile={profile} />
+          <SituationBrief reports={notFlagged} filterKey={filterKey} profile={profile} />
         )}
       </section>
     </div>

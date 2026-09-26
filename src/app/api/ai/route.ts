@@ -26,6 +26,49 @@ export async function POST(req: Request) {
 
   const task = body.task as AiTask;
 
+  // Fast "Ask" Handler: Send a 1-page summary JSON to Gemini, not thousands of raw rows
+  if (task === "ask" && typeof body.input === "object" && body.input !== null) {
+    const inp = body.input as Record<string, any>;
+    const tweets = inp.reports || inp.tweets || [];
+    if (Array.isArray(tweets) && tweets.length > 0) {
+      const summary = {
+        total_tweets: tweets.length,
+        critical_count: tweets.filter((t: any) => t.urg === "critical" || t.urgency === "critical").length,
+        top_locations: Array.from(
+          new Set(
+            tweets
+              .flatMap((t: any) => [
+                t.place,
+                ...(t.places ? t.places.map((p: any) => (typeof p === "string" ? p : p.name)) : []),
+              ])
+              .filter(Boolean),
+          ),
+        ).slice(0, 10),
+        infrastructure_hazards: tweets
+          .filter(
+            (t: any) =>
+              t.cat === "Road or bridge closed" ||
+              t.category === "Road or bridge closed" ||
+              (t.text && /bridge|road|highway|closure/i.test(t.text)),
+          )
+          .map((t: any) => t.text || t.clean_text)
+          .slice(0, 5),
+        key_reports: tweets.slice(0, 35).map((t: any) => ({
+          id: t.id || t.report_id,
+          text: (t.text || t.clean_text || "").slice(0, 140),
+          urg: t.urg || t.urgency,
+          place: t.place || t.places?.[0]?.name,
+          fn: t.fn,
+          needs: t.needs,
+        })),
+      };
+      body.input = {
+        userQuery: inp.question || inp.userQuery || "",
+        summary,
+      };
+    }
+  }
+
   try {
     const prompt = promptFor(task, body.profile);
     const result = await callAi(task, body.input, {

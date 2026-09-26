@@ -1,4 +1,126 @@
-import type { Route } from "@/lib/ai/schema";
+import type { Profile, Route } from "@/lib/ai/schema";
+
+export function getFallbackRoute(origin: string, _profile?: Profile | null): Route {
+  const norm = origin.trim().toLowerCase();
+
+  if (norm.includes("siksika")) {
+    return {
+      from: origin,
+      to: "Calgary",
+      to_kind: "city outside the affected area",
+      distance_km: 88,
+      drive_time: "about 1 hour",
+      via: "Highway 1 west",
+      shelter: "Enmax Centre reception centre, Calgary",
+      note: "Main reception centre for Siksika evacuees. Check in at the north entrance.",
+    };
+  }
+  if (norm.includes("high river")) {
+    return {
+      from: origin,
+      to: "Okotoks",
+      to_kind: "town outside the affected area",
+      distance_km: 18,
+      drive_time: "about 20 minutes",
+      via: "Highway 2 north",
+      shelter: "Okotoks Recreation Centre",
+      note: "Highway 2 southbound is closed at High River. Leave to the north.",
+    };
+  }
+  if (norm.includes("canmore")) {
+    return {
+      from: origin,
+      to: "Cochrane",
+      to_kind: "town outside the affected area",
+      distance_km: 75,
+      drive_time: "about 50 minutes",
+      via: "Highway 1A east",
+      shelter: "Cochrane Arena",
+      note: "Highway 1 is closed in sections near Bragg Creek. Take 1A.",
+    };
+  }
+  if (norm.includes("bowness")) {
+    return {
+      from: origin,
+      to: "Edmonton",
+      to_kind: "city well outside the affected area",
+      distance_km: 300,
+      drive_time: "about 3 hours",
+      via: "Highway 2 north",
+      shelter: "Northlands Expo Centre, Edmonton",
+      note: "Use only if Calgary reception centres are full — Calgary itself is inside the affected area.",
+    };
+  }
+  if (norm.includes("bragg creek")) {
+    return {
+      from: origin,
+      to: "Cochrane",
+      to_kind: "town outside the affected area",
+      distance_km: 40,
+      drive_time: "about 35 minutes",
+      via: "Highway 22 north",
+      shelter: "Cochrane Arena",
+      note: "Highway 1 east toward Calgary is cut. Go north on 22.",
+    };
+  }
+  if (norm.includes("tsuut'ina") || norm.includes("tsuutina")) {
+    return {
+      from: origin,
+      to: "Okotoks",
+      to_kind: "town outside the affected area",
+      distance_km: 35,
+      drive_time: "about 30 minutes",
+      via: "Highway 22X east then Highway 2 south",
+      shelter: "Okotoks Recreation Centre",
+      note: "Highway 22X had a reported closure. Confirm before leaving.",
+    };
+  }
+  if (norm.includes("morley") || norm.includes("stoney")) {
+    return {
+      from: origin,
+      to: "Cochrane",
+      to_kind: "town outside the affected area",
+      distance_km: 45,
+      drive_time: "about 35 minutes",
+      via: "Highway 1A east",
+      shelter: "Cochrane Arena",
+    };
+  }
+
+  if (
+    norm.includes("calgary") ||
+    norm.includes("saddledome") ||
+    norm.includes("downtown") ||
+    norm.includes("beltline") ||
+    norm.includes("inglewood") ||
+    norm.includes("mission") ||
+    norm.includes("sunnyside") ||
+    norm.includes("chinook") ||
+    norm.includes("stampede")
+  ) {
+    return {
+      from: origin,
+      to: "Okotoks",
+      to_kind: "town south of the affected area",
+      distance_km: 32,
+      drive_time: "about 30 minutes",
+      via: "Macleod Trail S / Highway 2 south",
+      shelter: "Okotoks Recreation Centre",
+      note: "Calgary river valleys are experiencing high water. Head south away from river basins.",
+    };
+  }
+
+  return {
+    from: origin,
+    to: "Okotoks",
+    to_kind: "reception town outside affected zone",
+    distance_km: 35,
+    drive_time: "about 35 minutes",
+    via: "Nearest arterial highway outbound",
+    shelter: "Okotoks Regional Reception Centre",
+    note: "Follow local authority instructions and emergency highway signage.",
+  };
+}
 
 /**
  * A single printable page someone can hand to a person without a smartphone.

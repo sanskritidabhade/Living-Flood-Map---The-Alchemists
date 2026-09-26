@@ -116,7 +116,7 @@ function pinIcon(report: Report, flagged: boolean): L.DivIcon {
   const opacity = confOpacity * roleOpacity;
 
   return L.divIcon({
-    className: urg === "critical" ? "lfm-pin lfm-pin-critical" : "lfm-pin",
+    className: urg === "critical" ? "lfm-pin lfm-pin-critical sos-pin-pulse" : "lfm-pin",
     iconSize: [26, 26],
     iconAnchor: [13, 13],
     html: `<span style="
@@ -256,7 +256,13 @@ function Pins({
           icon: isHazard(r) ? hazardIcon(r) : pinIcon(r, flagged.has(r.report_id)),
           title: r.result.places[0]?.name ?? r.report_id,
         });
-        marker.on("click", () => onSelect(r.report_id));
+        marker.on("click", () => {
+          onSelect(r.report_id);
+          map.flyTo([lat, lng], 15, {
+            animate: true,
+            duration: 1.5,
+          });
+        });
         return marker;
       });
 

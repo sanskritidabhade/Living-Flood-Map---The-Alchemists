@@ -346,7 +346,7 @@ export const RESPONSE_SCHEMAS: Record<AiTask, object> = {
         },
       },
     },
-    required: ["evacuation"],
+    required: ["routes"],
   },
 };
 
