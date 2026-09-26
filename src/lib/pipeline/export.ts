@@ -103,6 +103,35 @@ export function toCsv(rows: ReportRow[]): string {
   return Papa.unparse(rows, { columns: [...EXPORT_COLUMNS] });
 }
 
+/**
+ * The audit trail: what the model threw away and why. Kept separate from the
+ * main export so the MapAki layer only ever receives related reports.
+ */
+export const EXCLUDED_COLUMNS = [
+  "source_row",
+  "text",
+  "relevance_reason",
+  "model",
+  "processed_at",
+] as const;
+
+export function toExcludedRows(rows: ClassifiedRow[], model: string): ReportRow[] {
+  const processed_at = new Date().toISOString();
+  return rows
+    .filter((row) => !row.result.rel)
+    .map((row) => ({
+      source_row: row.source_row,
+      text: anonymizeHandles(row.text),
+      relevance_reason: row.result.why ?? "Not related to this event",
+      model,
+      processed_at,
+    }));
+}
+
+export function toExcludedCsv(rows: ReportRow[]): string {
+  return Papa.unparse(rows, { columns: [...EXCLUDED_COLUMNS] });
+}
+
 /** One Point per located report. Properties carry every export column. */
 export function toGeoJson(rows: ReportRow[], stamp: PublishStamp) {
   const features = rows

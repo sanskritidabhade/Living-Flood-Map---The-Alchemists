@@ -12,7 +12,13 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { download, toCsv, toReportRows } from "@/lib/pipeline/export";
+import {
+  download,
+  toCsv,
+  toExcludedCsv,
+  toExcludedRows,
+  toReportRows,
+} from "@/lib/pipeline/export";
 import type { Report } from "@/lib/pipeline/reports";
 
 type SortKey = "report_id" | "urgency" | "category" | "place" | "confidence";
@@ -24,8 +30,12 @@ export function DatasetTable({ reports, model }: { reports: Report[]; model: str
   const [sortKey, setSortKey] = useState<SortKey>("report_id");
   const [ascending, setAscending] = useState(true);
 
+  const related = useMemo(() => reports.filter((r) => r.result.rel), [reports]);
+  const excludedCount = reports.length - related.length;
+  const stamp = () => new Date().toISOString().slice(0, 10);
+
   const sorted = useMemo(() => {
-    const copy = [...reports];
+    const copy = [...related];
     copy.sort((a, b) => {
       const by = (r: Report) => {
         switch (sortKey) {
@@ -47,7 +57,7 @@ export function DatasetTable({ reports, model }: { reports: Report[]; model: str
       return (left < right ? -1 : 1) * (ascending ? 1 : -1);
     });
     return copy;
-  }, [reports, sortKey, ascending]);
+  }, [related, sortKey, ascending]);
 
   function sortBy(key: SortKey) {
     if (key === sortKey) setAscending(!ascending);
@@ -57,16 +67,27 @@ export function DatasetTable({ reports, model }: { reports: Report[]; model: str
     }
   }
 
+  /** Main export: related reports only. This is the file that goes into MapAki. */
   function exportCsv() {
     const rows = toReportRows(
-      reports,
-      new Map(reports.filter((r) => r.place).map((r) => [r.place!.name, r.place!])),
-      new Map(reports.filter((r) => r.verification).map((r) => [r.report_id, r.verification!])),
+      related,
+      new Map(related.filter((r) => r.place).map((r) => [r.place!.name, r.place!])),
+      new Map(related.filter((r) => r.verification).map((r) => [r.report_id, r.verification!])),
       { model },
     );
-    const stamp = new Date().toISOString().slice(0, 10);
-    download(`living-flood-map-${stamp}.csv`, toCsv(rows), "text/csv;charset=utf-8");
-    toast.success(`Exported ${rows.length} reports as CSV`);
+    download(`living-flood-map-${stamp()}.csv`, toCsv(rows), "text/csv;charset=utf-8");
+    toast.success(`Exported ${rows.length} related reports as CSV`);
+  }
+
+  /** Audit trail: what was excluded and why. */
+  function exportExcluded() {
+    const rows = toExcludedRows(reports, model);
+    download(
+      `living-flood-map-excluded-${stamp()}.csv`,
+      toExcludedCsv(rows),
+      "text/csv;charset=utf-8",
+    );
+    toast.success(`Exported ${rows.length} excluded posts for audit`);
   }
 
   const columns: { key: SortKey; label: string }[] = [
@@ -83,13 +104,19 @@ export function DatasetTable({ reports, model }: { reports: Report[]; model: str
         <div>
           <h2 className="text-xl font-semibold tracking-tight text-secondary">Dataset</h2>
           <p className="tabular text-sm text-muted-foreground">
-            {reports.length.toLocaleString()} reports · review status: AI draft
+            {related.length.toLocaleString()} related reports · {excludedCount.toLocaleString()}{" "}
+            excluded · review status: AI draft
           </p>
         </div>
-        <Button onClick={exportCsv}>
-          <Download className="h-4 w-4" aria-hidden />
-          Export CSV
-        </Button>
+        <div className="flex items-center gap-2">
+          <Button variant="ghost" onClick={exportExcluded} disabled={excludedCount === 0}>
+            Export excluded (audit)
+          </Button>
+          <Button onClick={exportCsv}>
+            <Download className="h-4 w-4" aria-hidden />
+            Export CSV
+          </Button>
+        </div>
       </div>
 
       <div className="overflow-x-auto rounded-md border border-border bg-surface">
