@@ -1,13 +1,41 @@
 "use client";
 
-import { useEffect, useMemo, useRef } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
-import "leaflet.markercluster";
 import "leaflet.markercluster/dist/MarkerCluster.css";
 import "leaflet.markercluster/dist/MarkerCluster.Default.css";
+import markerIcon from "leaflet/dist/images/marker-icon.png";
+import markerIcon2x from "leaflet/dist/images/marker-icon-2x.png";
+import markerShadow from "leaflet/dist/images/marker-shadow.png";
+import { MapPinOff } from "lucide-react";
 import { MapContainer, TileLayer, useMap } from "react-leaflet";
 import type { Report } from "@/lib/pipeline/reports";
+
+/**
+ * leaflet.markercluster is a pre-ESM plugin: its source refers to a bare global
+ * `L`. Under Turbopack there is no such global, so a static import throws at
+ * module-evaluation time and the whole map fails to mount. ESM hoisting means we
+ * cannot simply assign window.L above the import — the plugin has to be pulled in
+ * at runtime, after the global exists.
+ */
+let clusterPluginReady: Promise<void> | null = null;
+function loadClusterPlugin(): Promise<void> {
+  if (!clusterPluginReady) {
+    (window as unknown as { L: typeof L }).L = L;
+    clusterPluginReady = import("leaflet.markercluster").then(() => undefined);
+  }
+  return clusterPluginReady;
+}
+
+/** Next rewrites image imports, so Leaflet's default icon URLs must be set by hand. */
+const iconUrl = (m: unknown) => (typeof m === "string" ? m : (m as { src: string }).src);
+delete (L.Icon.Default.prototype as unknown as { _getIconUrl?: unknown })._getIconUrl;
+L.Icon.Default.mergeOptions({
+  iconUrl: iconUrl(markerIcon),
+  iconRetinaUrl: iconUrl(markerIcon2x),
+  shadowUrl: iconUrl(markerShadow),
+});
 
 /**
  * Pins carry two signals at once, per BRAND.md:
@@ -59,7 +87,8 @@ function pinIcon(report: Report, flagged: boolean): L.DivIcon {
   // mentions are faded, so "Edmonton sent help" never reads as "Edmonton flooded".
   const borderStyle = role === "help_from" ? "dashed" : "solid";
   const roleOpacity = role === "mentioned" ? 0.4 : 1;
-  const opacity = (conf === "l" ? 0.45 : 1) * roleOpacity;
+  const confOpacity = conf === "h" ? 1 : conf === "m" ? 0.75 : 0.4;
+  const opacity = confOpacity * roleOpacity;
 
   return L.divIcon({
     className: "lfm-pin",
@@ -97,17 +126,24 @@ function Pins({
   const clusterRef = useRef<L.MarkerClusterGroup | null>(null);
   const fitted = useRef(false);
 
+  const [clusterReady, setClusterReady] = useState(false);
+
   useEffect(() => {
+    let cluster: L.MarkerClusterGroup | null = null;
+    let cancelled = false;
     // react-leaflet has no v5 cluster binding, so drive the plugin directly.
-    const cluster = L.markerClusterGroup({
-      showCoverageOnHover: false,
-      maxClusterRadius: 45,
+    void loadClusterPlugin().then(() => {
+      if (cancelled) return;
+      cluster = L.markerClusterGroup({ showCoverageOnHover: false, maxClusterRadius: 45 });
+      clusterRef.current = cluster;
+      map.addLayer(cluster);
+      setClusterReady(true);
     });
-    clusterRef.current = cluster;
-    map.addLayer(cluster);
     return () => {
-      map.removeLayer(cluster);
+      cancelled = true;
+      if (cluster) map.removeLayer(cluster);
       clusterRef.current = null;
+      setClusterReady(false);
     };
   }, [map]);
 
@@ -134,7 +170,7 @@ function Pins({
       map.fitBounds(cluster.getBounds().pad(0.2));
       fitted.current = true;
     }
-  }, [reports, flagged, map, onSelect]);
+  }, [reports, flagged, map, onSelect, clusterReady]);
 
   return null;
 }
@@ -159,6 +195,20 @@ export default function MapView({
       }),
     [reports, affectedOnly],
   );
+
+  // Leaflet needs a real viewport; an empty state is better than a blank grey box.
+  if (plotted.length === 0) {
+    return (
+      <div className="flex h-full flex-col items-center justify-center gap-2 bg-muted px-6 text-center">
+        <MapPinOff className="h-6 w-6 text-muted-foreground" aria-hidden />
+        <p className="font-semibold">No locations found in this dataset</p>
+        <p className="max-w-[40ch] text-sm text-muted-foreground">
+          The reports are still listed and exported. Turn off &ldquo;Affected areas only&rdquo; if
+          places were mentioned but not hit.
+        </p>
+      </div>
+    );
+  }
 
   return (
     <MapContainer

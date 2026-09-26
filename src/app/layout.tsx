@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Source_Sans_3 } from "next/font/google";
+import "leaflet/dist/leaflet.css";
 import { Toaster } from "@/components/ui/sonner";
 import "./globals.css";
 
