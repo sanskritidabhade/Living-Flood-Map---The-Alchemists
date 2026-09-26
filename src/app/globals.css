@@ -1,26 +1,130 @@
 @import "tailwindcss";
 
+/**
+ * Tokens from docs/BRAND.md. The hex in each comment is the authority —
+ * if you change one, recompute the other. Never hardcode hex in components.
+ */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Brand primary */
+  --primary: 16 77% 45%;            /* #C94A1A — orange-red */
+  --primary-hover: 16 78% 36%;      /* #A63B14 */
+  --primary-foreground: 0 0% 100%;  /* white text on primary */
+
+  /* Secondary and supporting */
+  --secondary: 211 56% 23%;         /* #1A3A5C — dark teal */
+  --secondary-foreground: 0 0% 100%;
+
+  /* Accent (highlights, secondary interactive) */
+  --accent: 211 56% 23%;
+  --accent-foreground: 0 0% 100%;
+
+  /* Focus states */
+  --ring: 16 77% 45%;
+
+  /* Neutral backgrounds — warm-tinted, not grey */
+  --background: 37 39% 94%;         /* #F5F0E8 — brand warm off-white */
+  --foreground: 60 4% 10%;          /* #1A1A18 — near-black warm */
+
+  /* Panels, cards, elevated surfaces */
+  --surface: 38 100% 98%;           /* #FFFCF7 */
+
+  /* Secondary text */
+  --muted: 23 6% 39%;               /* #6B635E — taupe */
+  --muted-foreground: 23 6% 39%;
+
+  /* Borders, dividers */
+  --border: 32 20% 87%;             /* #E5DFD8 */
+
+  /* Status colours */
+  --success: 143 64% 24%;           /* #166534 */
+  --success-foreground: 0 0% 100%;
+
+  --warning: 38 92% 50%;            /* #F59E0B — takes black text, never white */
+  --warning-foreground: 0 0% 0%;
+
+  --danger: 0 72% 51%;              /* #DC2626 */
+  --danger-foreground: 0 0% 100%;
+
+  --info: 217 91% 60%;              /* #3B82F6 */
+  --info-foreground: 0 0% 100%;
+
+  /* Status as coloured text on the background */
+  --success-text: 143 64% 24%;      /* #166534 */
+  --warning-text: 26 90% 37%;       /* #B45309 — 4.43:1, large text only */
+  --danger-text: 0 70% 35%;         /* #991B1B */
+  --info-text: 226 71% 40%;         /* #1E40AF */
+
+  /* Pin strokes, so pins read on the CARTO Positron basemap */
+  --pin-critical-stroke: 0 70% 35%; /* #991B1B */
+  --pin-urgent-stroke: 26 90% 37%;  /* #B45309 */
+  --pin-info-stroke: 226 71% 40%;   /* #1E40AF */
+
+  /* Radius varies by role, per DESIGN.md */
+  --radius-sm: 4px;   /* inputs, badges */
+  --radius-md: 8px;   /* panels, cards */
+  --radius-lg: 12px;  /* dialogs */
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-surface: hsl(var(--surface));
+  --color-border: hsl(var(--border));
+  --color-muted: hsl(var(--muted));
+
+  --color-primary: hsl(var(--primary));
+  --color-primary-hover: hsl(var(--primary-hover));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-ring: hsl(var(--ring));
+
+  --color-success: hsl(var(--success));
+  --color-success-foreground: hsl(var(--success-foreground));
+  --color-warning: hsl(var(--warning));
+  --color-warning-foreground: hsl(var(--warning-foreground));
+  --color-danger: hsl(var(--danger));
+  --color-danger-foreground: hsl(var(--danger-foreground));
+  --color-info: hsl(var(--info));
+  --color-info-foreground: hsl(var(--info-foreground));
+
+  --color-success-text: hsl(var(--success-text));
+  --color-warning-text: hsl(var(--warning-text));
+  --color-danger-text: hsl(var(--danger-text));
+  --color-info-text: hsl(var(--info-text));
+
+  --color-pin-critical: hsl(var(--danger));
+  --color-pin-critical-stroke: hsl(var(--pin-critical-stroke));
+  --color-pin-urgent: hsl(var(--warning));
+  --color-pin-urgent-stroke: hsl(var(--pin-urgent-stroke));
+  --color-pin-info: hsl(var(--info));
+  --color-pin-info-stroke: hsl(var(--pin-info-stroke));
+
+  /* Radius tokens are declared in :root above — re-declaring them here would
+     make them self-referential. Tailwind's rounded-* already reads them. */
+
+  --font-sans: var(--font-source-sans);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
+/* No dark mode: the demo records in light mode and the warm off-white is the brand. */
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: hsl(var(--background));
+  color: hsl(var(--foreground));
+  font-family: var(--font-source-sans), system-ui, sans-serif;
+  font-size: 16px;
+}
+
+/* Numbers in tables and totals line up, per DESIGN.md. */
+table,
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+:focus-visible {
+  outline: 2px solid hsl(var(--ring));
+  outline-offset: 2px;
 }
