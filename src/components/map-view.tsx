@@ -186,6 +186,20 @@ function Pins({
     };
   }, [map]);
 
+  // Leaflet caches the container size at init. The Explorer panel settles to its
+  // final height after that, so without this the map paints into stale
+  // dimensions and comes out blank.
+  useEffect(() => {
+    const el = map.getContainer();
+    const observer = new ResizeObserver(() => map.invalidateSize());
+    observer.observe(el);
+    const t = window.setTimeout(() => map.invalidateSize(), 120);
+    return () => {
+      observer.disconnect();
+      window.clearTimeout(t);
+    };
+  }, [map]);
+
   // Framing lives in its own effect: folding it into the marker rebuild meant
   // the early-return guard could skip it before the bounding box arrived.
   useEffect(() => {
