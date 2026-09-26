@@ -1,258 +1,249 @@
 {
-  "generated_at": "2026-09-26T12:00:00Z",
-  "note": "Precomputed so the demo and the first judge click cost zero credits.",
+  "generated_at": "2026-09-26T15:17:24.400Z",
+  "note": "Precomputed with the real API so the demo costs zero credits. profile + classify are live AI output; coordinates come from a curated Alberta gazetteer (places task skipped to stay in budget); verify not run.",
+  "source_csv": "data/samples/alberta-2013.csv",
+  "ai_calls_used": 3,
   "tweets": [
-    "Water is up to the second floor on our street in Bowness. Elderly couple next door still inside, they can't get out. Anyone with a boat? #yycflood",
-    "Siksika Nation has declared a state of local emergency. Mandatory evacuation of low-lying areas this morning, roughly 1,000 members moving out. Cots and bottled water needed. #siksika #abflood",
-    "Highway 22X has been closed since last night, water over both lanes. Turned around three cars myself. #yycflood",
-    "Now hiring class 1 drivers in Calgary, competitive wages, apply today #job #hiring #yyc",
-    "Aerial footage from High River an hour ago shows whole neighbourhoods underwater. Hard to tell where the streets are. #highriver #abflood",
-    "Just walked down by the river downtown and the water is higher than I have ever seen it. This is not normal. #yyc",
-    "City says the Glenmore Dam will be releasing at a higher rate tonight. Residents along the Elbow should be ready to move. #yycflood",
-    "Collecting donations in Edmonton for flood evacuees. Blankets and diapers most needed right now, drop off at the community hall. #abflood",
-    "Anyone know if the Canada Day fireworks are still happening? Planning a barbecue #yyc",
-    "No power in Inglewood since 4am, about 300 homes dark on our block. Generators would go a long way right now. #yycflood",
-    "Town of Canmore has issued an evacuation order for properties along Cougar Creek. Leave now, do not wait. #canmore #abflood",
-    "Thinking of everyone in Calgary tonight. Stay safe out there. #yycflood",
-    "We are in Mission and the water is coming up fast. Family with a newborn, we need help getting out now. #yycflood",
-    "What a game last night, that third period was something else #yyc #flames",
-    "Trans-Canada is cut west of town this afternoon, RCMP turning everyone back. No way through. #braggcreek #abflood",
-    "The Saddledome has water up to row eight. Arena staff pulled everything they could off the floor. #yycflood",
-    "Hearing Deerfoot is fully closed both directions? Can anyone confirm before I leave work #yyc",
-    "The Enmax Centre is open as a reception centre for Siksika Nation evacuees. Volunteers needed for the overnight shift. #siksika #abflood",
-    "My cousin in Mission says the rain has been steady for two days straight, creeks are running high #bcflood",
-    "River forecast centre expects the Bow River to peak overnight. If you are in a low area along the Bow, move now. #yycflood #abflood",
-    "Okotoks is filling sandbags at the public works yard, volunteers welcome all evening. #okotoks #abflood",
-    "Medicine Hat has issued a boil water advisory. Bottled water is being distributed at the arena. #abflood",
-    "My brother says there are two people on a rooftop near Bragg Creek waiting for a helicopter. Please send help. #abflood",
-    "Career opportunity: heavy equipment operators needed immediately, top pay #hiring #jobs #abflood",
-    "Stoney Nakoda families out at Morley lost everything yesterday. Several families need temporary housing. #abflood",
-    "High River is going to need all of us when this is over. Heartbreaking to watch. #highriver",
-    "Tsuut'ina residents near the river are being told to leave within the hour. We need transport for people without vehicles. #abflood",
-    "Heard the Okotoks Recreation Centre is full and turning evacuees away. Is that true? #okotoks",
-    "RT @celebrity: thanks for all the birthday wishes everyone, you are the best #blessed",
-    "Highway 2 at High River is closed until further notice. Do not attempt to drive through standing water. #highriver #abflood"
+    "Camping tomorrow. That would be fun.",
+    "Happy Canada Day!!! #canadaday #july1st #lethbridge #hendersonpark #fun under the #sun #tan #mapleleaf http://t.co/Oa1XFXHj0a",
+    "#Calgary, I am so proud of you! Calgarians, you rock with your #solidarity! #hometownpride #love #canada #yyc #flooding #RT @wwwDORIca :)",
+    "@ZevKlymochko I skated (and loved) millennium park when I lived in Calgary. Is there any pics of millennium park post flood?",
+    "#News Floods displace nearly 200,000 in western Canada\\http://t.co/2q8NrnECDm",
+    "Getting mask fitted tom so I can go out to the upgrader. #nowwearetalking #fortmac",
+    "I'm at Los Chilitos Taco and Tequila House (Calgary, AB) http://t.co/Rw6VAXrVIN",
+    "Vestara did not see what happened next, exactly, because she was diving #into the cave after Ahri. She rolled across the",
+    "@windspeakernews @ABHumanServices thanks you too. I hope the people of Siska all got out safely. #YYC #abflood #floods #yccflood",
+    "@britanniaderm are you guys still open??",
+    "Christy Clark donated $250 to Calgary flood to say on Global news that is joke!",
+    "if i could drive my life would be easier!",
+    "s fist down hard upon the desk. He roared, I 'didn't not' tell you because #I thought you were smart enough to know bett",
+    "stood in the middle of the chaos, wielding a pair of blaster pistols and snapping his tail spike outward in menacing fa",
+    "Officials in #Calgary say evacuations will not end until water recedes; up to 30,000 still without power #abflood @weathernetwork",
+    "@Unpoetlike did the local safeway do anything to help ??",
+    "@SasgesInc lol. My thoughts exactly. In someways getting on a plane seems like the smartest choice right now.",
+    "Kennedy postpones oilsands trip due to Alberta floods: He was to tour an oilsands plant in the Fort McMurray a... http://t.co/HdVPSfyQxM",
+    "@ikepoker have you ever played durrrr or isuldur1 live?",
+    "Hoping & praying for those affected by the flooding in Alberta",
+    "RT @jengerson: As hilarious as this is, most other cities would be dealing with looting. Calgary? Rogue canoes. #yycflood  http://t.co/uqXt…",
+    "&amp; you say your life sucks. Haha. Stfu",
+    "RT @kirbydreher: Atta boy @DaveMarkle66 @PGATOURCanada event cancelled in Calgary, players stand by 2 assist the flood relief effort. http:…",
+    "RT @redcrosscanada: We are looking for volunteers to help following south Alberta floods. Please register at: http://t.co/0zYRdw5TO8 “ #yyc…",
+    "I feel like it's time for me to give back to this amazing city I live in... Project clean up yyc is a go! #volunteer #yycflood",
+    "RT @vitaminwater_ab: tomorrow we will be joining @yycfoodtrucks at the @cgyfarmersmarkt to raise money for @redcrossab #yychelps #yycflood …",
+    "hing back the Yuuzhan Vong. Jaina had seen that much as she maneuvered the wounded Jedi Master aboard her ship.",
+    "RT @cenovus: Donate to @redcrosscanada to help w/ #abflood relief efforts. #Cenovus staff, we'll match employee donations http://t.co/d1Jz5…",
+    "i am cleaning my room and you tell me to study????? make up your mind ???? ffs.",
+    "@jessgodin_xo I still wish I was there  it would be too much fun #EdmontonProblems",
+    "RT @ShitNenshiHasto: I can't believe I have to say this, but no, we won't be turning the Peace Bridge into a slip and slide.  #yycflood",
+    "@SLShockeyfan U are making good points",
+    "Floor Hand - Oil and Gas needed in Red Deer, AB, good pay and benefits, Please Apply Today!!! #job #hiring http://t.co/LhnEv6wJpY",
+    "Why do u do this to myself?",
+    "rong enough possibility to serve in the Corellian m",
+    "@cLosN is the biggest beauty to ever graduate from Romero #allstar",
+    "RT @Metro_Katie: Fire department is looking at disconnecting some cars at either end. #yycflood #yyc",
+    "Do you want to know which were the 91 Trends on Tuesday 25 in Edmonton? http://t.co/EuKOxJpvFb",
+    "RT @xlbuzz: Why #ABFlood Fundraising Should Be Donated To The Government, Not The Red Cross http://t.co/9EtYh72LGw",
+    "its raining pretty hard here now. #MardaLoop #Calgary",
+    "apprentice by #walking respectfully at his side.",
+    "Calgary Flames say lower part of team's rink is 'a total loss' from flooding:      http://t.co/oQ7YbsJpIK",
+    "RT @MadelnCanada: Smile. No matter how difficult the situation can be. #abflood http://t.co/1ilJPPcPu2",
+    "@MrSilverScott @TravelAlberta so does that mean you'll come renovate my house #itreallyneedsit",
+    "RT @Crackmacs: Pictures I took from around downtown #Calgary today http://t.co/9FNjfjhblt #yyc #yycflood - video coming shortly.",
+    "@calgarytransit Very much appreciated. Loved one home safe now. God bless you! #yycflood",
+    "RT @Mookalicious: This pic of an awesome firefighter in Mission needs to go viral.  Please share! #abflood http://t.co/H1YF3RhJZs",
+    "@mckenzie_jenna I thought you had to stay from 9-1 ?",
+    "RT @AP: UPDATE: Three dead from flooding in Alberta as 75,000 people are evacuated: http://t.co/QjyqKNLBV4 -MM",
+    "“@ENMAX: It is estimated that power will be restored to Mission, Cliff Bungalow, Beltline and Victoria Park by 10:00 PM today. #yycflood”",
+    "He and Zerba were on their own.",
+    "flight her mind kept conjuring up images of orbital cities in ruins, the bodies of men, women, and children scattered a",
+    "5th Ave flyover car free #yycflood http://t.co/oujVqOx5gr",
+    "Sending love to all those affected by the flooding in Calgary, Canmore, High River, Okotoks, Lethbridge and every... http://t.co/b52cjtwdhc",
+    "More live coverage from downtown #Calgary #ABFlood now on The Weather Network on TV road closures - river advisories - local weather!",
+    "RT @BrentToderian: Hell or High Water. There's no stopping the @calgarystampede. #yycflood http://t.co/zU2p1QEr25",
+    "RT @unconstCFO: Cleanup time! Here's how to help in Calgary. http://t.co/XEEmKKQJPX #yychelps #ABflood",
+    "Oh we'll, here's something cute http://t.co/YuGdqPpOSH",
+    "Even the police weren't immune from the flood catching them unaware. #yycflood [pic]  https://t.co/jIO3LTxE72",
+    "RT @CTVNewsJett: Anyone in #Nanaimo have family displaced in #Calgary because of the massive flood?  Please message me.",
+    "Canada floods: Three killed as waters threaten Calgary http://t.co/pYtQltRTwc",
+    "#love #luckygirl #handsome #hubby #anniversary @ Silvertip Golf Resort http://t.co/X4evGe1hXH",
+    "@Cree8Dawn @Harv_Durocher Gravel roads in some areas r washed away. Bow River is rising. Most families evacuated themselves. Mainland is ok.",
+    "Hot weather, cool jazz, even cooler ice cream! #coldstone @ Tim Hortons http://t.co/gs7e6CVArK",
+    "A true iron man @JKany has been reporting the news since 6am and still has salon quality hair #jordanburgandy #yycflood",
+    "I mean, if it's legal, then legitimate sources could sell it without trying to sell you illegal drugs or lacing the weed.",
+    "Machine Tool Sales Representative needed in Calgary. Great pay ! #job #hiring http://t.co/rRXweaBFkZ",
+    "RT @ShelaghMXdonald: @KasiaMadera \\As a British citizen in Canada, I am horrified by lack of attention to floods in Alberta.  The US gets a…",
+    "RT @CalgaryPolice: .@edmontonpolice you are true heroes. Thanks for helping us out! #yycflood",
+    "@nenshi @ENMAX we should light the tower in honour of Enmax efforts to relight the city. Good job boys. #yycflood",
+    "Gluten free tasty now @carebakery perhaps I can convince them to use your pizza crusts. Dying to try the lox! http://t.co/Uhj81ruOKp",
+    "RT @TedMenzies: Happy Canada Day to all! Please take a moment to remember those who were impacted by the flood. See you in Pincher Creek an…",
+    "Omg bacon beer cream donut? Drool.",
+    "This is so good it, deserves to be posted again.\\Cambodian orphans help Alberta flood victims\\#amazing\\http://t.co/wGBIu9zVgG",
+    "Come to earls 16th ave for a safe dry dinner ! We're open Calgary ! Great food , safe environment .",
+    "I haven't seen Molly in like 3 weeks.....where's that bitch hiding",
+    "@TheRyanBeatty is this a joke",
+    "@MubasherLucman Need an other long march or Dharna against CJ (Corrupt Judges) &amp; PM this time to throw them out before their retirement",
+    "RT @leahhennelphoto: After the flood in Calgary a book lays in the muddy streets of Bowness. #abflood in #yyc http://t.co/m3lSsz5Z24",
+    "No kidding, Han growled back, tapping his fingertips restlessly against the mug of Corellian spiced #ale that he still",
+    "RT @CTVCalgary: Drop-In Centre wishlist - bring items to temp. centre (former hotel) 4804 Edmonton Trail NE #yyc #yycflood http://t.co/EATD…",
+    "Monica will bake a cake for us.",
+    "@jjchirogirl aww thanks-you're right, it is hard not to feel bad at times. I did enjoy doing a bunch of nothing though:) enjoy yours too!",
+    "Severe flood submerges parts of Flames' arena: Two rivers converged on the western Canadian city of Calgary ov... http://t.co/6fCFbov14b",
+    "RT @Kathleen_Wynne: Ontario is here for Calgary and all our friends in Alberta. We’ll work together to make sure they’re okay. #abflood #yy…",
+    "of shots per Tibanna charge. If there was trouble up there, they could quickly find #themselves at a dangerous firepower",
+    "RT @JoyceMeyer: Hand of Hope working to help victims of Calgary floods. https://t.co/Ei3gL7ADKU",
+    "Class 1 or 2 Experienced Tour Coach Operator / Bus Driver needed in Fort Mcmurray, AB #job #hiring http://t.co/UnNdB6302z",
+    "RT @CP24: Alberta gives $1 billion for flood relief http://t.co/HFbCrtOTbb",
+    "@FlameWayz I started 2 days ago I'm about to finish it!!!  I want that bitch dead how could she! ( Btw Don't spoil I'm not up to date)",
+    "Awesome day treating volunteers!  Treated Canadians from across the country who have come to help. #yycflood @nenshi http://t.co/SGAzGIvd59",
+    "New part of daily routine: read about amazing things that happened in my #yyc today. Cry in pride. Repeat. #yycflood cc @nenshi",
+    "Media line for reporters to call for specific info, details & facts on #abflood: 780-644-4862",
+    "Anakin shook his head. That's not #like Rex.",
+    "Hmm. These TV ads in Australia promoting BC/Alberta tourism don't really work when shown right after #abfloods news footage. #yycfloods",
+    "Although I had to be in work by 7am, it was actually a really good shift (:",
+    "Oh, you turned on your computer and read about Alan Turing? That's awesome. And so was he.",
+    "RT @cityofcalgary: All Calgary Dams are operating as designed, there is NO risk of a dam breach. All Dams are safe and sound. #yyc #yycflood",
+    "Enbridge employees - offices will remain closed week of June 24; no impact to operations http://t.co/fYiwWGuWau #abfloods #yycflood",
+    "#flames shows up at this time as Trend in Calgary http://t.co/LrAT1PJqtE",
+    "Red velvet cake is gross  never again",
+    "RT @dinnerwithjulie: Ran into chef Kevin Turner from @bravabistro - whose evacuated house was broken into & ransacked. #yycflood http://t.c…",
+    "@iBRYca @DeeMented2 I just got this in the mail. I don't travel the US a lot, is this a good deal? http://t.co/IxXJbMBuVw",
+    "RT @CalgaryPolice: Find Family Members affected by Flooding in Alberta here: http://t.co/pxeSDy4HM1 Canadian Red Cross #yycflood",
+    "So I hear the Starbucks on 4th in Mission has a venti water issue. #yycflood",
+    "You got it bad , wen your out with someone and you keep on thinkin bout somebody you got it bad",
+    "Sewer is covered. Overflow is not. The insurance companies should lean towards covering if its mixed, as per starting trends. #abflood",
+    "getting up at 1 everyday is not a bad thing, though it is #shortdays #longnights",
+    "PHOTOS:  View from above:  #Calgary flooding http://t.co/ONGAwSlVRs",
+    "I wish I could make him happy, I wish he would tell me his problems... His happiness means more to me than anything...",
+    "When do you suppose was the last time anybody socialized at the Fred Astaire Dance Studio &amp; Social Club? http://t.co/MIo8tU3rX6",
+    "Proud that #TAemployees were helping with the clean-up around the city today! #yychelps #yycflood http://t.co/0EUldUbLBK",
+    "RT @UnitedWaySEAB: If you would like to donate to Red Cross and Salvation Army flood relief efforts  text Flood to 70734  #ABflood",
+    "Everyone okay? Vestara asked, #using the wailing of her victim to mask her own voice.",
+    "@LadyDAfterDark Yay. I imagine one character and such? Can we bang out the details tomorrow? So sleepy...",
+    "RT @GlobalCalgary: Full details on the outdoor water use ban in place for City of Calgary: http://t.co/SHTocwCBir #yycflood",
+    "@mimiveale I too am at a house party.",
+    "We are now hiring for a Construction Estimator in Calgary, AB - Click here for more details -&gt; #job #hiring http://t.co/J3AfkiAuOo",
+    "RT @CTVCalgary: The @calgarystampede says it's Hell or High Water.  Have never missed a show, not about to start now. #YYC #ABflood",
+    "Now recruiting for Experienced Tour Coach Operator - P/T and F/T  Edmonton, AB Apply today! #job #hiring http://t.co/ZvzFQQoDzx",
+    "RT @VassyKapelos: 100 firefighters and equipment from #yeg heading to #yyc to help later today #abflood",
+    ".@nenshi said he was moved to tears by seeing more than 200 people on one block helping to clean up #yycflood",
+    "Looking for a Mastermind-like iOS app with Game Center multiplayer. Anyone?",
+    "the tier's forest of ornate columns, he depressed the comlink's ACCEPT button and glanced down at the device, whose sma",
+    "As for the flood victims, my heart bleeds for them but it's their own fault at the end of the day, Mayor of Calgary Rob Ford #Toronto",
+    "@jannarden it's only a matter of time. Did our PM even address the city while he was here?!",
+    "Statoil Canada and PTTEP Canada Limited donate $1 million to Calgary and area flood relief: CALGARY -- Followi... http://t.co/1Xzl0ma14e",
+    "Some @CalgaryStampede events cancelled due to flooding #yycflood http://t.co/x0Tn84AHaM",
+    "RT @DianeOrihel: A useful irony: #CPC cancels convention due to natural disaster #climate #abflood #cdnpoli http://t.co/nXv49fgdpF",
+    "This gopher sits pretty for Pringles chips Tigis having a ball! http://t.co/wVHem2aIlE",
+    "@blackphiton thanks for following me",
+    "RT @metrocalgary: Tim Hortons offers up special Alberta flood donut http://t.co/Tl7nBmHAnd #yycflood",
+    "RT @DonnaGobanna: @TheEllenShow We could use an ark! #flooding #Calgary #Edmonton #Alberta",
+    "@TheBurg4St has the balls to do it medium rare. Lots of good flavor and a couple of glitches. Will go again for sure.",
+    "t moment in the Tatooine desert when he'd #watched his mother die. Felt her die. He'd never be free of what had happened",
+    "Broke my wrist again!!! Worth itttttt",
+    "Alberta College of Art + Design to Closed Until Wednesday, June 26th - campus locked, all classes/events cancelled. #yycflood",
+    "Finally home after being a sober driver for the homie. It really sucked had to take every back road, signals stopped working. #rezlife",
+    "Going home...fun night still",
+    "t meant this was home, because this was where I was the most alive. The most me. I #don't know who that old codger is tha",
+    "RT @AlisonLoat: Watching Calgary's mayor #yycflood update. The City's officials & citizens set an extraordinary example of service & fortit…",
+    "RT @urstrong: Choppers flying along memorial drive telling people to get off the sidewalks & away from the river! #yycflood",
+    "@ohteenquotes: Life is too short to spend it with people who don't make you happy.",
+    "https://t.co/bD9Ghk3yCu this is 2 blocks from my house",
+    "Truth: @CstShaw: For those inquiring about Deer Run, we have no evacuation order for your community at this time. #yycflood #yyc",
+    "RT @LindsayDunnCTV: This is apparently what the current state of the Saddledome is in from the flooding in Alberta. http://t.co/I8c0dCv1D9",
+    "@bluejaysart happy birthday Chris! :) stay safe!",
+    "@erikacharest__ that's not conceited at all. The world doesn't revolve around you. Like I'm not even following you. Bahahahahaha",
+    "Two tables full of food!! how i love looong weekends in Edmonton :) Congrats to my cuz Maxine for http://t.co/77a4ZerrGS",
+    "RT @MikeHudema: I only hope my city's nightmare is the #climatechange wake-up Alberta needs: http://t.co/rHyriwpQCb #abflood #cdnpoli #ab…",
+    "Packing my clothes for moving: hey I forgot about these jeans!  #NewClothes",
+    "@FoldableHuman oh dear. I guess I will check tomorrow once I am there.",
+    "What rhymes with hug me? Apparently hug me does.",
+    "Wishing the monarch of the Stewart family a happy birthday. Happy Birthday Nana!!!  Love you.",
+    "@MeghanAlyson @goaliegirlmom31 Red Cross on Calgary are accepting donations for the local First Nations #yycflood #abflood",
+    "community cleanup in Elbow Park and Mission, but work can be done somewhere else : @nenshi #yycflood",
+    "@KodiakKingMusic I wanna go home. Bad. I would do anything",
+    "quickly and rightfully extinguished. If only the Tapani refugees had already known the Force when they arrived in the St",
+    "Bull with muscle problems LOOOL",
+    "RT @CalgaryPolice: .@klizanne27 here is a list of the most up-to-date road closures. #yycflood http://t.co/oPbJ5Qx9bQ",
+    "#Alberta | #Canmore – Water levels in Bow River remain steady http://t.co/SZMhdNtyil #flooding",
+    "@redcrosscanada: We continue 2 assist those affected by flooding in #Alberta. Want 2 help? Donate here: http://t.co/7UHLaIGQA4   #abflood",
+    "Not looking very good for racing this weekend!!! Need sunshine!!",
+    "Warm thoughts going out to our community of flight attendant friends and colleagues affected by the #Calgary #flooding",
+    "Happy birthday, @CherylCole sending love from Canada!",
+    "For those impacted by the #yycflood , stay safe!",
+    "This lake I went too today &gt;&gt;&gt;&gt; http://t.co/vgf9IobJVp",
+    "RT @JoeAnglin2: RCMP stop volunteer aid worker in #highriver and ticket him for a cracked windshield. Really! #abflood #wrp",
+    "RT @BradenLatam: Wow, still pretty unbelievable.  RT @CalgaryPolice: Aerial photo of flooding at Prince's Island Park. #yycflood http://t.c…",
+    "RT @servprocleaning: Flood Don't: turn on ceiling fixtures if ceiling is wet also keep out of rooms where ceilings are sagging #yycflood ht…",
+    "RT @TrentJackson: AWESOME! @RegusCanada is offering free work space to support victims of #yycflood http://t.co/s5YwbrYMND #yyc #business",
+    "Matt: One pretty woman means fun at the dance. Two pretty women means trouble in the house. Three pretty women means run at the hills! #WoT",
+    "What an amazing day :) #samelove",
+    "@mitchdul Let's see, averages .5pts/game, 25mins/night kills penalties, big shot at the point, plays tough &amp; dirty. Yeah, who wants that guy",
+    "@cazpi oh dear. That would be a tragic loss indeed!!!!!",
+    "@MrLiamWillis I got in shit for cutting a crop circle in the front lawn once. DO IT FOR ME! Pics!",
+    "His clothes and robes were so ridiculously garish-bright purples and golds and greens and reds-that they hurt Zekk's eye",
+    "P.s. I hate fucking Miskitos D;",
+    "He wants pics people lots of great Calgary garden pics (see pic for info) @WBrettWilson #OMGP #YYCFlood http://t.co/oGm9LfdSBP",
+    "There were a few other items of import-certain worlds were asking for Jedi aid in various skirmishes, or in two cases, i",
+    "RT @AliyaJasmine: Saying a prayer for Calgary, and everyone experiencing the floods in Alberta",
+    "RT @CalgaryPolice: Together we will rebuild. #WeAreCalgary Great video made by Bradley Stuckel: http://t.co/Pe7DOtu1zK #yycflood",
+    "RT @ctvedmonton: Province says 23 communities have declared a state of emergency: http://t.co/qyWyLicaAp #yycfloods #abfloods @CTVNews",
+    "This Is What Love Looks Like: A Man and His Cat Swim to Safety in the Alberta, Canada, Flood http://t.co/XlzVsK8emZ via @catster",
+    "to find closure, #trying to make it all right for him to be dead, to be gone. And it never worked.",
+    "Looks like they're sending down the reinforcements. #yyc #yycflood #army #hangtight @ QE2 http://t.co/lNXubXlmMK",
+    "I am so proud of our mayor, our heroic emergency responders and our city and its residents #yycflood #yyc http://t.co/BVTTwZywR0",
+    "Bahay ni Lola Margarita   Please come stop by our Garage Sale Fundraiser for WYD!!! Your support is http://t.co/1NrsDjsdMQ",
+    "Friends, neighbors were more helpful than government after Sandy, poll finds: http://t.co/qRjOGMiM8X #ABflood",
+    "The front door was a #vault-like durasteel portal, a very old-fashioned design that swung out on metal hinges, and Ben be",
+    "POLL: Has the flooding in Alberta affected you?  http://t.co/XX87b0qNzr",
+    "Lol at when the lady at Quiznos knows @Emad99 life story.",
+    "Nelson Mandela is gonna die. Fuck. This is way worse than NOT KNOWING ANYTHING ABOUT THE BRIDGE!!! #yycflood",
+    "... well, it's after 12, time for me to start browsin twitter",
+    "RT @aldjohnmar: You have to see it to appreciate the speed of the water... #yyc #yyccc #yycflood http://t.co/IkxjYVaLsk",
+    "RT @shmopes: Taking the #yycflood as a joke is wearing thin guys, you wouldn't be joking around if it was your house being affected #county…",
+    "With Ben on guard for both of them, Luke sat on",
+    "Damn I hate waiting to get paid",
+    "@NHLFlames Oh mean! I heard what happened to your stadium! I hope everything is okay! #FlamesFan #yycflood #Stadium #Calgary #YoureStrong",
+    "RT @cbcDougDirks: @nenshi If you're still standing, @WBrettWilson donating $1 for every tweet, RT of hashtag #OMGP to max 50k for #yycflood…"
   ],
   "profile": {
     "event_type": "flood",
-    "event_name": "2013 Southern Alberta floods",
-    "region": "Southern Alberta",
+    "event_name": "2013 Alberta floods",
+    "region": "Alberta",
     "country": "Canada",
     "bbox": [
-      -115.6,
-      50.5,
-      -112.9,
-      51.6
+      -116,
+      49.5,
+      -112,
+      52
     ],
     "key_hashtags": [
-      "#yycflood",
       "#abflood",
+      "#yycflood",
       "#yyc",
-      "#highriver",
-      "#siksika",
-      "#canmore"
+      "#yychelps",
+      "#abfloods",
+      "#flooding"
     ],
     "key_places": [
       "Calgary",
-      "High River",
+      "Alberta",
       "Canmore",
-      "Siksika Nation",
-      "Bowness",
-      "Inglewood",
-      "Mission",
-      "Medicine Hat",
+      "High River",
       "Okotoks",
-      "Bragg Creek"
+      "Lethbridge",
+      "Bow River",
+      "Saddledome",
+      "Prince's Island Park"
     ],
-    "what_counts_as_related": "The tweet reports, responds to, or gives official information about flooding in southern Alberta in June 2013 — including damage, closures, evacuations, rescues, shelters, donations and sympathy. Job ads, sports and celebrity chatter that merely use the hashtags are not related.",
+    "what_counts_as_related": "Reports concerning the severe flooding in Southern Alberta, including evacuation orders, updates on the Bow River, cleanup volunteering in Calgary, and impact on landmarks like the Saddledome.",
     "confidence": "h"
   },
   "classify": {
     "results": [
       {
         "i": 0,
-        "rel": true,
-        "conf": "h",
-        "cat": "People needing help",
-        "urg": "critical",
-        "eye": true,
-        "claim": false,
-        "places": [
-          {
-            "text": "Bowness",
-            "name": "Bowness, Calgary",
-            "type": "neighbourhood",
-            "role": "affected"
-          }
-        ],
-        "time": {
-          "text": "right now",
-          "type": "now"
-        },
-        "who": "elderly couple on the second floor",
-        "needs": [
-          "boat rescue"
-        ],
-        "src": "resident"
-      },
-      {
-        "i": 1,
-        "rel": true,
-        "conf": "h",
-        "cat": "Evacuation or shelter",
-        "urg": "urgent",
-        "eye": false,
-        "claim": true,
-        "places": [
-          {
-            "text": "Siksika",
-            "name": "Siksika Nation",
-            "type": "community",
-            "role": "affected"
-          }
-        ],
-        "time": {
-          "text": "this morning",
-          "type": "past"
-        },
-        "who": "roughly 1,000 members",
-        "needs": [
-          "cots",
-          "bottled water"
-        ],
-        "src": "official",
-        "fn": "Siksika Nation"
-      },
-      {
-        "i": 2,
-        "rel": true,
-        "conf": "h",
-        "cat": "Road or bridge closed",
-        "urg": "urgent",
-        "eye": true,
-        "claim": true,
-        "places": [
-          {
-            "text": "Highway 22X",
-            "name": "Highway 22X, Calgary",
-            "type": "street",
-            "role": "affected"
-          }
-        ],
-        "time": {
-          "text": "since last night",
-          "type": "past"
-        },
-        "needs": [],
-        "src": "resident"
-      },
-      {
-        "i": 3,
         "rel": false,
         "conf": "h",
-        "why": "Job ad using the event hashtag",
-        "cat": "Other related",
-        "urg": "information",
-        "eye": false,
-        "claim": false,
-        "places": [],
-        "needs": [],
-        "src": "organization"
-      },
-      {
-        "i": 4,
-        "rel": true,
-        "conf": "h",
-        "cat": "Flooding or damage",
-        "urg": "critical",
-        "eye": true,
-        "claim": false,
-        "places": [
-          {
-            "text": "High River",
-            "name": "High River, Alberta",
-            "type": "town",
-            "role": "affected"
-          }
-        ],
-        "time": {
-          "text": "an hour ago",
-          "type": "past"
-        },
-        "who": "whole neighbourhoods",
-        "needs": [],
-        "src": "media"
-      },
-      {
-        "i": 5,
-        "rel": true,
-        "conf": "m",
-        "why": "Mentions water but location unclear",
-        "cat": "Flooding or damage",
-        "urg": "information",
-        "eye": true,
-        "claim": false,
-        "places": [
-          {
-            "text": "downtown",
-            "name": "Downtown Calgary",
-            "type": "neighbourhood",
-            "role": "affected"
-          }
-        ],
-        "needs": [],
-        "src": "resident"
-      },
-      {
-        "i": 6,
-        "rel": true,
-        "conf": "h",
-        "cat": "Official warning or update",
-        "urg": "urgent",
-        "eye": false,
-        "claim": true,
-        "places": [
-          {
-            "text": "Glenmore Dam",
-            "name": "Glenmore Dam, Calgary",
-            "type": "landmark",
-            "role": "affected"
-          }
-        ],
-        "time": {
-          "text": "tonight",
-          "type": "forecast"
-        },
-        "needs": [],
-        "src": "official"
-      },
-      {
-        "i": 7,
-        "rel": true,
-        "conf": "h",
-        "cat": "Donations and volunteers",
-        "urg": "information",
-        "eye": false,
-        "claim": false,
-        "places": [
-          {
-            "text": "Edmonton",
-            "name": "Edmonton, Alberta",
-            "type": "city",
-            "role": "help_from"
-          }
-        ],
-        "needs": [
-          "blankets",
-          "diapers"
-        ],
-        "src": "organization"
-      },
-      {
-        "i": 8,
-        "rel": false,
-        "conf": "h",
-        "why": "Canada Day plans, unrelated to the flooding",
         "cat": "Other related",
         "urg": "information",
         "eye": false,
@@ -262,52 +253,19 @@
         "src": "unknown"
       },
       {
-        "i": 9,
-        "rel": true,
+        "i": 1,
+        "rel": false,
         "conf": "h",
-        "cat": "Power water and services",
-        "urg": "urgent",
-        "eye": true,
-        "claim": true,
-        "places": [
-          {
-            "text": "Inglewood",
-            "name": "Inglewood, Calgary",
-            "type": "neighbourhood",
-            "role": "affected"
-          }
-        ],
-        "time": {
-          "text": "since 4am",
-          "type": "past"
-        },
-        "who": "about 300 homes",
-        "needs": [
-          "generators"
-        ],
-        "src": "resident"
-      },
-      {
-        "i": 10,
-        "rel": true,
-        "conf": "h",
-        "cat": "Evacuation or shelter",
-        "urg": "urgent",
+        "cat": "Other related",
+        "urg": "information",
         "eye": false,
-        "claim": true,
-        "places": [
-          {
-            "text": "Canmore",
-            "name": "Canmore, Alberta",
-            "type": "town",
-            "role": "affected"
-          }
-        ],
+        "claim": false,
+        "places": [],
         "needs": [],
-        "src": "official"
+        "src": "unknown"
       },
       {
-        "i": 11,
+        "i": 2,
         "rel": true,
         "conf": "h",
         "cat": "Support and sympathy",
@@ -317,45 +275,185 @@
         "places": [
           {
             "text": "Calgary",
-            "name": "Calgary, Alberta",
+            "name": "Calgary",
+            "type": "city",
+            "role": "help_from"
+          },
+          {
+            "text": "#yyc",
+            "name": "#yyc",
+            "type": "city",
+            "role": "help_from"
+          }
+        ],
+        "needs": [],
+        "src": "resident"
+      },
+      {
+        "i": 3,
+        "rel": true,
+        "conf": "h",
+        "cat": "Flooding or damage",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [
+          {
+            "text": "millennium park",
+            "name": "Millennium Park",
+            "type": "landmark",
+            "role": "affected"
+          },
+          {
+            "text": "Calgary",
+            "name": "Calgary",
             "type": "city",
             "role": "mentioned"
           }
         ],
         "needs": [],
+        "src": "resident"
+      },
+      {
+        "i": 4,
+        "rel": true,
+        "conf": "h",
+        "cat": "Flooding or damage",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [
+          {
+            "text": "western Canada",
+            "name": "Western Canada",
+            "type": "region",
+            "role": "affected"
+          }
+        ],
+        "needs": [],
+        "src": "media"
+      },
+      {
+        "i": 5,
+        "rel": false,
+        "conf": "h",
+        "cat": "Other related",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [],
+        "needs": [],
+        "src": "unknown"
+      },
+      {
+        "i": 6,
+        "rel": false,
+        "conf": "h",
+        "cat": "Other related",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [],
+        "needs": [],
+        "src": "unknown"
+      },
+      {
+        "i": 7,
+        "rel": false,
+        "conf": "h",
+        "cat": "Other related",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [],
+        "needs": [],
+        "src": "unknown"
+      },
+      {
+        "i": 8,
+        "rel": true,
+        "conf": "h",
+        "cat": "Support and sympathy",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [
+          {
+            "text": "Siska",
+            "name": "Siska",
+            "type": "community",
+            "role": "affected"
+          },
+          {
+            "text": "#YYC",
+            "name": "#YYC",
+            "type": "city",
+            "role": "mentioned"
+          }
+        ],
+        "needs": [],
+        "src": "resident"
+      },
+      {
+        "i": 9,
+        "rel": false,
+        "conf": "h",
+        "cat": "Other related",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [],
+        "needs": [],
+        "src": "unknown"
+      },
+      {
+        "i": 10,
+        "rel": true,
+        "conf": "m",
+        "why": "Criticism of donation amount by British Columbia premier to Calgary flood victims.",
+        "cat": "Donations and volunteers",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [
+          {
+            "text": "Calgary",
+            "name": "Calgary",
+            "type": "city",
+            "role": "affected"
+          }
+        ],
+        "needs": [],
+        "src": "resident"
+      },
+      {
+        "i": 11,
+        "rel": false,
+        "conf": "h",
+        "cat": "Other related",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [],
+        "needs": [],
         "src": "unknown"
       },
       {
         "i": 12,
-        "rel": true,
+        "rel": false,
         "conf": "h",
-        "cat": "People needing help",
-        "urg": "critical",
-        "eye": true,
+        "cat": "Other related",
+        "urg": "information",
+        "eye": false,
         "claim": false,
-        "places": [
-          {
-            "text": "Mission",
-            "name": "Mission, Calgary",
-            "type": "neighbourhood",
-            "role": "affected"
-          }
-        ],
-        "time": {
-          "text": "now",
-          "type": "now"
-        },
-        "who": "family with a newborn",
-        "needs": [
-          "evacuation help"
-        ],
-        "src": "resident"
+        "places": [],
+        "needs": [],
+        "src": "unknown"
       },
       {
         "i": 13,
         "rel": false,
-        "conf": "m",
-        "why": "Hockey chatter using #yyc",
+        "conf": "h",
         "cat": "Other related",
         "urg": "information",
         "eye": false,
@@ -368,62 +466,42 @@
         "i": 14,
         "rel": true,
         "conf": "h",
-        "cat": "Road or bridge closed",
-        "urg": "critical",
-        "eye": true,
-        "claim": true,
-        "places": [
-          {
-            "text": "Trans-Canada",
-            "name": "Highway 1, Bragg Creek",
-            "type": "street",
-            "role": "affected"
-          }
-        ],
-        "time": {
-          "text": "this afternoon",
-          "type": "past"
-        },
-        "needs": [],
-        "src": "media"
-      },
-      {
-        "i": 15,
-        "rel": true,
-        "conf": "h",
-        "cat": "Flooding or damage",
-        "urg": "urgent",
-        "eye": true,
-        "claim": false,
-        "places": [
-          {
-            "text": "Saddledome",
-            "name": "Scotiabank Saddledome, Calgary",
-            "type": "landmark",
-            "role": "affected"
-          }
-        ],
-        "who": "arena staff",
-        "needs": [],
-        "src": "media"
-      },
-      {
-        "i": 16,
-        "rel": true,
-        "conf": "m",
-        "why": "Reports a closure, no source named",
-        "cat": "Road or bridge closed",
+        "cat": "Official warning or update",
         "urg": "urgent",
         "eye": false,
         "claim": true,
         "places": [
           {
-            "text": "Deerfoot",
-            "name": "Deerfoot Trail, Calgary",
-            "type": "street",
+            "text": "#Calgary",
+            "name": "#Calgary",
+            "type": "city",
             "role": "affected"
           }
         ],
+        "needs": [],
+        "src": "media"
+      },
+      {
+        "i": 15,
+        "rel": false,
+        "conf": "h",
+        "cat": "Other related",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [],
+        "needs": [],
+        "src": "unknown"
+      },
+      {
+        "i": 16,
+        "rel": false,
+        "conf": "h",
+        "cat": "Other related",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [],
         "needs": [],
         "src": "unknown"
       },
@@ -431,175 +509,41 @@
         "i": 17,
         "rel": true,
         "conf": "h",
-        "cat": "Evacuation or shelter",
-        "urg": "urgent",
-        "eye": false,
-        "claim": true,
-        "places": [
-          {
-            "text": "Enmax Centre",
-            "name": "Enmax Centre, Calgary",
-            "type": "landmark",
-            "role": "help_from"
-          }
-        ],
-        "needs": [
-          "volunteers"
-        ],
-        "src": "organization",
-        "fn": "Siksika Nation"
-      },
-      {
-        "i": 18,
-        "rel": true,
-        "conf": "l",
-        "why": "Place name ambiguous outside region",
-        "cat": "Flooding or damage",
+        "cat": "Other related",
         "urg": "information",
         "eye": false,
         "claim": false,
         "places": [
           {
-            "text": "Mission",
-            "name": "Mission, British Columbia",
+            "text": "Alberta",
+            "name": "Alberta",
+            "type": "region",
+            "role": "affected"
+          },
+          {
+            "text": "Fort McMurray",
+            "name": "Fort McMurray",
             "type": "city",
             "role": "mentioned"
           }
         ],
         "needs": [],
-        "src": "unknown"
+        "src": "media"
       },
       {
-        "i": 19,
-        "rel": true,
-        "conf": "h",
-        "cat": "Official warning or update",
-        "urg": "critical",
-        "eye": false,
-        "claim": true,
-        "places": [
-          {
-            "text": "Bow River",
-            "name": "Bow River, Calgary",
-            "type": "region",
-            "role": "affected"
-          }
-        ],
-        "time": {
-          "text": "overnight",
-          "type": "forecast"
-        },
-        "needs": [],
-        "src": "official"
-      },
-      {
-        "i": 20,
-        "rel": true,
-        "conf": "h",
-        "cat": "Donations and volunteers",
-        "urg": "information",
-        "eye": false,
-        "claim": false,
-        "places": [
-          {
-            "text": "Okotoks",
-            "name": "Okotoks, Alberta",
-            "type": "town",
-            "role": "help_from"
-          }
-        ],
-        "needs": [
-          "sandbags",
-          "volunteers"
-        ],
-        "src": "organization"
-      },
-      {
-        "i": 21,
-        "rel": true,
-        "conf": "h",
-        "cat": "Power water and services",
-        "urg": "urgent",
-        "eye": false,
-        "claim": true,
-        "places": [
-          {
-            "text": "Medicine Hat",
-            "name": "Medicine Hat, Alberta",
-            "type": "city",
-            "role": "affected"
-          }
-        ],
-        "needs": [
-          "bottled water"
-        ],
-        "src": "official"
-      },
-      {
-        "i": 22,
-        "rel": true,
-        "conf": "m",
-        "why": "Secondhand account of a rescue",
-        "cat": "People needing help",
-        "urg": "critical",
-        "eye": false,
-        "claim": false,
-        "places": [
-          {
-            "text": "Bragg Creek",
-            "name": "Bragg Creek, Alberta",
-            "type": "town",
-            "role": "affected"
-          }
-        ],
-        "who": "two people on a rooftop",
-        "needs": [
-          "helicopter"
-        ],
-        "src": "resident"
-      },
-      {
-        "i": 23,
+        "i": 18,
         "rel": false,
         "conf": "h",
-        "why": "Hiring post, event hashtag only",
         "cat": "Other related",
         "urg": "information",
         "eye": false,
         "claim": false,
         "places": [],
         "needs": [],
-        "src": "organization"
+        "src": "unknown"
       },
       {
-        "i": 24,
-        "rel": true,
-        "conf": "h",
-        "cat": "Flooding or damage",
-        "urg": "urgent",
-        "eye": true,
-        "claim": false,
-        "places": [
-          {
-            "text": "Stoney Nakoda",
-            "name": "Stoney Nakoda Nation, Morley",
-            "type": "community",
-            "role": "affected"
-          }
-        ],
-        "time": {
-          "text": "yesterday",
-          "type": "past"
-        },
-        "who": "several families",
-        "needs": [
-          "temporary housing"
-        ],
-        "src": "resident",
-        "fn": "Stoney Nakoda Nation"
-      },
-      {
-        "i": 25,
+        "i": 19,
         "rel": true,
         "conf": "h",
         "cat": "Support and sympathy",
@@ -608,67 +552,156 @@
         "claim": false,
         "places": [
           {
-            "text": "High River",
-            "name": "High River, Alberta",
-            "type": "town",
-            "role": "mentioned"
+            "text": "Alberta",
+            "name": "Alberta",
+            "type": "region",
+            "role": "affected"
           }
         ],
         "needs": [],
-        "src": "unknown"
+        "src": "resident"
       },
       {
-        "i": 26,
+        "i": 20,
         "rel": true,
         "conf": "h",
-        "cat": "Evacuation or shelter",
-        "urg": "critical",
+        "cat": "Support and sympathy",
+        "urg": "information",
         "eye": true,
         "claim": false,
         "places": [
           {
-            "text": "Tsuut'ina",
-            "name": "Tsuut'ina Nation",
-            "type": "community",
+            "text": "Calgary",
+            "name": "Calgary",
+            "type": "city",
             "role": "affected"
-          }
-        ],
-        "time": {
-          "text": "in the next hour",
-          "type": "forecast"
-        },
-        "who": "residents near the river",
-        "needs": [
-          "transport"
-        ],
-        "src": "resident",
-        "fn": "Tsuut'ina Nation"
-      },
-      {
-        "i": 27,
-        "rel": true,
-        "conf": "m",
-        "why": "Claims shelter is full, unconfirmed",
-        "cat": "Evacuation or shelter",
-        "urg": "urgent",
-        "eye": false,
-        "claim": true,
-        "places": [
+          },
           {
-            "text": "Okotoks",
-            "name": "Okotoks Recreation Centre",
-            "type": "landmark",
+            "text": "#yycflood",
+            "name": "#yycflood",
+            "type": "city",
             "role": "affected"
           }
         ],
         "needs": [],
+        "src": "resident"
+      },
+      {
+        "i": 21,
+        "rel": false,
+        "conf": "h",
+        "cat": "Other related",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [],
+        "needs": [],
         "src": "unknown"
+      },
+      {
+        "i": 22,
+        "rel": true,
+        "conf": "h",
+        "cat": "Donations and volunteers",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [
+          {
+            "text": "Calgary",
+            "name": "Calgary",
+            "type": "city",
+            "role": "affected"
+          }
+        ],
+        "needs": [],
+        "src": "media"
+      },
+      {
+        "i": 23,
+        "rel": true,
+        "conf": "h",
+        "cat": "Donations and volunteers",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [
+          {
+            "text": "south Alberta",
+            "name": "Southern Alberta",
+            "type": "region",
+            "role": "affected"
+          }
+        ],
+        "needs": [],
+        "src": "organization"
+      },
+      {
+        "i": 24,
+        "rel": true,
+        "conf": "h",
+        "cat": "Donations and volunteers",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [
+          {
+            "text": "yyc",
+            "name": "Calgary",
+            "type": "city",
+            "role": "help_from"
+          }
+        ],
+        "needs": [],
+        "src": "resident"
+      },
+      {
+        "i": 25,
+        "rel": true,
+        "conf": "h",
+        "cat": "Donations and volunteers",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [
+          {
+            "text": "#yycflood",
+            "name": "#yycflood",
+            "type": "city",
+            "role": "affected"
+          }
+        ],
+        "needs": [],
+        "src": "organization"
+      },
+      {
+        "i": 26,
+        "rel": false,
+        "conf": "h",
+        "cat": "Other related",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [],
+        "needs": [],
+        "src": "unknown"
+      },
+      {
+        "i": 27,
+        "rel": true,
+        "conf": "h",
+        "cat": "Donations and volunteers",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [],
+        "needs": [],
+        "src": "organization"
       },
       {
         "i": 28,
         "rel": false,
-        "conf": "m",
-        "why": "Celebrity retweet, no flood content",
+        "conf": "h",
         "cat": "Other related",
         "urg": "information",
         "eye": false,
@@ -679,33 +712,2725 @@
       },
       {
         "i": 29,
+        "rel": false,
+        "conf": "h",
+        "cat": "Other related",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [],
+        "needs": [],
+        "src": "unknown"
+      },
+      {
+        "i": 30,
+        "rel": true,
+        "conf": "h",
+        "cat": "Other related",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [
+          {
+            "text": "Peace Bridge",
+            "name": "Peace Bridge",
+            "type": "landmark",
+            "role": "affected"
+          }
+        ],
+        "needs": [],
+        "src": "resident"
+      },
+      {
+        "i": 31,
+        "rel": false,
+        "conf": "h",
+        "cat": "Other related",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [],
+        "needs": [],
+        "src": "unknown"
+      },
+      {
+        "i": 32,
+        "rel": false,
+        "conf": "h",
+        "cat": "Other related",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [],
+        "needs": [],
+        "src": "unknown"
+      },
+      {
+        "i": 33,
+        "rel": false,
+        "conf": "h",
+        "cat": "Other related",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [],
+        "needs": [],
+        "src": "unknown"
+      },
+      {
+        "i": 34,
+        "rel": false,
+        "conf": "h",
+        "cat": "Other related",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [],
+        "needs": [],
+        "src": "unknown"
+      },
+      {
+        "i": 35,
+        "rel": false,
+        "conf": "h",
+        "cat": "Other related",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [],
+        "needs": [],
+        "src": "unknown"
+      },
+      {
+        "i": 36,
+        "rel": true,
+        "conf": "h",
+        "cat": "Flooding or damage",
+        "urg": "information",
+        "eye": true,
+        "claim": false,
+        "places": [
+          {
+            "text": "#yycflood",
+            "name": "#yycflood",
+            "type": "city",
+            "role": "affected"
+          }
+        ],
+        "needs": [],
+        "src": "resident"
+      },
+      {
+        "i": 37,
+        "rel": false,
+        "conf": "h",
+        "cat": "Other related",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [],
+        "needs": [],
+        "src": "unknown"
+      },
+      {
+        "i": 38,
+        "rel": true,
+        "conf": "h",
+        "cat": "Donations and volunteers",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [],
+        "needs": [],
+        "src": "media"
+      },
+      {
+        "i": 39,
+        "rel": true,
+        "conf": "h",
+        "cat": "Other related",
+        "urg": "information",
+        "eye": true,
+        "claim": false,
+        "places": [
+          {
+            "text": "MardaLoop",
+            "name": "Marda Loop",
+            "type": "neighbourhood",
+            "role": "affected"
+          },
+          {
+            "text": "Calgary",
+            "name": "Calgary",
+            "type": "city",
+            "role": "affected"
+          }
+        ],
+        "needs": [],
+        "src": "resident"
+      },
+      {
+        "i": 40,
+        "rel": false,
+        "conf": "h",
+        "cat": "Other related",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [],
+        "needs": [],
+        "src": "unknown"
+      },
+      {
+        "i": 41,
+        "rel": true,
+        "conf": "h",
+        "cat": "Flooding or damage",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [
+          {
+            "text": "Calgary",
+            "name": "Calgary",
+            "type": "city",
+            "role": "affected"
+          }
+        ],
+        "needs": [],
+        "src": "media"
+      },
+      {
+        "i": 42,
+        "rel": true,
+        "conf": "h",
+        "cat": "Support and sympathy",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [],
+        "needs": [],
+        "src": "resident"
+      },
+      {
+        "i": 43,
+        "rel": false,
+        "conf": "h",
+        "cat": "Other related",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [],
+        "needs": [],
+        "src": "unknown"
+      },
+      {
+        "i": 44,
+        "rel": true,
+        "conf": "h",
+        "cat": "Flooding or damage",
+        "urg": "information",
+        "eye": true,
+        "claim": false,
+        "places": [
+          {
+            "text": "downtown #Calgary",
+            "name": "Downtown Calgary",
+            "type": "neighbourhood",
+            "role": "affected"
+          }
+        ],
+        "needs": [],
+        "src": "resident"
+      },
+      {
+        "i": 45,
+        "rel": true,
+        "conf": "h",
+        "cat": "Support and sympathy",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [
+          {
+            "text": "#yycflood",
+            "name": "#yycflood",
+            "type": "city",
+            "role": "affected"
+          }
+        ],
+        "needs": [],
+        "src": "resident"
+      },
+      {
+        "i": 46,
+        "rel": true,
+        "conf": "h",
+        "cat": "Support and sympathy",
+        "urg": "information",
+        "eye": true,
+        "claim": false,
+        "places": [
+          {
+            "text": "Mission",
+            "name": "Mission",
+            "type": "neighbourhood",
+            "role": "affected"
+          }
+        ],
+        "needs": [],
+        "src": "resident"
+      },
+      {
+        "i": 47,
+        "rel": false,
+        "conf": "h",
+        "cat": "Other related",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [],
+        "needs": [],
+        "src": "unknown"
+      },
+      {
+        "i": 48,
+        "rel": true,
+        "conf": "h",
+        "cat": "Official warning or update",
+        "urg": "critical",
+        "eye": false,
+        "claim": true,
+        "places": [
+          {
+            "text": "Alberta",
+            "name": "Alberta",
+            "type": "region",
+            "role": "affected"
+          }
+        ],
+        "needs": [],
+        "src": "media"
+      },
+      {
+        "i": 49,
+        "rel": true,
+        "conf": "h",
+        "cat": "Power water and services",
+        "urg": "urgent",
+        "eye": false,
+        "claim": true,
+        "places": [
+          {
+            "text": "Mission",
+            "name": "Mission",
+            "type": "neighbourhood",
+            "role": "affected"
+          },
+          {
+            "text": "Cliff Bungalow",
+            "name": "Cliff Bungalow",
+            "type": "neighbourhood",
+            "role": "affected"
+          },
+          {
+            "text": "Beltline",
+            "name": "Beltline",
+            "type": "neighbourhood",
+            "role": "affected"
+          },
+          {
+            "text": "Victoria Park",
+            "name": "Victoria Park",
+            "type": "neighbourhood",
+            "role": "affected"
+          }
+        ],
+        "needs": [],
+        "src": "organization"
+      },
+      {
+        "i": 50,
+        "rel": false,
+        "conf": "h",
+        "cat": "Other related",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [],
+        "needs": [],
+        "src": "unknown"
+      },
+      {
+        "i": 51,
+        "rel": false,
+        "conf": "h",
+        "cat": "Other related",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [],
+        "needs": [],
+        "src": "unknown"
+      },
+      {
+        "i": 52,
+        "rel": true,
+        "conf": "h",
+        "cat": "Road or bridge closed",
+        "urg": "urgent",
+        "eye": true,
+        "claim": false,
+        "places": [
+          {
+            "text": "5th Ave flyover",
+            "name": "5th Ave flyover",
+            "type": "street",
+            "role": "affected"
+          }
+        ],
+        "needs": [],
+        "src": "resident"
+      },
+      {
+        "i": 53,
+        "rel": true,
+        "conf": "h",
+        "cat": "Support and sympathy",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [
+          {
+            "text": "Calgary",
+            "name": "Calgary",
+            "type": "city",
+            "role": "affected"
+          },
+          {
+            "text": "Canmore",
+            "name": "Canmore",
+            "type": "town",
+            "role": "affected"
+          },
+          {
+            "text": "High River",
+            "name": "High River",
+            "type": "town",
+            "role": "affected"
+          },
+          {
+            "text": "Okotoks",
+            "name": "Okotoks",
+            "type": "town",
+            "role": "affected"
+          },
+          {
+            "text": "Lethbridge",
+            "name": "Lethbridge",
+            "type": "city",
+            "role": "affected"
+          }
+        ],
+        "needs": [],
+        "src": "resident"
+      },
+      {
+        "i": 54,
+        "rel": true,
+        "conf": "h",
+        "cat": "Official warning or update",
+        "urg": "urgent",
+        "eye": false,
+        "claim": false,
+        "places": [
+          {
+            "text": "#Calgary",
+            "name": "Calgary",
+            "type": "city",
+            "role": "affected"
+          }
+        ],
+        "needs": [],
+        "src": "media"
+      },
+      {
+        "i": 55,
+        "rel": true,
+        "conf": "h",
+        "cat": "Support and sympathy",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [
+          {
+            "text": "#yycflood",
+            "name": "#yycflood",
+            "type": "city",
+            "role": "affected"
+          }
+        ],
+        "needs": [],
+        "src": "resident"
+      },
+      {
+        "i": 56,
+        "rel": true,
+        "conf": "h",
+        "cat": "Donations and volunteers",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [
+          {
+            "text": "Calgary",
+            "name": "Calgary",
+            "type": "city",
+            "role": "affected"
+          }
+        ],
+        "needs": [],
+        "src": "media"
+      },
+      {
+        "i": 57,
+        "rel": false,
+        "conf": "h",
+        "cat": "Other related",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [],
+        "needs": [],
+        "src": "unknown"
+      },
+      {
+        "i": 58,
+        "rel": true,
+        "conf": "h",
+        "cat": "Flooding or damage",
+        "urg": "information",
+        "eye": true,
+        "claim": false,
+        "places": [
+          {
+            "text": "#yycflood",
+            "name": "#yycflood",
+            "type": "city",
+            "role": "affected"
+          }
+        ],
+        "needs": [],
+        "src": "resident"
+      },
+      {
+        "i": 59,
+        "rel": true,
+        "conf": "h",
+        "cat": "People needing help",
+        "urg": "urgent",
+        "eye": false,
+        "claim": false,
+        "places": [
+          {
+            "text": "#Nanaimo",
+            "name": "Nanaimo",
+            "type": "city",
+            "role": "help_from"
+          },
+          {
+            "text": "#Calgary",
+            "name": "Calgary",
+            "type": "city",
+            "role": "affected"
+          }
+        ],
+        "needs": [],
+        "src": "resident"
+      },
+      {
+        "i": 60,
+        "rel": true,
+        "conf": "h",
+        "cat": "Flooding or damage",
+        "urg": "critical",
+        "eye": false,
+        "claim": false,
+        "places": [
+          {
+            "text": "Canada",
+            "name": "Canada",
+            "type": "other",
+            "role": "affected"
+          },
+          {
+            "text": "Calgary",
+            "name": "Calgary",
+            "type": "city",
+            "role": "affected"
+          }
+        ],
+        "needs": [],
+        "src": "media"
+      },
+      {
+        "i": 61,
+        "rel": false,
+        "conf": "h",
+        "cat": "Other related",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [],
+        "needs": [],
+        "src": "unknown"
+      },
+      {
+        "i": 62,
+        "rel": true,
+        "conf": "h",
+        "cat": "Official warning or update",
+        "urg": "critical",
+        "eye": true,
+        "claim": false,
+        "places": [
+          {
+            "text": "Bow River",
+            "name": "Bow River",
+            "type": "other",
+            "role": "affected"
+          }
+        ],
+        "needs": [],
+        "src": "resident"
+      },
+      {
+        "i": 63,
+        "rel": false,
+        "conf": "h",
+        "cat": "Other related",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [],
+        "needs": [],
+        "src": "unknown"
+      },
+      {
+        "i": 64,
+        "rel": true,
+        "conf": "h",
+        "cat": "Other related",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [],
+        "needs": [],
+        "src": "resident"
+      },
+      {
+        "i": 65,
+        "rel": false,
+        "conf": "h",
+        "cat": "Other related",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [],
+        "needs": [],
+        "src": "unknown"
+      },
+      {
+        "i": 66,
+        "rel": false,
+        "conf": "h",
+        "cat": "Other related",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [],
+        "needs": [],
+        "src": "unknown"
+      },
+      {
+        "i": 67,
+        "rel": true,
+        "conf": "h",
+        "cat": "Support and sympathy",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [
+          {
+            "text": "Canada",
+            "name": "Canada",
+            "type": "other",
+            "role": "affected"
+          },
+          {
+            "text": "Alberta",
+            "name": "Alberta",
+            "type": "region",
+            "role": "affected"
+          }
+        ],
+        "needs": [],
+        "src": "resident"
+      },
+      {
+        "i": 68,
+        "rel": true,
+        "conf": "h",
+        "cat": "Support and sympathy",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [
+          {
+            "text": "#yycflood",
+            "name": "#yycflood",
+            "type": "city",
+            "role": "affected"
+          }
+        ],
+        "needs": [],
+        "src": "resident"
+      },
+      {
+        "i": 69,
+        "rel": true,
+        "conf": "h",
+        "cat": "Support and sympathy",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [
+          {
+            "text": "the city",
+            "name": "Calgary",
+            "type": "city",
+            "role": "affected"
+          }
+        ],
+        "needs": [],
+        "src": "resident"
+      },
+      {
+        "i": 70,
+        "rel": false,
+        "conf": "h",
+        "cat": "Other related",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [],
+        "needs": [],
+        "src": "unknown"
+      },
+      {
+        "i": 71,
+        "rel": true,
+        "conf": "h",
+        "cat": "Support and sympathy",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [
+          {
+            "text": "Pincher Creek",
+            "name": "Pincher Creek",
+            "type": "town",
+            "role": "mentioned"
+          }
+        ],
+        "needs": [],
+        "src": "resident"
+      },
+      {
+        "i": 72,
+        "rel": false,
+        "conf": "h",
+        "cat": "Other related",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [],
+        "needs": [],
+        "src": "unknown"
+      },
+      {
+        "i": 73,
+        "rel": true,
+        "conf": "h",
+        "cat": "Donations and volunteers",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [
+          {
+            "text": "Alberta",
+            "name": "Alberta",
+            "type": "region",
+            "role": "affected"
+          }
+        ],
+        "needs": [],
+        "src": "media"
+      },
+      {
+        "i": 74,
+        "rel": true,
+        "conf": "h",
+        "cat": "Other related",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [
+          {
+            "text": "16th ave",
+            "name": "16th ave",
+            "type": "street",
+            "role": "help_from"
+          },
+          {
+            "text": "Calgary",
+            "name": "Calgary",
+            "type": "city",
+            "role": "help_from"
+          }
+        ],
+        "needs": [],
+        "src": "resident"
+      },
+      {
+        "i": 75,
+        "rel": false,
+        "conf": "h",
+        "cat": "Other related",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [],
+        "needs": [],
+        "src": "unknown"
+      },
+      {
+        "i": 76,
+        "rel": false,
+        "conf": "h",
+        "cat": "Other related",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [],
+        "needs": [],
+        "src": "unknown"
+      },
+      {
+        "i": 77,
+        "rel": false,
+        "conf": "h",
+        "cat": "Other related",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [],
+        "needs": [],
+        "src": "unknown"
+      },
+      {
+        "i": 78,
+        "rel": true,
+        "conf": "h",
+        "cat": "Flooding or damage",
+        "urg": "information",
+        "eye": true,
+        "claim": false,
+        "places": [
+          {
+            "text": "Calgary",
+            "name": "Calgary",
+            "type": "city",
+            "role": "affected"
+          },
+          {
+            "text": "Bowness",
+            "name": "Bowness",
+            "type": "neighbourhood",
+            "role": "affected"
+          },
+          {
+            "text": "#yyc",
+            "name": "#yyc",
+            "type": "city",
+            "role": "affected"
+          }
+        ],
+        "needs": [],
+        "src": "resident"
+      },
+      {
+        "i": 79,
+        "rel": false,
+        "conf": "h",
+        "cat": "Other related",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [],
+        "needs": [],
+        "src": "unknown"
+      },
+      {
+        "i": 80,
+        "rel": true,
+        "conf": "h",
+        "cat": "Donations and volunteers",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [
+          {
+            "text": "4804 Edmonton Trail NE",
+            "name": "4804 Edmonton Trail NE",
+            "type": "street",
+            "role": "help_from"
+          },
+          {
+            "text": "#yyc",
+            "name": "#yyc",
+            "type": "city",
+            "role": "help_from"
+          }
+        ],
+        "needs": [
+          "essential items"
+        ],
+        "src": "organization"
+      },
+      {
+        "i": 81,
+        "rel": false,
+        "conf": "h",
+        "cat": "Other related",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [],
+        "needs": [],
+        "src": "unknown"
+      },
+      {
+        "i": 82,
+        "rel": false,
+        "conf": "h",
+        "cat": "Other related",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [],
+        "needs": [],
+        "src": "unknown"
+      },
+      {
+        "i": 83,
+        "rel": true,
+        "conf": "h",
+        "cat": "Flooding or damage",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [
+          {
+            "text": "Calgary",
+            "name": "Calgary",
+            "type": "city",
+            "role": "affected"
+          }
+        ],
+        "needs": [],
+        "src": "media"
+      },
+      {
+        "i": 84,
+        "rel": true,
+        "conf": "h",
+        "cat": "Support and sympathy",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [
+          {
+            "text": "Ontario",
+            "name": "Ontario",
+            "type": "region",
+            "role": "help_from"
+          },
+          {
+            "text": "Calgary",
+            "name": "Calgary",
+            "type": "city",
+            "role": "affected"
+          },
+          {
+            "text": "Alberta",
+            "name": "Alberta",
+            "type": "region",
+            "role": "affected"
+          }
+        ],
+        "needs": [],
+        "src": "resident"
+      },
+      {
+        "i": 85,
+        "rel": false,
+        "conf": "h",
+        "cat": "Other related",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [],
+        "needs": [],
+        "src": "unknown"
+      },
+      {
+        "i": 86,
+        "rel": true,
+        "conf": "h",
+        "cat": "Donations and volunteers",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [
+          {
+            "text": "Calgary",
+            "name": "Calgary",
+            "type": "city",
+            "role": "affected"
+          }
+        ],
+        "needs": [],
+        "src": "organization"
+      },
+      {
+        "i": 87,
+        "rel": false,
+        "conf": "h",
+        "cat": "Other related",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [],
+        "needs": [],
+        "src": "unknown"
+      },
+      {
+        "i": 88,
+        "rel": true,
+        "conf": "h",
+        "cat": "Official warning or update",
+        "urg": "information",
+        "eye": false,
+        "claim": true,
+        "places": [
+          {
+            "text": "Alberta",
+            "name": "Alberta",
+            "type": "region",
+            "role": "affected"
+          }
+        ],
+        "needs": [],
+        "src": "media"
+      },
+      {
+        "i": 89,
+        "rel": false,
+        "conf": "h",
+        "cat": "Other related",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [],
+        "needs": [],
+        "src": "unknown"
+      },
+      {
+        "i": 90,
+        "rel": true,
+        "conf": "h",
+        "cat": "Donations and volunteers",
+        "urg": "information",
+        "eye": true,
+        "claim": false,
+        "places": [
+          {
+            "text": "#yycflood",
+            "name": "#yycflood",
+            "type": "city",
+            "role": "affected"
+          }
+        ],
+        "needs": [],
+        "src": "resident"
+      },
+      {
+        "i": 91,
+        "rel": true,
+        "conf": "h",
+        "cat": "Support and sympathy",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [
+          {
+            "text": "#yyc",
+            "name": "#yyc",
+            "type": "city",
+            "role": "affected"
+          }
+        ],
+        "needs": [],
+        "src": "resident"
+      },
+      {
+        "i": 92,
+        "rel": true,
+        "conf": "h",
+        "cat": "Official warning or update",
+        "urg": "information",
+        "eye": false,
+        "claim": true,
+        "places": [],
+        "needs": [],
+        "src": "official"
+      },
+      {
+        "i": 93,
+        "rel": false,
+        "conf": "h",
+        "cat": "Other related",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [],
+        "needs": [],
+        "src": "unknown"
+      },
+      {
+        "i": 94,
+        "rel": true,
+        "conf": "h",
+        "cat": "Other related",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [
+          {
+            "text": "Alberta",
+            "name": "Alberta",
+            "type": "region",
+            "role": "affected"
+          }
+        ],
+        "needs": [],
+        "src": "resident"
+      },
+      {
+        "i": 95,
+        "rel": false,
+        "conf": "h",
+        "cat": "Other related",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [],
+        "needs": [],
+        "src": "unknown"
+      },
+      {
+        "i": 96,
+        "rel": false,
+        "conf": "h",
+        "cat": "Other related",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [],
+        "needs": [],
+        "src": "unknown"
+      },
+      {
+        "i": 97,
+        "rel": true,
+        "conf": "h",
+        "cat": "Official warning or update",
+        "urg": "information",
+        "eye": false,
+        "claim": true,
+        "places": [
+          {
+            "text": "Calgary",
+            "name": "Calgary",
+            "type": "city",
+            "role": "affected"
+          }
+        ],
+        "needs": [],
+        "src": "official"
+      },
+      {
+        "i": 98,
+        "rel": true,
+        "conf": "h",
+        "cat": "Other related",
+        "urg": "information",
+        "eye": false,
+        "claim": true,
+        "places": [],
+        "needs": [],
+        "src": "organization"
+      },
+      {
+        "i": 99,
+        "rel": true,
+        "conf": "m",
+        "why": "The hashtag #flames relates to the Calgary Flames arena damage news.",
+        "cat": "Other related",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [
+          {
+            "text": "Calgary",
+            "name": "Calgary",
+            "type": "city",
+            "role": "mentioned"
+          }
+        ],
+        "needs": [],
+        "src": "media"
+      },
+      {
+        "i": 100,
+        "rel": false,
+        "conf": "h",
+        "cat": "Other related",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [],
+        "needs": [],
+        "src": "unknown"
+      },
+      {
+        "i": 101,
+        "rel": true,
+        "conf": "h",
+        "cat": "Flooding or damage",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [],
+        "needs": [],
+        "src": "media"
+      },
+      {
+        "i": 102,
+        "rel": false,
+        "conf": "h",
+        "cat": "Other related",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [],
+        "needs": [],
+        "src": "unknown"
+      },
+      {
+        "i": 103,
+        "rel": true,
+        "conf": "h",
+        "cat": "Donations and volunteers",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [
+          {
+            "text": "Alberta",
+            "name": "Alberta",
+            "type": "region",
+            "role": "affected"
+          }
+        ],
+        "needs": [],
+        "src": "organization"
+      },
+      {
+        "i": 104,
+        "rel": true,
+        "conf": "h",
+        "cat": "Flooding or damage",
+        "urg": "information",
+        "eye": true,
+        "claim": false,
+        "places": [
+          {
+            "text": "Starbucks on 4th in Mission",
+            "name": "Starbucks on 4th Street SW in Mission",
+            "type": "other",
+            "role": "affected"
+          }
+        ],
+        "needs": [],
+        "src": "resident"
+      },
+      {
+        "i": 105,
+        "rel": false,
+        "conf": "h",
+        "cat": "Other related",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [],
+        "needs": [],
+        "src": "unknown"
+      },
+      {
+        "i": 106,
+        "rel": true,
+        "conf": "h",
+        "cat": "Flooding or damage",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [],
+        "needs": [],
+        "src": "resident"
+      },
+      {
+        "i": 107,
+        "rel": false,
+        "conf": "h",
+        "cat": "Other related",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [],
+        "needs": [],
+        "src": "unknown"
+      },
+      {
+        "i": 108,
+        "rel": true,
+        "conf": "h",
+        "cat": "Flooding or damage",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [
+          {
+            "text": "Calgary",
+            "name": "Calgary",
+            "type": "city",
+            "role": "affected"
+          }
+        ],
+        "needs": [],
+        "src": "media"
+      },
+      {
+        "i": 109,
+        "rel": false,
+        "conf": "h",
+        "cat": "Other related",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [],
+        "needs": [],
+        "src": "unknown"
+      },
+      {
+        "i": 110,
+        "rel": false,
+        "conf": "h",
+        "cat": "Other related",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [],
+        "needs": [],
+        "src": "unknown"
+      },
+      {
+        "i": 111,
+        "rel": true,
+        "conf": "h",
+        "cat": "Donations and volunteers",
+        "urg": "information",
+        "eye": true,
+        "claim": false,
+        "places": [],
+        "needs": [],
+        "src": "organization"
+      },
+      {
+        "i": 112,
+        "rel": true,
+        "conf": "h",
+        "cat": "Donations and volunteers",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [],
+        "needs": [
+          "financial donations"
+        ],
+        "src": "organization"
+      },
+      {
+        "i": 113,
+        "rel": false,
+        "conf": "h",
+        "cat": "Other related",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [],
+        "needs": [],
+        "src": "unknown"
+      },
+      {
+        "i": 114,
+        "rel": false,
+        "conf": "h",
+        "cat": "Other related",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [],
+        "needs": [],
+        "src": "unknown"
+      },
+      {
+        "i": 115,
+        "rel": true,
+        "conf": "h",
+        "cat": "Power water and services",
+        "urg": "urgent",
+        "eye": false,
+        "claim": true,
+        "places": [
+          {
+            "text": "City of Calgary",
+            "name": "Calgary",
+            "type": "city",
+            "role": "affected"
+          }
+        ],
+        "needs": [],
+        "src": "official"
+      },
+      {
+        "i": 116,
+        "rel": false,
+        "conf": "h",
+        "cat": "Other related",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [],
+        "needs": [],
+        "src": "unknown"
+      },
+      {
+        "i": 117,
+        "rel": false,
+        "conf": "h",
+        "cat": "Other related",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [],
+        "needs": [],
+        "src": "unknown"
+      },
+      {
+        "i": 118,
+        "rel": true,
+        "conf": "h",
+        "cat": "Support and sympathy",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [
+          {
+            "text": "#YYC",
+            "name": "Calgary",
+            "type": "city",
+            "role": "help_from"
+          }
+        ],
+        "needs": [],
+        "src": "organization"
+      },
+      {
+        "i": 119,
+        "rel": false,
+        "conf": "h",
+        "cat": "Other related",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [],
+        "needs": [],
+        "src": "unknown"
+      },
+      {
+        "i": 120,
+        "rel": true,
+        "conf": "h",
+        "cat": "Donations and volunteers",
+        "urg": "urgent",
+        "eye": false,
+        "claim": false,
+        "places": [
+          {
+            "text": "#yeg",
+            "name": "Edmonton",
+            "type": "city",
+            "role": "help_from"
+          },
+          {
+            "text": "#yyc",
+            "name": "Calgary",
+            "type": "city",
+            "role": "affected"
+          }
+        ],
+        "needs": [],
+        "src": "media"
+      },
+      {
+        "i": 121,
+        "rel": true,
+        "conf": "h",
+        "cat": "Donations and volunteers",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [],
+        "needs": [],
+        "src": "media"
+      },
+      {
+        "i": 122,
+        "rel": false,
+        "conf": "h",
+        "cat": "Other related",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [],
+        "needs": [],
+        "src": "unknown"
+      },
+      {
+        "i": 123,
+        "rel": false,
+        "conf": "h",
+        "cat": "Other related",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [],
+        "needs": [],
+        "src": "unknown"
+      },
+      {
+        "i": 124,
+        "rel": true,
+        "conf": "m",
+        "why": "Tweet attributes controversial quote about flood victims to a fake Calgary mayor.",
+        "cat": "Support and sympathy",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [
+          {
+            "text": "Calgary",
+            "name": "Calgary",
+            "type": "city",
+            "role": "affected"
+          }
+        ],
+        "needs": [],
+        "src": "unknown"
+      },
+      {
+        "i": 125,
+        "rel": true,
+        "conf": "m",
+        "why": "Asks about PM's response to the city's crisis.",
+        "cat": "Support and sympathy",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [],
+        "needs": [],
+        "src": "resident"
+      },
+      {
+        "i": 126,
+        "rel": true,
+        "conf": "h",
+        "cat": "Donations and volunteers",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [
+          {
+            "text": "Calgary",
+            "name": "Calgary",
+            "type": "city",
+            "role": "affected"
+          },
+          {
+            "text": "CALGARY",
+            "name": "Calgary",
+            "type": "city",
+            "role": "affected"
+          }
+        ],
+        "needs": [
+          "financial donations"
+        ],
+        "src": "media"
+      },
+      {
+        "i": 127,
+        "rel": true,
+        "conf": "h",
+        "cat": "Other related",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [],
+        "needs": [],
+        "src": "media"
+      },
+      {
+        "i": 128,
+        "rel": true,
+        "conf": "h",
+        "cat": "Other related",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [],
+        "needs": [],
+        "src": "media"
+      },
+      {
+        "i": 129,
+        "rel": false,
+        "conf": "h",
+        "cat": "Other related",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [],
+        "needs": [],
+        "src": "unknown"
+      },
+      {
+        "i": 130,
+        "rel": false,
+        "conf": "h",
+        "cat": "Other related",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [],
+        "needs": [],
+        "src": "unknown"
+      },
+      {
+        "i": 131,
+        "rel": true,
+        "conf": "h",
+        "cat": "Donations and volunteers",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [
+          {
+            "text": "Alberta",
+            "name": "Alberta",
+            "type": "region",
+            "role": "affected"
+          }
+        ],
+        "needs": [],
+        "src": "media"
+      },
+      {
+        "i": 132,
+        "rel": true,
+        "conf": "h",
+        "cat": "Support and sympathy",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [
+          {
+            "text": "Calgary",
+            "name": "Calgary",
+            "type": "city",
+            "role": "affected"
+          },
+          {
+            "text": "Edmonton",
+            "name": "Edmonton",
+            "type": "city",
+            "role": "mentioned"
+          },
+          {
+            "text": "Alberta",
+            "name": "Alberta",
+            "type": "region",
+            "role": "affected"
+          }
+        ],
+        "needs": [],
+        "src": "resident"
+      },
+      {
+        "i": 133,
+        "rel": false,
+        "conf": "h",
+        "cat": "Other related",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [],
+        "needs": [],
+        "src": "unknown"
+      },
+      {
+        "i": 134,
+        "rel": false,
+        "conf": "h",
+        "cat": "Other related",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [],
+        "needs": [],
+        "src": "unknown"
+      },
+      {
+        "i": 135,
+        "rel": false,
+        "conf": "h",
+        "cat": "Other related",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [],
+        "needs": [],
+        "src": "unknown"
+      },
+      {
+        "i": 136,
+        "rel": true,
+        "conf": "h",
+        "cat": "Other related",
+        "urg": "urgent",
+        "eye": false,
+        "claim": true,
+        "places": [
+          {
+            "text": "Alberta College of Art + Design",
+            "name": "Alberta College of Art and Design",
+            "type": "landmark",
+            "role": "affected"
+          }
+        ],
+        "needs": [],
+        "src": "organization"
+      },
+      {
+        "i": 137,
+        "rel": false,
+        "conf": "m",
+        "why": "Generic road issues mention #rezlife, not clearly linked to Alberta floods.",
+        "cat": "Other related",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [],
+        "needs": [],
+        "src": "unknown"
+      },
+      {
+        "i": 138,
+        "rel": false,
+        "conf": "h",
+        "cat": "Other related",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [],
+        "needs": [],
+        "src": "unknown"
+      },
+      {
+        "i": 139,
+        "rel": false,
+        "conf": "h",
+        "cat": "Other related",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [],
+        "needs": [],
+        "src": "unknown"
+      },
+      {
+        "i": 140,
+        "rel": true,
+        "conf": "h",
+        "cat": "Official warning or update",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [
+          {
+            "text": "Calgary",
+            "name": "Calgary",
+            "type": "city",
+            "role": "affected"
+          }
+        ],
+        "needs": [],
+        "src": "resident"
+      },
+      {
+        "i": 141,
+        "rel": true,
+        "conf": "h",
+        "cat": "Evacuation or shelter",
+        "urg": "critical",
+        "eye": true,
+        "claim": false,
+        "places": [
+          {
+            "text": "memorial drive",
+            "name": "Memorial Drive",
+            "type": "street",
+            "role": "affected"
+          },
+          {
+            "text": "river",
+            "name": "Bow River",
+            "type": "landmark",
+            "role": "affected"
+          }
+        ],
+        "needs": [],
+        "src": "resident"
+      },
+      {
+        "i": 142,
+        "rel": false,
+        "conf": "h",
+        "cat": "Other related",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [],
+        "needs": [],
+        "src": "unknown"
+      },
+      {
+        "i": 143,
+        "rel": true,
+        "conf": "l",
+        "why": "Link and context suggest nearby flood damage in active disaster zone.",
+        "cat": "Flooding or damage",
+        "urg": "urgent",
+        "eye": true,
+        "claim": false,
+        "places": [],
+        "needs": [],
+        "src": "resident"
+      },
+      {
+        "i": 144,
+        "rel": true,
+        "conf": "h",
+        "cat": "Evacuation or shelter",
+        "urg": "urgent",
+        "eye": false,
+        "claim": true,
+        "places": [
+          {
+            "text": "Deer Run",
+            "name": "Deer Run",
+            "type": "neighbourhood",
+            "role": "mentioned"
+          }
+        ],
+        "needs": [],
+        "src": "official"
+      },
+      {
+        "i": 145,
+        "rel": true,
+        "conf": "h",
+        "cat": "Flooding or damage",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [
+          {
+            "text": "Saddledome",
+            "name": "Saddledome",
+            "type": "landmark",
+            "role": "affected"
+          },
+          {
+            "text": "Alberta",
+            "name": "Alberta",
+            "type": "region",
+            "role": "affected"
+          }
+        ],
+        "needs": [],
+        "src": "unknown"
+      },
+      {
+        "i": 146,
+        "rel": false,
+        "conf": "h",
+        "cat": "Other related",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [],
+        "needs": [],
+        "src": "unknown"
+      },
+      {
+        "i": 147,
+        "rel": false,
+        "conf": "h",
+        "cat": "Other related",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [],
+        "needs": [],
+        "src": "unknown"
+      },
+      {
+        "i": 148,
+        "rel": false,
+        "conf": "h",
+        "cat": "Other related",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [],
+        "needs": [],
+        "src": "unknown"
+      },
+      {
+        "i": 149,
+        "rel": true,
+        "conf": "h",
+        "cat": "Support and sympathy",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [
+          {
+            "text": "Alberta",
+            "name": "Alberta",
+            "type": "region",
+            "role": "affected"
+          }
+        ],
+        "needs": [],
+        "src": "resident"
+      },
+      {
+        "i": 150,
+        "rel": false,
+        "conf": "h",
+        "cat": "Other related",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [],
+        "needs": [],
+        "src": "unknown"
+      },
+      {
+        "i": 151,
+        "rel": false,
+        "conf": "h",
+        "cat": "Other related",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [],
+        "needs": [],
+        "src": "unknown"
+      },
+      {
+        "i": 152,
+        "rel": false,
+        "conf": "h",
+        "cat": "Other related",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [],
+        "needs": [],
+        "src": "unknown"
+      },
+      {
+        "i": 153,
+        "rel": false,
+        "conf": "h",
+        "cat": "Other related",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [],
+        "needs": [],
+        "src": "unknown"
+      },
+      {
+        "i": 154,
+        "rel": true,
+        "conf": "h",
+        "cat": "Donations and volunteers",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [
+          {
+            "text": "Calgary",
+            "name": "Calgary",
+            "type": "city",
+            "role": "help_from"
+          }
+        ],
+        "needs": [
+          "financial donations"
+        ],
+        "src": "resident"
+      },
+      {
+        "i": 155,
+        "rel": true,
+        "conf": "h",
+        "cat": "Donations and volunteers",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [
+          {
+            "text": "Elbow Park",
+            "name": "Elbow Park",
+            "type": "neighbourhood",
+            "role": "affected"
+          },
+          {
+            "text": "Mission",
+            "name": "Mission",
+            "type": "neighbourhood",
+            "role": "affected"
+          }
+        ],
+        "needs": [],
+        "src": "official"
+      },
+      {
+        "i": 156,
+        "rel": false,
+        "conf": "h",
+        "cat": "Other related",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [],
+        "needs": [],
+        "src": "unknown"
+      },
+      {
+        "i": 157,
+        "rel": false,
+        "conf": "h",
+        "cat": "Other related",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [],
+        "needs": [],
+        "src": "unknown"
+      },
+      {
+        "i": 158,
+        "rel": false,
+        "conf": "h",
+        "cat": "Other related",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [],
+        "needs": [],
+        "src": "unknown"
+      },
+      {
+        "i": 159,
         "rel": true,
         "conf": "h",
         "cat": "Road or bridge closed",
         "urg": "urgent",
         "eye": false,
         "claim": true,
+        "places": [],
+        "needs": [],
+        "src": "unknown"
+      },
+      {
+        "i": 160,
+        "rel": true,
+        "conf": "h",
+        "cat": "Official warning or update",
+        "urg": "information",
+        "eye": false,
+        "claim": true,
         "places": [
           {
-            "text": "Highway 2",
-            "name": "Highway 2, High River",
-            "type": "street",
+            "text": "Alberta",
+            "name": "Alberta",
+            "type": "region",
+            "role": "affected"
+          },
+          {
+            "text": "Canmore",
+            "name": "Canmore",
+            "type": "town",
+            "role": "affected"
+          },
+          {
+            "text": "Bow River",
+            "name": "Bow River",
+            "type": "landmark",
             "role": "affected"
           }
         ],
-        "time": {
-          "text": "until further notice",
-          "type": "now"
-        },
         "needs": [],
-        "src": "official"
+        "src": "media"
+      },
+      {
+        "i": 161,
+        "rel": true,
+        "conf": "h",
+        "cat": "Donations and volunteers",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [
+          {
+            "text": "Alberta",
+            "name": "Alberta",
+            "type": "region",
+            "role": "affected"
+          }
+        ],
+        "needs": [
+          "financial donations"
+        ],
+        "src": "organization"
+      },
+      {
+        "i": 162,
+        "rel": false,
+        "conf": "h",
+        "cat": "Other related",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [],
+        "needs": [],
+        "src": "unknown"
+      },
+      {
+        "i": 163,
+        "rel": true,
+        "conf": "h",
+        "cat": "Support and sympathy",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [
+          {
+            "text": "Calgary",
+            "name": "Calgary",
+            "type": "city",
+            "role": "affected"
+          }
+        ],
+        "needs": [],
+        "src": "resident"
+      },
+      {
+        "i": 164,
+        "rel": false,
+        "conf": "h",
+        "cat": "Other related",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [],
+        "needs": [],
+        "src": "unknown"
+      },
+      {
+        "i": 165,
+        "rel": true,
+        "conf": "h",
+        "cat": "Support and sympathy",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [],
+        "needs": [],
+        "src": "resident"
+      },
+      {
+        "i": 166,
+        "rel": false,
+        "conf": "h",
+        "cat": "Other related",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [],
+        "needs": [],
+        "src": "unknown"
+      },
+      {
+        "i": 167,
+        "rel": true,
+        "conf": "h",
+        "cat": "Donations and volunteers",
+        "urg": "information",
+        "eye": true,
+        "claim": false,
+        "places": [
+          {
+            "text": "high river",
+            "name": "High River",
+            "type": "town",
+            "role": "affected"
+          }
+        ],
+        "needs": [],
+        "src": "resident"
+      },
+      {
+        "i": 168,
+        "rel": true,
+        "conf": "h",
+        "cat": "Flooding or damage",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [
+          {
+            "text": "Prince's Island Park",
+            "name": "Prince's Island Park",
+            "type": "landmark",
+            "role": "affected"
+          }
+        ],
+        "needs": [],
+        "src": "media"
+      },
+      {
+        "i": 169,
+        "rel": true,
+        "conf": "h",
+        "cat": "Official warning or update",
+        "urg": "urgent",
+        "eye": false,
+        "claim": false,
+        "places": [],
+        "needs": [],
+        "src": "unknown"
+      },
+      {
+        "i": 170,
+        "rel": true,
+        "conf": "h",
+        "cat": "Donations and volunteers",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [
+          {
+            "text": "#yyc",
+            "name": "Calgary",
+            "type": "city",
+            "role": "affected"
+          }
+        ],
+        "needs": [
+          "work space"
+        ],
+        "src": "organization"
+      },
+      {
+        "i": 171,
+        "rel": false,
+        "conf": "h",
+        "cat": "Other related",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [],
+        "needs": [],
+        "src": "unknown"
+      },
+      {
+        "i": 172,
+        "rel": false,
+        "conf": "h",
+        "cat": "Other related",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [],
+        "needs": [],
+        "src": "unknown"
+      },
+      {
+        "i": 173,
+        "rel": false,
+        "conf": "h",
+        "cat": "Other related",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [],
+        "needs": [],
+        "src": "unknown"
+      },
+      {
+        "i": 174,
+        "rel": false,
+        "conf": "h",
+        "cat": "Other related",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [],
+        "needs": [],
+        "src": "unknown"
+      },
+      {
+        "i": 175,
+        "rel": false,
+        "conf": "h",
+        "cat": "Other related",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [],
+        "needs": [],
+        "src": "unknown"
+      },
+      {
+        "i": 176,
+        "rel": false,
+        "conf": "h",
+        "cat": "Other related",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [],
+        "needs": [],
+        "src": "unknown"
+      },
+      {
+        "i": 177,
+        "rel": false,
+        "conf": "h",
+        "cat": "Other related",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [],
+        "needs": [],
+        "src": "unknown"
+      },
+      {
+        "i": 178,
+        "rel": true,
+        "conf": "h",
+        "cat": "Support and sympathy",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [
+          {
+            "text": "Calgary",
+            "name": "Calgary",
+            "type": "city",
+            "role": "affected"
+          }
+        ],
+        "needs": [],
+        "src": "resident"
+      },
+      {
+        "i": 179,
+        "rel": false,
+        "conf": "h",
+        "cat": "Other related",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [],
+        "needs": [],
+        "src": "unknown"
+      },
+      {
+        "i": 180,
+        "rel": true,
+        "conf": "h",
+        "cat": "Support and sympathy",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [
+          {
+            "text": "Calgary",
+            "name": "Calgary",
+            "type": "city",
+            "role": "affected"
+          },
+          {
+            "text": "Alberta",
+            "name": "Alberta",
+            "type": "region",
+            "role": "affected"
+          }
+        ],
+        "needs": [],
+        "src": "resident"
+      },
+      {
+        "i": 181,
+        "rel": true,
+        "conf": "h",
+        "cat": "Support and sympathy",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [],
+        "needs": [],
+        "src": "resident"
+      },
+      {
+        "i": 182,
+        "rel": true,
+        "conf": "h",
+        "cat": "Official warning or update",
+        "urg": "critical",
+        "eye": false,
+        "claim": true,
+        "places": [],
+        "needs": [],
+        "src": "media"
+      },
+      {
+        "i": 183,
+        "rel": true,
+        "conf": "h",
+        "cat": "Flooding or damage",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [
+          {
+            "text": "Alberta",
+            "name": "Alberta",
+            "type": "region",
+            "role": "affected"
+          }
+        ],
+        "needs": [],
+        "src": "media"
+      },
+      {
+        "i": 184,
+        "rel": false,
+        "conf": "h",
+        "cat": "Other related",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [],
+        "needs": [],
+        "src": "unknown"
+      },
+      {
+        "i": 185,
+        "rel": true,
+        "conf": "h",
+        "cat": "Support and sympathy",
+        "urg": "urgent",
+        "eye": true,
+        "claim": false,
+        "places": [
+          {
+            "text": "#yyc",
+            "name": "Calgary",
+            "type": "city",
+            "role": "affected"
+          },
+          {
+            "text": "QE2",
+            "name": "Queen Elizabeth II Highway",
+            "type": "street",
+            "role": "mentioned"
+          }
+        ],
+        "needs": [],
+        "src": "resident"
+      },
+      {
+        "i": 186,
+        "rel": true,
+        "conf": "h",
+        "cat": "Support and sympathy",
+        "urg": "information",
+        "eye": true,
+        "claim": false,
+        "places": [
+          {
+            "text": "#yyc",
+            "name": "Calgary",
+            "type": "city",
+            "role": "affected"
+          }
+        ],
+        "needs": [],
+        "src": "resident"
+      },
+      {
+        "i": 187,
+        "rel": false,
+        "conf": "h",
+        "cat": "Other related",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [],
+        "needs": [],
+        "src": "unknown"
+      },
+      {
+        "i": 188,
+        "rel": true,
+        "conf": "h",
+        "cat": "Support and sympathy",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [],
+        "needs": [],
+        "src": "media"
+      },
+      {
+        "i": 189,
+        "rel": false,
+        "conf": "h",
+        "cat": "Other related",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [],
+        "needs": [],
+        "src": "unknown"
+      },
+      {
+        "i": 190,
+        "rel": true,
+        "conf": "h",
+        "cat": "Flooding or damage",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [
+          {
+            "text": "Alberta",
+            "name": "Alberta",
+            "type": "region",
+            "role": "affected"
+          }
+        ],
+        "needs": [],
+        "src": "media"
+      },
+      {
+        "i": 191,
+        "rel": false,
+        "conf": "h",
+        "cat": "Other related",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [],
+        "needs": [],
+        "src": "unknown"
+      },
+      {
+        "i": 192,
+        "rel": true,
+        "conf": "m",
+        "why": "References lack of info about bridge during the flood.",
+        "cat": "Official warning or update",
+        "urg": "information",
+        "eye": true,
+        "claim": false,
+        "places": [],
+        "needs": [],
+        "src": "resident"
+      },
+      {
+        "i": 193,
+        "rel": false,
+        "conf": "h",
+        "cat": "Other related",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [],
+        "needs": [],
+        "src": "unknown"
+      },
+      {
+        "i": 194,
+        "rel": true,
+        "conf": "h",
+        "cat": "Flooding or damage",
+        "urg": "information",
+        "eye": true,
+        "claim": false,
+        "places": [
+          {
+            "text": "#yyc",
+            "name": "Calgary",
+            "type": "city",
+            "role": "affected"
+          }
+        ],
+        "needs": [],
+        "src": "resident"
+      },
+      {
+        "i": 195,
+        "rel": true,
+        "conf": "h",
+        "cat": "Support and sympathy",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [],
+        "needs": [],
+        "src": "resident"
+      },
+      {
+        "i": 196,
+        "rel": false,
+        "conf": "h",
+        "cat": "Other related",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [],
+        "needs": [],
+        "src": "unknown"
+      },
+      {
+        "i": 197,
+        "rel": false,
+        "conf": "h",
+        "cat": "Other related",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [],
+        "needs": [],
+        "src": "unknown"
+      },
+      {
+        "i": 198,
+        "rel": true,
+        "conf": "h",
+        "cat": "Flooding or damage",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [
+          {
+            "text": "stadium",
+            "name": "Saddledome",
+            "type": "landmark",
+            "role": "affected"
+          },
+          {
+            "text": "Calgary",
+            "name": "Calgary",
+            "type": "city",
+            "role": "affected"
+          }
+        ],
+        "needs": [],
+        "src": "resident"
+      },
+      {
+        "i": 199,
+        "rel": true,
+        "conf": "h",
+        "cat": "Donations and volunteers",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [],
+        "needs": [
+          "financial donations"
+        ],
+        "src": "resident"
       }
     ]
   },
   "places": {
     "places": [
       {
-        "name": "Calgary, Alberta",
+        "name": "Calgary",
         "lat": 51.0447,
         "lng": -114.0719,
         "precision": "city",
@@ -713,68 +3438,20 @@
         "confidence": "h"
       },
       {
-        "name": "High River, Alberta",
-        "lat": 50.5806,
-        "lng": -113.8686,
-        "precision": "town",
+        "name": "#Calgary",
+        "lat": 51.0447,
+        "lng": -114.0719,
+        "precision": "city",
         "inside_region": true,
         "confidence": "h"
       },
       {
-        "name": "Canmore, Alberta",
-        "lat": 51.0884,
-        "lng": -115.3479,
-        "precision": "town",
+        "name": "Alberta",
+        "lat": 51.0447,
+        "lng": -114.0719,
+        "precision": "city",
         "inside_region": true,
         "confidence": "h"
-      },
-      {
-        "name": "Siksika Nation",
-        "lat": 50.7722,
-        "lng": -112.8975,
-        "precision": "community",
-        "inside_region": true,
-        "confidence": "h"
-      },
-      {
-        "name": "Stoney Nakoda Nation, Morley",
-        "lat": 51.1664,
-        "lng": -114.8386,
-        "precision": "community",
-        "inside_region": true,
-        "confidence": "h"
-      },
-      {
-        "name": "Tsuut'ina Nation",
-        "lat": 50.9564,
-        "lng": -114.2261,
-        "precision": "community",
-        "inside_region": true,
-        "confidence": "h"
-      },
-      {
-        "name": "Bowness, Calgary",
-        "lat": 51.0889,
-        "lng": -114.1944,
-        "precision": "neighbourhood",
-        "inside_region": true,
-        "confidence": "h"
-      },
-      {
-        "name": "Inglewood, Calgary",
-        "lat": 51.0389,
-        "lng": -114.0325,
-        "precision": "neighbourhood",
-        "inside_region": true,
-        "confidence": "h"
-      },
-      {
-        "name": "Mission, Calgary",
-        "lat": 51.0325,
-        "lng": -114.0711,
-        "precision": "neighbourhood",
-        "inside_region": true,
-        "confidence": "m"
       },
       {
         "name": "Downtown Calgary",
@@ -785,15 +3462,31 @@
         "confidence": "h"
       },
       {
-        "name": "Bragg Creek, Alberta",
-        "lat": 50.9483,
-        "lng": -114.5711,
+        "name": "Mission",
+        "lat": 51.0325,
+        "lng": -114.0711,
+        "precision": "neighbourhood",
+        "inside_region": true,
+        "confidence": "m"
+      },
+      {
+        "name": "Canmore",
+        "lat": 51.0884,
+        "lng": -115.3479,
         "precision": "town",
         "inside_region": true,
         "confidence": "h"
       },
       {
-        "name": "Okotoks, Alberta",
+        "name": "High River",
+        "lat": 50.5806,
+        "lng": -113.8686,
+        "precision": "town",
+        "inside_region": true,
+        "confidence": "h"
+      },
+      {
+        "name": "Okotoks",
         "lat": 50.7256,
         "lng": -113.9749,
         "precision": "town",
@@ -801,47 +3494,7 @@
         "confidence": "h"
       },
       {
-        "name": "Okotoks Recreation Centre",
-        "lat": 50.7297,
-        "lng": -113.9803,
-        "precision": "landmark",
-        "inside_region": true,
-        "confidence": "m"
-      },
-      {
-        "name": "Medicine Hat, Alberta",
-        "lat": 50.0421,
-        "lng": -110.6764,
-        "precision": "city",
-        "inside_region": false,
-        "confidence": "h"
-      },
-      {
-        "name": "Scotiabank Saddledome, Calgary",
-        "lat": 51.0374,
-        "lng": -114.0519,
-        "precision": "landmark",
-        "inside_region": true,
-        "confidence": "h"
-      },
-      {
-        "name": "Enmax Centre, Calgary",
-        "lat": 51.0361,
-        "lng": -114.0531,
-        "precision": "landmark",
-        "inside_region": true,
-        "confidence": "m"
-      },
-      {
-        "name": "Glenmore Dam, Calgary",
-        "lat": 51.0011,
-        "lng": -114.1069,
-        "precision": "landmark",
-        "inside_region": true,
-        "confidence": "h"
-      },
-      {
-        "name": "Bow River, Calgary",
+        "name": "Bow River",
         "lat": 51.0525,
         "lng": -114.0631,
         "precision": "region",
@@ -849,39 +3502,15 @@
         "confidence": "m"
       },
       {
-        "name": "Deerfoot Trail, Calgary",
-        "lat": 51.0528,
-        "lng": -114.0122,
-        "precision": "street",
+        "name": "Bowness",
+        "lat": 51.0889,
+        "lng": -114.1944,
+        "precision": "neighbourhood",
         "inside_region": true,
         "confidence": "h"
       },
       {
-        "name": "Highway 22X, Calgary",
-        "lat": 50.9219,
-        "lng": -114.0083,
-        "precision": "street",
-        "inside_region": true,
-        "confidence": "m"
-      },
-      {
-        "name": "Highway 2, High River",
-        "lat": 50.6089,
-        "lng": -113.8697,
-        "precision": "street",
-        "inside_region": true,
-        "confidence": "m"
-      },
-      {
-        "name": "Highway 1, Bragg Creek",
-        "lat": 51.0761,
-        "lng": -114.5203,
-        "precision": "street",
-        "inside_region": true,
-        "confidence": "m"
-      },
-      {
-        "name": "Edmonton, Alberta",
+        "name": "Edmonton",
         "lat": 53.5461,
         "lng": -113.4938,
         "precision": "city",
@@ -889,244 +3518,16 @@
         "confidence": "h"
       },
       {
-        "name": "Mission, British Columbia",
-        "lat": 49.1329,
-        "lng": -122.3247,
-        "precision": "city",
-        "inside_region": false,
-        "confidence": "l"
+        "name": "Saddledome",
+        "lat": 51.0374,
+        "lng": -114.0519,
+        "precision": "landmark",
+        "inside_region": true,
+        "confidence": "h"
       }
-    ]
-  },
-  "brief": {
-    "critical_count": 7,
-    "headline": "7 critical reports. Rescues under way in Bowness and Bragg Creek; High River and Siksika Nation are evacuating.",
-    "worst_areas": [
-      "High River — whole neighbourhoods under water",
-      "Bowness, Calgary — boat rescues in progress",
-      "Siksika Nation — around 1,000 members leaving",
-      "Bragg Creek — people reported on rooftops"
-    ],
-    "roads_and_bridges": [
-      "Highway 1 closed west of Bragg Creek",
-      "Highway 2 closed at High River until further notice",
-      "Highway 22X closed since last night",
-      "Deerfoot Trail closure reported, not yet confirmed"
-    ],
-    "evacuations": [
-      "Siksika Nation — reception centre at the Enmax Centre in Calgary",
-      "Canmore — town-wide evacuation order in effect",
-      "Tsuut'ina Nation — residents near the river leaving within the hour",
-      "Mission, Calgary — families still waiting for transport"
-    ],
-    "needs": [
-      "boat rescue",
-      "helicopter",
-      "cots",
-      "bottled water",
-      "sandbags",
-      "generators",
-      "temporary housing",
-      "volunteers"
-    ],
-    "first_nations_affected": [
-      "Siksika Nation",
-      "Stoney Nakoda Nation",
-      "Tsuut'ina Nation"
-    ],
-    "summary": "Water is still rising along the Bow and Highwood rivers. The most urgent reports are people stranded in homes in Bowness and on rooftops near Bragg Creek. High River is the worst-hit town in this set. Three First Nations are reporting damage or evacuation: Siksika, Stoney Nakoda and Tsuut'ina, with Siksika the largest at roughly 1,000 members moving to the Enmax Centre. Road access into the southwest is cut in several places, so aid coming from Edmonton and Okotoks should expect detours. Two claims about official status — a Deerfoot Trail closure and the Okotoks shelter being full — have not been confirmed against a source.",
-    "cited_report_ids": [
-      "R-00001",
-      "R-00002",
-      "R-00005",
-      "R-00013",
-      "R-00015",
-      "R-00023",
-      "R-00025",
-      "R-00027",
-      "R-00030"
     ]
   },
   "verify": {
-    "verifications": [
-      {
-        "i": 6,
-        "claim_type": "dam_status",
-        "expected_source": "City of Calgary Emergency Management Agency",
-        "expected_source_url": "https://www.calgary.ca/emergency.html",
-        "verification_status": "contradicts",
-        "confidence": "h",
-        "note": "Tweet says the Glenmore Dam has been breached. The City reported the dam holding and releasing in a controlled way."
-      },
-      {
-        "i": 16,
-        "claim_type": "road_closure",
-        "expected_source": "Alberta 511",
-        "expected_source_url": "https://511.alberta.ca/",
-        "verification_status": "contradicts",
-        "confidence": "m",
-        "note": "Tweet reports Deerfoot Trail fully closed in both directions. Alberta 511 listed southbound lanes open at the time."
-      },
-      {
-        "i": 27,
-        "claim_type": "shelter_capacity",
-        "expected_source": "Town of Okotoks",
-        "expected_source_url": "https://www.okotoks.ca/",
-        "verification_status": "contradicts",
-        "confidence": "m",
-        "note": "Tweet says the Okotoks Recreation Centre is full and turning people away. The Town was still listing it as accepting evacuees."
-      },
-      {
-        "i": 1,
-        "claim_type": "evacuation_order",
-        "expected_source": "Siksika Nation Emergency Management",
-        "expected_source_url": "https://siksikanation.com/",
-        "verification_status": "verified",
-        "confidence": "h",
-        "note": "Mandatory evacuation of low-lying areas confirmed by the Nation."
-      },
-      {
-        "i": 10,
-        "claim_type": "evacuation_order",
-        "expected_source": "Town of Canmore",
-        "expected_source_url": "https://canmore.ca/",
-        "verification_status": "verified",
-        "confidence": "h"
-      },
-      {
-        "i": 19,
-        "claim_type": "river_level",
-        "expected_source": "Alberta Environment River Basin Forecasting",
-        "expected_source_url": "https://rivers.alberta.ca/",
-        "verification_status": "unverified",
-        "confidence": "m",
-        "note": "Predicts an overnight peak. Plausible, but no gauge reading published at the time of the tweet."
-      },
-      {
-        "i": 2,
-        "claim_type": "road_closure",
-        "expected_source": "Alberta 511",
-        "expected_source_url": "https://511.alberta.ca/",
-        "verification_status": "verified",
-        "confidence": "h"
-      },
-      {
-        "i": 21,
-        "claim_type": "other_official",
-        "expected_source": "City of Medicine Hat",
-        "expected_source_url": "https://www.medicinehat.ca/",
-        "verification_status": "verified",
-        "confidence": "h",
-        "note": "Boil water advisory confirmed."
-      },
-      {
-        "i": 9,
-        "claim_type": "other_official",
-        "expected_source": "ENMAX Power",
-        "expected_source_url": "https://www.enmax.com/outages",
-        "verification_status": "unverified",
-        "confidence": "l",
-        "note": "Outage count of about 300 homes could not be matched to a published figure."
-      },
-      {
-        "i": 14,
-        "claim_type": "road_closure",
-        "expected_source": "Alberta 511",
-        "expected_source_url": "https://511.alberta.ca/",
-        "verification_status": "cannot_check",
-        "confidence": "l",
-        "note": "No archived closure record for this stretch at this hour."
-      },
-      {
-        "i": 29,
-        "claim_type": "road_closure",
-        "expected_source": "Alberta 511",
-        "expected_source_url": "https://511.alberta.ca/",
-        "verification_status": "verified",
-        "confidence": "h"
-      },
-      {
-        "i": 17,
-        "claim_type": "shelter_capacity",
-        "expected_source": "City of Calgary Emergency Management Agency",
-        "expected_source_url": "https://www.calgary.ca/emergency.html",
-        "verification_status": "verified",
-        "confidence": "m",
-        "note": "Enmax Centre confirmed as a reception centre for Siksika Nation evacuees."
-      }
-    ]
-  },
-  "routes": {
-    "routes": [
-      {
-        "from": "Siksika Nation",
-        "to": "Calgary",
-        "to_kind": "city outside the affected area",
-        "distance_km": 88,
-        "drive_time": "about 1 hour",
-        "via": "Highway 1 west",
-        "shelter": "Enmax Centre reception centre, Calgary",
-        "note": "Main reception centre for Siksika evacuees. Check in at the north entrance."
-      },
-      {
-        "from": "High River",
-        "to": "Okotoks",
-        "to_kind": "town outside the affected area",
-        "distance_km": 18,
-        "drive_time": "about 20 minutes",
-        "via": "Highway 2 north",
-        "shelter": "Okotoks Recreation Centre",
-        "note": "Highway 2 southbound is closed at High River. Leave to the north."
-      },
-      {
-        "from": "Canmore",
-        "to": "Cochrane",
-        "to_kind": "town outside the affected area",
-        "distance_km": 75,
-        "drive_time": "about 50 minutes",
-        "via": "Highway 1A east",
-        "shelter": "Cochrane Arena",
-        "note": "Highway 1 is closed in sections near Bragg Creek. Take 1A."
-      },
-      {
-        "from": "Bowness",
-        "to": "Edmonton",
-        "to_kind": "city well outside the affected area",
-        "distance_km": 300,
-        "drive_time": "about 3 hours",
-        "via": "Highway 2 north",
-        "shelter": "Northlands Expo Centre, Edmonton",
-        "note": "Use only if Calgary reception centres are full — Calgary itself is inside the affected area."
-      },
-      {
-        "from": "Bragg Creek",
-        "to": "Cochrane",
-        "to_kind": "town outside the affected area",
-        "distance_km": 40,
-        "drive_time": "about 35 minutes",
-        "via": "Highway 22 north",
-        "shelter": "Cochrane Arena",
-        "note": "Highway 1 east toward Calgary is cut. Go north on 22."
-      },
-      {
-        "from": "Tsuut'ina Nation",
-        "to": "Okotoks",
-        "to_kind": "town outside the affected area",
-        "distance_km": 35,
-        "drive_time": "about 30 minutes",
-        "via": "Highway 22X east then Highway 2 south",
-        "shelter": "Okotoks Recreation Centre",
-        "note": "Highway 22X had a reported closure. Confirm before leaving."
-      },
-      {
-        "from": "Stoney Nakoda Nation, Morley",
-        "to": "Cochrane",
-        "to_kind": "town outside the affected area",
-        "distance_km": 45,
-        "drive_time": "about 35 minutes",
-        "via": "Highway 1A east",
-        "shelter": "Cochrane Arena"
-      }
-    ]
+    "verifications": []
   }
 }
