@@ -140,9 +140,9 @@ export const zRoute = z.object({
   note: z.string().optional(),
 });
 export type Route = z.infer<typeof zRoute>;
-export const zRoutesResult = z.object({ routes: z.array(zRoute) });
+export const zEvacuationResult = z.object({ routes: z.array(zRoute) });
 
-export type AiTask = "profile" | "classify" | "places" | "brief" | "verify" | "routes";
+export type AiTask = "profile" | "classify" | "places" | "brief" | "verify" | "evacuation";
 
 /**
  * Sent as the organizers' `response_schema` option so the model returns JSON we
@@ -300,7 +300,7 @@ export const RESPONSE_SCHEMAS: Record<AiTask, object> = {
     },
     required: ["verifications"],
   },
-  routes: {
+  evacuation: {
     type: "object",
     properties: {
       routes: {
@@ -321,7 +321,7 @@ export const RESPONSE_SCHEMAS: Record<AiTask, object> = {
         },
       },
     },
-    required: ["routes"],
+    required: ["evacuation"],
   },
 };
 
@@ -338,7 +338,7 @@ export function validate(task: AiTask, data: unknown) {
       return zBrief.parse(data);
     case "verify":
       return zVerifyResult.parse(data);
-    case "routes":
-      return zRoutesResult.parse(data);
+    case "evacuation":
+      return zEvacuationResult.parse(data);
   }
 }

@@ -55,7 +55,7 @@ async function cacheSet(key: string, value: unknown): Promise<void> {
 }
 
 async function readMock(task: AiTask): Promise<unknown> {
-  const file = task === "routes" ? "evacuation" : task;
+  const file = task;
   const raw = await readFile(path.join(process.cwd(), "mocks", `${file}.json`), "utf8");
   return JSON.parse(raw);
 }

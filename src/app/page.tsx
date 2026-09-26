@@ -118,11 +118,15 @@ export default function Home() {
           if (row) verifications.set(row.report_id, v);
         }
         setTotal(rows.length);
-        for (let i = 0; i <= rows.length; i += Math.max(1, Math.ceil(rows.length / 10))) {
+        const step = Math.max(1, Math.ceil(rows.length / 10));
+        setStep("explorer");
+        for (let i = step; i <= rows.length + step; i += step) {
           const seen = Math.min(i, rows.length);
           setDone(seen);
           setFound(classified.slice(0, seen).filter((c) => c.result.rel).length);
-          await new Promise((r) => setTimeout(r, 60));
+          // Pins land batch by batch rather than all at once at the end.
+          setReports(buildReports(classified.slice(0, seen), places, verifications));
+          await new Promise((r) => setTimeout(r, 140));
         }
       } else {
         // Every unique tweet in the file, in batches of 100, 4 at a time.
@@ -133,6 +137,9 @@ export default function Home() {
           (p) => {
             setDone(p.done);
             setFound(p.found);
+            // Show the map as soon as the first batch lands; pins fill in after.
+            setReports(buildReports(p.rows, [], new Map()));
+            setStep("explorer");
           },
         );
         if (failedBatches.length) {
@@ -210,7 +217,12 @@ export default function Home() {
       </nav>
 
       {tab === "explorer" ? (
-        <Explorer reports={reports} hasTime={hasTime} />
+        <Explorer
+          reports={reports}
+          hasTime={hasTime}
+          profile={profile}
+          progress={stage === "Done" ? null : { done, total }}
+        />
       ) : (
         <DatasetTable reports={reports} model={MODEL} />
       )}

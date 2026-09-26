@@ -56,28 +56,77 @@ export function claimRows(classified: ClassifiedRow[]): ClassifiedRow[] {
 }
 
 export type Filters = {
-  urgency: string;
+  /** Empty means all urgencies; otherwise a multi-select. */
+  urgency: string[];
   category: string;
+  community: string;
   search: string;
-  relevantOnly: boolean;
+  eyewitnessOnly: boolean;
+  needsVerification: boolean;
+  /** On by default: low-confidence pins are guesswork until someone looks. */
+  hideLowConfidence: boolean;
 };
 
 export const EMPTY_FILTERS: Filters = {
-  urgency: "all",
+  urgency: [],
   category: "all",
+  community: "all",
   search: "",
-  relevantOnly: true,
+  eyewitnessOnly: false,
+  needsVerification: false,
+  hideLowConfidence: true,
 };
+
+/** How many filters the user has actually changed, for the badge. */
+export function activeFilterCount(f: Filters): number {
+  let n = 0;
+  if (f.urgency.length) n += 1;
+  if (f.category !== "all") n += 1;
+  if (f.community !== "all") n += 1;
+  if (f.search.trim()) n += 1;
+  if (f.eyewitnessOnly) n += 1;
+  if (f.needsVerification) n += 1;
+  if (!f.hideLowConfidence) n += 1;
+  return n;
+}
 
 export function applyFilters(reports: Report[], filters: Filters): Report[] {
   const needle = filters.search.trim().toLowerCase();
   return reports.filter((r) => {
-    if (filters.relevantOnly && !r.result.rel) return false;
-    if (filters.urgency !== "all" && r.result.urg !== filters.urgency) return false;
+    if (!r.result.rel) return false;
+    if (filters.urgency.length && !filters.urgency.includes(r.result.urg)) return false;
     if (filters.category !== "all" && r.result.cat !== filters.category) return false;
-    if (needle && !r.clean_text.toLowerCase().includes(needle)) return false;
+    if (filters.community !== "all" && r.result.fn !== filters.community) return false;
+    if (filters.eyewitnessOnly && !r.result.eye) return false;
+    if (filters.hideLowConfidence && r.result.conf === "l") return false;
+    if (filters.needsVerification) {
+      const status = r.verification?.verification_status;
+      if (status !== "unverified" && status !== "contradicts") return false;
+    }
+    if (needle) {
+      const place = r.result.places.map((p) => p.name).join(" ").toLowerCase();
+      if (!r.clean_text.toLowerCase().includes(needle) && !place.includes(needle)) return false;
+    }
     return true;
   });
+}
+
+/** Dropdown options built from what the model actually found. */
+export function communitiesIn(reports: Report[]): string[] {
+  const set = new Set<string>();
+  for (const r of reports) if (r.result.rel && r.result.fn) set.add(r.result.fn);
+  return [...set].sort();
+}
+
+/** Origins for the evacuation tab: places actually being hit. */
+export function affectedPlaces(reports: Report[]): string[] {
+  const set = new Set<string>();
+  for (const r of reports) {
+    if (!r.result.rel) continue;
+    for (const p of r.result.places) if (p.role === "affected") set.add(p.name);
+    if (r.result.fn) set.add(r.result.fn);
+  }
+  return [...set].sort();
 }
 
 export const URGENCY_LABEL = {

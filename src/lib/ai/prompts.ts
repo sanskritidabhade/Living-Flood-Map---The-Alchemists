@@ -81,7 +81,7 @@ verification_status:
 Never mark a tweet verified on the strength of the tweet alone.`;
 }
 
-export function routesPrompt(profile: Profile): string {
+export function evacuationPrompt(profile: Profile): string {
   return `${eventContext(profile)}
 Affected-area bounding box [west, south, east, north]: ${JSON.stringify(profile.bbox)}
 
@@ -102,7 +102,7 @@ export function promptFor(task: AiTask, profile?: Profile): string {
       return briefPrompt(profile);
     case "verify":
       return verifyPrompt(profile);
-    case "routes":
-      return routesPrompt(profile);
+    case "evacuation":
+      return evacuationPrompt(profile);
   }
 }

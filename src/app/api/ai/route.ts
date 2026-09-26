@@ -8,7 +8,7 @@ import { RESPONSE_SCHEMAS, validate, zProfile, type AiTask } from "@/lib/ai/sche
 
 export const runtime = "nodejs";
 
-const TASKS = ["profile", "classify", "places", "brief", "verify", "routes"] as const;
+const TASKS = ["profile", "classify", "places", "brief", "verify", "evacuation"] as const;
 
 const zBody = z.object({
   task: z.enum(TASKS),

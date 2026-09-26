@@ -16,6 +16,8 @@ export type BatchProgress = {
   total: number;
   /** Relevant reports found so far — the number the counter shows. */
   found: number;
+  /** Everything classified so far, so pins can stream onto the map. */
+  rows: ClassifiedRow[];
   failedBatches: number[];
 };
 
@@ -90,6 +92,7 @@ export async function classifyAll(
       done,
       total: unique.length,
       found,
+      rows: [...rows],
       failedBatches: [...failedBatches],
     });
   }
