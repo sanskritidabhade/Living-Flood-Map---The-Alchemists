@@ -174,15 +174,17 @@ export default function Home() {
           if (row) verifications.set(row.report_id, v);
         }
         setTotal(rows.length);
-        const step = Math.max(1, Math.ceil(rows.length / 10));
+        // Four repaints, not ten: each one rebuilds the marker layer, and the
+        // sample is precomputed so there is nothing to wait for.
+        const chunks = 4;
+        const step = Math.max(1, Math.ceil(rows.length / chunks));
         setStep("explorer");
         for (let i = step; i <= rows.length + step; i += step) {
           const seen = Math.min(i, rows.length);
           setDone(seen);
           setFound(classified.slice(0, seen).filter((c) => c.result.rel).length);
-          // Pins land batch by batch rather than all at once at the end.
           setReports(buildReports(classified.slice(0, seen), places, verifications));
-          await new Promise((r) => setTimeout(r, 55));
+          await new Promise((r) => setTimeout(r, 90));
         }
         // No classify, places or verify calls on this path — every field is precomputed.
       } else {

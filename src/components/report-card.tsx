@@ -103,7 +103,7 @@ export function ReportCard({
         {/* Left: what was actually posted. */}
         <div className="border-b border-border p-4 xl:w-1/2 xl:border-b-0 xl:border-r">
           <p className="mb-2 text-xs font-semibold text-muted-foreground">Original post</p>
-          <blockquote className="rounded-md border border-border bg-background p-3 text-sm leading-relaxed">
+          <blockquote className="lfm-enter rounded-md border border-border bg-background p-3 text-sm leading-relaxed">
             {splitOnEvidence(report.clean_text, active).map((part, i) =>
               part.match ? (
                 <mark
@@ -133,7 +133,7 @@ export function ReportCard({
         {/* Right: what the model made of it. */}
         <div className="p-4 xl:w-1/2">
           <p className="mb-2 text-xs font-semibold text-muted-foreground">AI-generated draft</p>
-          <dl className="divide-y divide-border">
+          <dl className="lfm-stagger divide-y divide-border">
             <Field
               label="Category"
               value={r.cat}

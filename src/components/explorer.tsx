@@ -193,7 +193,7 @@ export function Explorer({
               onShowUnmapped={() => setTab("unmapped")}
               contradictionCount={contradictions.size}
             />
-            <ul className="flex-1 space-y-2 overflow-y-auto p-3">
+            <ul className="lfm-stagger flex-1 space-y-2 overflow-y-auto p-3">
               {visible.length === 0 ? (
                 <li className="rounded-md border border-border p-6 text-center text-sm text-muted-foreground">
                   No reports match these filters. Clear the search or widen the urgency.
@@ -246,7 +246,7 @@ export function Explorer({
                 still in the dataset and the export.
               </p>
             </div>
-            <ul className="flex-1 space-y-2 overflow-y-auto p-3">
+            <ul className="lfm-stagger flex-1 space-y-2 overflow-y-auto p-3">
               {unmapped.map((r) => (
                 <li key={r.report_id}>
                   <button

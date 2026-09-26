@@ -116,7 +116,7 @@ function pinIcon(report: Report, flagged: boolean): L.DivIcon {
   const opacity = confOpacity * roleOpacity;
 
   return L.divIcon({
-    className: "lfm-pin",
+    className: urg === "critical" ? "lfm-pin lfm-pin-critical" : "lfm-pin",
     iconSize: [26, 26],
     iconAnchor: [13, 13],
     html: `<span style="
@@ -186,9 +186,21 @@ function Pins({
     };
   }, [map]);
 
+  const lastSignature = useRef("");
+
   useEffect(() => {
     const cluster = clusterRef.current;
     if (!cluster) return;
+
+    // Rebuilding every marker on each render is what made the map flicker and
+    // blank out while batches streamed in. Only rebuild when the pins actually
+    // change, not when an unrelated bit of state does.
+    const signature = `${hazards}|${reports
+      .map((r) => `${r.report_id}${flagged.has(r.report_id) ? "!" : ""}`)
+      .join(",")}`;
+    if (signature === lastSignature.current) return;
+    lastSignature.current = signature;
+
     cluster.clearLayers();
 
     const markers = reports
@@ -204,17 +216,14 @@ function Pins({
 
     cluster.addLayers(markers);
 
-    // Keep the data framed as pins stream in, but stop the moment the user
-    // takes control of the map. Frame the bulk of the pins rather than the
-    // extremes: one tweet mentioning Ontario should not zoom the map out to
-    // continental scale and push the real cluster off screen.
+    // Frame the map exactly once. Re-fitting on every streamed batch forced a
+    // full tile reload each time, which is what made the basemap disappear.
     if (!fitted.current && markers.length > 0) {
-      // The event brief's bounding box is the affected area the model identified,
-      // so it frames the disaster rather than the furthest-flung mention.
       const bounds = bbox
         ? L.latLngBounds([bbox[1], bbox[0]], [bbox[3], bbox[2]])
         : cluster.getBounds();
       map.fitBounds(bounds.pad(0.05), { maxZoom: 11 });
+      fitted.current = true;
     }
   }, [reports, flagged, map, onSelect, clusterReady, bbox, hazards]);
 

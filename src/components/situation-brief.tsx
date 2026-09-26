@@ -55,15 +55,21 @@ export function SituationBrief({
   async function generate() {
     setLoading(true);
     try {
-      // Top 200 reports in the current filter — one call, cached per filter.
-      const top = reports.slice(0, 200).map((r) => ({
-        id: r.report_id,
-        text: r.clean_text,
-        cat: r.result.cat,
-        urg: r.result.urg,
-        place: r.result.places[0]?.name,
-        fn: r.result.fn,
-      }));
+      // Critical and urgent first, capped at 120, with the text trimmed. A
+      // smaller prompt comes back markedly faster and the brief only needs the
+      // reports that matter.
+      const order = { critical: 0, urgent: 1, information: 2 } as const;
+      const top = [...reports]
+        .sort((a, b) => order[a.result.urg] - order[b.result.urg])
+        .slice(0, 120)
+        .map((r) => ({
+          id: r.report_id,
+          text: r.clean_text.slice(0, 180),
+          cat: r.result.cat,
+          urg: r.result.urg,
+          place: r.result.places[0]?.name,
+          fn: r.result.fn,
+        }));
       const res = await fetch("/api/ai", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -88,8 +94,8 @@ export function SituationBrief({
     return (
       <div className="space-y-3 p-4">
         <p className="text-sm text-muted-foreground">
-          Summarise the {Math.min(reports.length, 200).toLocaleString()} reports matching your
-          current filters.
+          Summarise the {Math.min(reports.length, 120).toLocaleString()} most urgent reports
+          matching your current filters. Takes a few seconds.
         </p>
         <Button onClick={generate} disabled={reports.length === 0}>
           Generate situation brief
@@ -100,7 +106,7 @@ export function SituationBrief({
 
   const b = current.brief;
   return (
-    <div className="overflow-y-auto p-4">
+    <div className="lfm-enter overflow-y-auto p-4">
       <div className="flex items-center gap-2 rounded-md bg-danger/10 px-3 py-2">
         <Siren className="h-4 w-4 text-danger-text" aria-hidden />
         <span className="tabular text-sm font-semibold text-danger-text">
