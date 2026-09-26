@@ -117,7 +117,7 @@ export function ReportCard({
 
         {report.verification ? (
           <div className="mt-4 rounded-md border border-border p-3">
-            <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+            <p className="text-xs font-semibold text-muted-foreground">
               Claim about official status
             </p>
             <p className="mt-1.5 text-sm font-medium">

@@ -10,7 +10,6 @@ import {
   communitiesIn,
   countByUrgency,
   EMPTY_FILTERS,
-  splitOnEvidence,
   type Report,
 } from "@/lib/pipeline/reports";
 import { EvacuationRoutes } from "./evacuation-routes";
@@ -138,7 +137,6 @@ export function Explorer({
                 </li>
               ) : null}
               {visible.map((report) => {
-                const evidence = report.result.places[0]?.text;
                 return (
                   <li key={report.report_id}>
                     <button
@@ -156,20 +154,7 @@ export function Explorer({
                           {report.report_id}
                         </span>
                       </div>
-                      <p className="mt-2 text-sm">
-                        {splitOnEvidence(report.clean_text, evidence).map((part, i) =>
-                          part.match ? (
-                            <mark
-                              key={i}
-                              className="rounded-sm bg-primary/20 px-0.5 font-semibold text-foreground"
-                            >
-                              {part.text}
-                            </mark>
-                          ) : (
-                            <span key={i}>{part.text}</span>
-                          ),
-                        )}
-                      </p>
+                      <p className="mt-2 text-sm">{report.clean_text}</p>
                       <div className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1">
                         <span className="text-xs font-medium">{report.result.cat}</span>
                         <ConfidenceBadge confidence={report.result.conf} />

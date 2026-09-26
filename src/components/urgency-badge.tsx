@@ -1,6 +1,17 @@
 "use client";
 
-import { AlertTriangle, Info, Siren, ShieldCheck, ShieldAlert, ShieldX, HelpCircle } from "lucide-react";
+import {
+  AlertTriangle,
+  Info,
+  Siren,
+  ShieldCheck,
+  ShieldAlert,
+  ShieldX,
+  HelpCircle,
+  CircleCheck,
+  CircleDot,
+  CircleDashed,
+} from "lucide-react";
 import type { Classified, Verification } from "@/lib/ai/schema";
 
 /** DESIGN.md: colour never carries meaning alone — always an icon and a word. */
@@ -40,10 +51,18 @@ export function VerificationBadge({ verification }: { verification: Verification
   );
 }
 
-const CONFIDENCE = { h: "High confidence", m: "Medium confidence", l: "Low confidence" } as const;
+const CONFIDENCE = {
+  h: { label: "High confidence", Icon: CircleCheck },
+  m: { label: "Medium confidence", Icon: CircleDot },
+  l: { label: "Low confidence", Icon: CircleDashed },
+} as const;
 
 export function ConfidenceBadge({ confidence }: { confidence: Classified["conf"] }) {
+  const { label, Icon } = CONFIDENCE[confidence];
   return (
-    <span className="text-xs text-muted-foreground">{CONFIDENCE[confidence]}</span>
+    <span className="inline-flex items-center gap-1 text-xs text-muted-foreground">
+      <Icon className="h-3 w-3" aria-hidden />
+      {label}
+    </span>
   );
 }
