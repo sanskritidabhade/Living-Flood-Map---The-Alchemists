@@ -208,15 +208,46 @@ export default function Home() {
         }
         setTotal(unique.length);
         setDone(dropped.length);
+
+        /**
+         * Places have to be resolved *while* classifying, not after. Passing an
+         * empty list here meant the map read "No locations found" for the whole
+         * run — minutes, on a large file — even though reports were arriving.
+         * Each round resolves whatever new names have appeared, capped so a big
+         * file cannot run away with credits.
+         */
+        let placesSoFar: ResolvedPlace[] = [];
+        let placeCallsMade = 0;
+        let placeCallInFlight = false;
+        const MAX_STREAMING_PLACE_CALLS = 6;
+        const MIN_NEW_NAMES = 4;
+
+        const resolveAsWeGo = async (rowsSoFar: ClassifiedRow[]) => {
+          if (placeCallInFlight || placeCallsMade >= MAX_STREAMING_PLACE_CALLS) return;
+          const known = new Set(placesSoFar.map((pl) => pl.name));
+          const fresh = uniquePlaceNames(rowsSoFar).filter((n) => !known.has(n));
+          if (fresh.length < MIN_NEW_NAMES) return;
+
+          placeCallInFlight = true;
+          placeCallsMade += 1;
+          try {
+            placesSoFar = await resolveMissingPlaces(rowsSoFar, placesSoFar, confirmed);
+            setReports(buildReports(rowsSoFar, placesSoFar, new Map()));
+          } finally {
+            placeCallInFlight = false;
+          }
+        };
+
         const { rows: classifiedUnique, failedBatches, aiUnavailable } = await classifyAll(
           send,
           confirmed,
           (p) => {
             setDone(dropped.length + p.done);
             setFound(p.found);
-            // Show the map as soon as the first batch lands; pins fill in after.
-            setReports(buildReports(p.rows, [], new Map()));
+            // Pins land with whatever coordinates we already have.
+            setReports(buildReports(p.rows, placesSoFar, new Map()));
             setStep("explorer");
+            void resolveAsWeGo(p.rows);
           },
         );
         if (aiUnavailable) {
@@ -245,7 +276,7 @@ export default function Home() {
         classified = fanOutToDuplicates(rows, [...classifiedUnique, ...localRows]);
 
         setStage("Finding places");
-        places = await resolveMissingPlaces(classified, [], confirmed);
+        places = await resolveMissingPlaces(classified, placesSoFar, confirmed);
 
         const claims = claimRows(classified);
         if (claims.length) {

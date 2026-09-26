@@ -8,7 +8,7 @@ import "leaflet.markercluster/dist/MarkerCluster.Default.css";
 import markerIcon from "leaflet/dist/images/marker-icon.png";
 import markerIcon2x from "leaflet/dist/images/marker-icon-2x.png";
 import markerShadow from "leaflet/dist/images/marker-shadow.png";
-import { MapPinOff } from "lucide-react";
+import { Loader2, MapPinOff } from "lucide-react";
 import { MapContainer, TileLayer, useMap } from "react-leaflet";
 import type { Report } from "@/lib/pipeline/reports";
 
@@ -254,6 +254,7 @@ export default function MapView({
   affectedOnly,
   bbox,
   hazards,
+  stillSorting,
   onSelect,
 }: {
   reports: Report[];
@@ -261,6 +262,8 @@ export default function MapView({
   affectedOnly: boolean;
   bbox?: [number, number, number, number];
   hazards: boolean;
+  /** True while batches are still arriving — changes what an empty map means. */
+  stillSorting?: boolean;
   onSelect: (id: string) => void;
 }) {
   const plotted = useMemo(() => {
@@ -281,12 +284,25 @@ export default function MapView({
   if (plotted.length === 0) {
     return (
       <div className="flex h-full flex-col items-center justify-center gap-2 bg-muted px-6 text-center">
-        <MapPinOff className="h-6 w-6 text-muted-foreground" aria-hidden />
-        <p className="font-semibold">No locations found in this dataset</p>
-        <p className="max-w-[40ch] text-sm text-muted-foreground">
-          The reports are still listed and exported. Turn off &ldquo;Affected areas only&rdquo; if
-          places were mentioned but not hit.
-        </p>
+        {stillSorting ? (
+          <>
+            <Loader2 className="h-6 w-6 animate-spin text-muted-foreground" aria-hidden />
+            <p className="font-semibold">Working out where these reports are</p>
+            <p className="max-w-[42ch] text-sm text-muted-foreground">
+              Pins appear as soon as the first places are resolved. The reports are already
+              listed on the right.
+            </p>
+          </>
+        ) : (
+          <>
+            <MapPinOff className="h-6 w-6 text-muted-foreground" aria-hidden />
+            <p className="font-semibold">No locations found in this dataset</p>
+            <p className="max-w-[40ch] text-sm text-muted-foreground">
+              The reports are still listed and exported. Turn off &ldquo;Affected areas only&rdquo;
+              if places were mentioned but not hit.
+            </p>
+          </>
+        )}
       </div>
     );
   }

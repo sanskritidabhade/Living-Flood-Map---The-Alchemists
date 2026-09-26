@@ -146,6 +146,7 @@ export function Explorer({
             affectedOnly={filters.affectedOnly}
             bbox={profile?.bbox}
             hazards={hazards}
+            stillSorting={Boolean(progress && progress.done < progress.total)}
             onSelect={setSelectedId}
           />
         </div>
