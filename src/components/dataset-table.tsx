@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { ArrowUpDown, Download } from "lucide-react";
+import { ArrowUpDown, CircleCheck, Download } from "lucide-react";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import {
@@ -20,6 +20,7 @@ import {
   toReportRows,
 } from "@/lib/pipeline/export";
 import type { Report } from "@/lib/pipeline/reports";
+import { asPercent, scoreAgainstLabels } from "@/lib/pipeline/accuracy";
 
 type SortKey = "report_id" | "urgency" | "category" | "place" | "confidence";
 
@@ -31,6 +32,7 @@ export function DatasetTable({ reports, model }: { reports: Report[]; model: str
   const [ascending, setAscending] = useState(true);
 
   const related = useMemo(() => reports.filter((r) => r.result.rel), [reports]);
+  const accuracy = useMemo(() => scoreAgainstLabels(reports), [reports]);
   const excludedCount = reports.length - related.length;
   const stamp = () => new Date().toISOString().slice(0, 10);
 
@@ -107,6 +109,16 @@ export function DatasetTable({ reports, model }: { reports: Report[]; model: str
             {related.length.toLocaleString()} related reports · {excludedCount.toLocaleString()}{" "}
             excluded · review status: AI draft
           </p>
+          {accuracy ? (
+            <p className="tabular mt-2 inline-flex items-center gap-2 rounded-sm border border-border bg-background px-2 py-1 text-xs">
+              <CircleCheck className="h-3.5 w-3.5 text-success-text" aria-hidden />
+              Accuracy vs your labels: {asPercent(accuracy.f1)} F1
+              <span className="text-muted-foreground">
+                (precision {asPercent(accuracy.precision)} · recall {asPercent(accuracy.recall)} ·{" "}
+                {accuracy.matched.toLocaleString()} labelled rows)
+              </span>
+            </p>
+          ) : null}
         </div>
         <div className="flex items-center gap-2">
           <Button variant="ghost" onClick={exportExcluded} disabled={excludedCount === 0}>

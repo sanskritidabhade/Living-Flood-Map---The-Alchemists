@@ -10,6 +10,7 @@ import { SortingScreen, type SortStage } from "@/components/sorting-screen";
 import { StartScreen } from "@/components/start-screen";
 import type { Classified, Profile, ResolvedPlace, Verification } from "@/lib/ai/schema";
 import { classifyAll, fanOutToDuplicates, type ClassifiedRow } from "@/lib/pipeline/batch";
+import { FALLBACK_BANNER, quickSort } from "@/lib/pipeline/fallback";
 import { cleanRows, type CleanRow } from "@/lib/pipeline/clean";
 import type { IngestResult } from "@/lib/pipeline/ingest";
 import {
@@ -36,6 +37,7 @@ export default function Home() {
   const [hasTime, setHasTime] = useState(false);
   const [profile, setProfile] = useState<Profile | null>(null);
   const [reports, setReports] = useState<Report[]>([]);
+  const [fallback, setFallback] = useState(false);
 
   const [stage, setStage] = useState<SortStage>("Reading tweets");
   const [done, setDone] = useState(0);
@@ -165,7 +167,7 @@ export default function Home() {
       } else {
         // Every unique tweet in the file, in batches of 100, 4 at a time.
         setTotal(unique.length);
-        const { rows: classifiedUnique, failedBatches } = await classifyAll(
+        const { rows: classifiedUnique, failedBatches, aiUnavailable } = await classifyAll(
           unique,
           confirmed,
           (p) => {
@@ -176,7 +178,18 @@ export default function Home() {
             setStep("explorer");
           },
         );
-        if (failedBatches.length) {
+        if (aiUnavailable) {
+          // Three failures in a row: finish the job without the model rather
+          // than dead-ending in front of a judge.
+          const scored = quickSort(unique, confirmed);
+          classifiedUnique.push(
+            ...scored
+              .map((result, i) => (unique[i] ? { ...unique[i], result } : undefined))
+              .filter((r): r is ClassifiedRow => r !== undefined),
+          );
+          setFallback(true);
+          toast.warning(FALLBACK_BANNER);
+        } else if (failedBatches.length) {
           toast.warning(
             `${failedBatches.length} batches could not be read. The rest are on the map.`,
           );
@@ -251,6 +264,7 @@ export default function Home() {
           reports={reports}
           hasTime={hasTime}
           profile={profile}
+          fallback={fallback}
           progress={stage === "Done" ? null : { done, total }}
         />
       ) : (

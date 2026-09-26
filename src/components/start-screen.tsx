@@ -42,9 +42,22 @@ export function StartScreen({ onSample, onConfirmColumns }: Props) {
           </h1>
           <p className="mt-2 text-muted-foreground">
             {fileName} — {parsed.rows.length.toLocaleString()} rows.
-            {parsed.truncated ? " Only the first 20,000 will be read." : ""}
+            {parsed.truncated ? "" : ""}
           </p>
         </div>
+
+        {parsed.truncated ? (
+          <p className="rounded-sm border border-border bg-muted px-3 py-2 text-sm">
+            Large dataset — processing the first 20,000 rows.
+          </p>
+        ) : null}
+
+        {parsed.mapping.label ? (
+          <p className="rounded-sm border border-border bg-muted px-3 py-2 text-sm">
+            Found a label column ({parsed.mapping.label}). It is hidden from the AI and used only
+            to score accuracy afterwards.
+          </p>
+        ) : null}
 
         <Card>
           <CardHeader>

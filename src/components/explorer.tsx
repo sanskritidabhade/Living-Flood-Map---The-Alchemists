@@ -35,11 +35,13 @@ export function Explorer({
   reports,
   hasTime,
   profile,
+  fallback,
   progress,
 }: {
   reports: Report[];
   hasTime: boolean;
   profile: Profile | null;
+  fallback?: boolean;
   progress?: { done: number; total: number } | null;
 }) {
   const [filters, setFilters] = useState(EMPTY_FILTERS);
@@ -84,6 +86,11 @@ export function Explorer({
   return (
     <div className="flex flex-1 flex-col gap-4 px-6 py-4 lg:flex-row">
       <section className="flex min-h-[380px] flex-col gap-2 lg:w-3/5">
+        {fallback ? (
+          <p className="rounded-sm border border-warning bg-warning/10 px-3 py-1.5 text-sm">
+            Quick sort — AI unavailable, using keyword matching
+          </p>
+        ) : null}
         {progress && progress.done < progress.total ? (
           <p className="tabular flex items-center gap-2 rounded-sm bg-muted px-3 py-1.5 text-sm text-muted-foreground">
             <Loader2 className="h-3.5 w-3.5 animate-spin" aria-hidden />
