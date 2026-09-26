@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Source_Sans_3 } from "next/font/google";
+import { Toaster } from "@/components/ui/sonner";
 import "./globals.css";
 
 const sourceSans = Source_Sans_3({
@@ -24,11 +25,12 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
               <span className="text-lg font-semibold tracking-tight text-secondary">
                 Living Flood Map
               </span>
-              <span className="text-sm text-muted">CE Strategies</span>
+              <span className="text-sm text-muted-foreground">CE Strategies</span>
             </div>
           </div>
         </header>
         {children}
+        <Toaster position="bottom-right" />
       </body>
     </html>
   );

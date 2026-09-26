@@ -1,4 +1,38 @@
 {
+  "generated_at": "2026-09-26T12:00:00Z",
+  "note": "Precomputed so the demo and the first judge click cost zero credits.",
+  "tweets": [
+    "Water is up to the second floor on our street in Bowness. Elderly couple next door still inside, they can't get out. Anyone with a boat? #yycflood",
+    "Siksika Nation has declared a state of local emergency. Mandatory evacuation of low-lying areas this morning, roughly 1,000 members moving out. Cots and bottled water needed. #siksika #abflood",
+    "Highway 22X has been closed since last night, water over both lanes. Turned around three cars myself. #yycflood",
+    "Now hiring class 1 drivers in Calgary, competitive wages, apply today #job #hiring #yyc",
+    "Aerial footage from High River an hour ago shows whole neighbourhoods underwater. Hard to tell where the streets are. #highriver #abflood",
+    "Just walked down by the river downtown and the water is higher than I have ever seen it. This is not normal. #yyc",
+    "City says the Glenmore Dam will be releasing at a higher rate tonight. Residents along the Elbow should be ready to move. #yycflood",
+    "Collecting donations in Edmonton for flood evacuees. Blankets and diapers most needed right now, drop off at the community hall. #abflood",
+    "Anyone know if the Canada Day fireworks are still happening? Planning a barbecue #yyc",
+    "No power in Inglewood since 4am, about 300 homes dark on our block. Generators would go a long way right now. #yycflood",
+    "Town of Canmore has issued an evacuation order for properties along Cougar Creek. Leave now, do not wait. #canmore #abflood",
+    "Thinking of everyone in Calgary tonight. Stay safe out there. #yycflood",
+    "We are in Mission and the water is coming up fast. Family with a newborn, we need help getting out now. #yycflood",
+    "What a game last night, that third period was something else #yyc #flames",
+    "Trans-Canada is cut west of town this afternoon, RCMP turning everyone back. No way through. #braggcreek #abflood",
+    "The Saddledome has water up to row eight. Arena staff pulled everything they could off the floor. #yycflood",
+    "Hearing Deerfoot is fully closed both directions? Can anyone confirm before I leave work #yyc",
+    "The Enmax Centre is open as a reception centre for Siksika Nation evacuees. Volunteers needed for the overnight shift. #siksika #abflood",
+    "My cousin in Mission says the rain has been steady for two days straight, creeks are running high #bcflood",
+    "River forecast centre expects the Bow River to peak overnight. If you are in a low area along the Bow, move now. #yycflood #abflood",
+    "Okotoks is filling sandbags at the public works yard, volunteers welcome all evening. #okotoks #abflood",
+    "Medicine Hat has issued a boil water advisory. Bottled water is being distributed at the arena. #abflood",
+    "My brother says there are two people on a rooftop near Bragg Creek waiting for a helicopter. Please send help. #abflood",
+    "Career opportunity: heavy equipment operators needed immediately, top pay #hiring #jobs #abflood",
+    "Stoney Nakoda families out at Morley lost everything yesterday. Several families need temporary housing. #abflood",
+    "High River is going to need all of us when this is over. Heartbreaking to watch. #highriver",
+    "Tsuut'ina residents near the river are being told to leave within the hour. We need transport for people without vehicles. #abflood",
+    "Heard the Okotoks Recreation Centre is full and turning evacuees away. Is that true? #okotoks",
+    "RT @celebrity: thanks for all the birthday wishes everyone, you are the best #blessed",
+    "Highway 2 at High River is closed until further notice. Do not attempt to drive through standing water. #highriver #abflood"
+  ],
   "profile": {
     "event_type": "flood",
     "event_name": "2013 Southern Alberta floods",
@@ -1094,7 +1128,5 @@
         "shelter": "Cochrane Arena"
       }
     ]
-  },
-  "generated_at": "2026-09-26T12:00:00Z",
-  "note": "Precomputed so the demo and the first judge click cost zero credits."
+  }
 }
