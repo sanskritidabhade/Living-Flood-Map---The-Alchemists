@@ -142,7 +142,23 @@ export const zRoute = z.object({
 export type Route = z.infer<typeof zRoute>;
 export const zEvacuationResult = z.object({ routes: z.array(zRoute) });
 
-export type AiTask = "profile" | "classify" | "places" | "brief" | "verify" | "evacuation";
+export type AiTask =
+  | "profile"
+  | "classify"
+  | "places"
+  | "brief"
+  | "verify"
+  | "evacuation"
+  | "ask";
+
+/** Task 7 — ask. An analyst question answered only from the loaded reports. */
+export const zAnswer = z.object({
+  answer: z.string(),
+  cited_report_ids: z.array(z.string()).default([]),
+  /** False when the reports do not contain the answer — never guess. */
+  grounded: z.boolean(),
+});
+export type Answer = z.infer<typeof zAnswer>;
 
 /**
  * Sent as the organizers' `response_schema` option so the model returns JSON we
@@ -300,6 +316,15 @@ export const RESPONSE_SCHEMAS: Record<AiTask, object> = {
     },
     required: ["verifications"],
   },
+  ask: {
+    type: "object",
+    properties: {
+      answer: str,
+      cited_report_ids: strArray,
+      grounded: bool,
+    },
+    required: ["answer", "cited_report_ids", "grounded"],
+  },
   evacuation: {
     type: "object",
     properties: {
@@ -340,5 +365,7 @@ export function validate(task: AiTask, data: unknown) {
       return zVerifyResult.parse(data);
     case "evacuation":
       return zEvacuationResult.parse(data);
+    case "ask":
+      return zAnswer.parse(data);
   }
 }

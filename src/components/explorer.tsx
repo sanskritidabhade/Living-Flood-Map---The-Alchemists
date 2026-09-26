@@ -14,6 +14,7 @@ import {
   unmappedReports,
   type Report,
 } from "@/lib/pipeline/reports";
+import { AnalystChat } from "./analyst-chat";
 import { EvacuationRoutes } from "./evacuation-routes";
 import { FilterBar } from "./filter-bar";
 import { ReportCard } from "./report-card";
@@ -30,7 +31,7 @@ const MapView = dynamic(() => import("./map-view"), {
   ),
 });
 
-type Tab = "reports" | "brief" | "evacuation" | "unmapped";
+type Tab = "reports" | "brief" | "evacuation" | "ask" | "unmapped";
 
 export function Explorer({
   reports,
@@ -84,6 +85,7 @@ export function Explorer({
     { key: "reports", label: "Reports" },
     { key: "brief", label: "Situation brief" },
     { key: "evacuation", label: "Evacuation routes" },
+    { key: "ask", label: "Ask" },
   ];
 
   return (
@@ -165,7 +167,7 @@ export function Explorer({
               role="tab"
               aria-selected={tab === t.key}
               onClick={() => setTab(t.key)}
-              className={`flex-1 px-3 py-2.5 text-sm font-medium transition-colors ${
+              className={`flex-1 px-2 py-2.5 text-sm font-medium transition-colors ${
                 tab === t.key
                   ? "border-b-2 border-primary text-foreground"
                   : "text-muted-foreground hover:bg-muted"
@@ -272,6 +274,12 @@ export function Explorer({
               ))}
             </ul>
           </div>
+        ) : tab === "ask" ? (
+          <AnalystChat
+            reports={notFlagged}
+            profile={profile}
+            onCite={(id) => setSelectedId(id)}
+          />
         ) : tab === "brief" ? (
           <SituationBrief reports={notFlagged} filterKey={filterKey} profile={profile} />
         ) : (

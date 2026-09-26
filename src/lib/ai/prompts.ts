@@ -111,6 +111,20 @@ For each origin, give the nearest realistic destination OUTSIDE the affected are
 Use real roads and real places in this region. If the obvious destination is itself inside the affected area, pick the next safe one and say so in note.`;
 }
 
+export function askPrompt(profile: Profile): string {
+  return `${eventContext(profile)}
+
+You are helping an emergency analyst read the reports below. Answer their question
+using ONLY these reports.
+
+- Cite the report ids you used in cited_report_ids.
+- If the reports do not contain the answer, set grounded to false and say plainly
+  what is missing. Never guess, never draw on outside knowledge of this event.
+- Be brief and concrete: counts, place names, what people asked for. A coordinator
+  should be able to read your answer aloud.
+- Do not invent places, numbers or needs that are not in the reports.`;
+}
+
 export function promptFor(task: AiTask, profile?: Profile): string {
   if (task === "profile") return PROFILE_PROMPT;
   if (!profile) throw new Error(`Task "${task}" needs a confirmed event brief`);
@@ -125,5 +139,7 @@ export function promptFor(task: AiTask, profile?: Profile): string {
       return verifyPrompt(profile);
     case "evacuation":
       return evacuationPrompt(profile);
+    case "ask":
+      return askPrompt(profile);
   }
 }
