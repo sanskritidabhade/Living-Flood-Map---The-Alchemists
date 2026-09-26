@@ -144,6 +144,187 @@ export const zRoutesResult = z.object({ routes: z.array(zRoute) });
 
 export type AiTask = "profile" | "classify" | "places" | "brief" | "verify" | "routes";
 
+/**
+ * Sent as the organizers' `response_schema` option so the model returns JSON we
+ * can parse. Kept in step with the zod schemas above — zod is still the gate,
+ * this just makes a valid response far more likely.
+ */
+const str = { type: "string" } as const;
+const num = { type: "number" } as const;
+const bool = { type: "boolean" } as const;
+const strArray = { type: "array", items: str } as const;
+const confidence = { type: "string", enum: [...CONFIDENCES] } as const;
+
+const PLACE_MENTION = {
+  type: "object",
+  properties: {
+    text: str,
+    name: str,
+    type: { type: "string", enum: [...PLACE_TYPES] },
+    role: { type: "string", enum: [...PLACE_ROLES] },
+  },
+  required: ["text", "name", "type", "role"],
+} as const;
+
+export const RESPONSE_SCHEMAS: Record<AiTask, object> = {
+  profile: {
+    type: "object",
+    properties: {
+      event_type: str,
+      event_name: str,
+      region: str,
+      country: str,
+      bbox: { type: "array", items: num },
+      key_hashtags: strArray,
+      key_places: strArray,
+      what_counts_as_related: str,
+      confidence,
+    },
+    required: [
+      "event_type",
+      "event_name",
+      "region",
+      "country",
+      "bbox",
+      "key_hashtags",
+      "key_places",
+      "what_counts_as_related",
+      "confidence",
+    ],
+  },
+  classify: {
+    type: "object",
+    properties: {
+      results: {
+        type: "array",
+        items: {
+          type: "object",
+          properties: {
+            i: { type: "integer" },
+            rel: bool,
+            conf: confidence,
+            why: str,
+            cat: { type: "string", enum: [...CATEGORIES] },
+            urg: { type: "string", enum: [...URGENCIES] },
+            eye: bool,
+            claim: bool,
+            places: { type: "array", items: PLACE_MENTION },
+            time: {
+              type: "object",
+              properties: { text: str, type: { type: "string", enum: [...TIME_TYPES] } },
+              required: ["text", "type"],
+            },
+            who: str,
+            needs: strArray,
+            src: { type: "string", enum: [...SOURCE_TYPES] },
+            fn: str,
+          },
+          required: ["i", "rel", "conf", "cat", "urg", "eye", "claim", "places", "needs", "src"],
+        },
+      },
+    },
+    required: ["results"],
+  },
+  places: {
+    type: "object",
+    properties: {
+      places: {
+        type: "array",
+        items: {
+          type: "object",
+          properties: {
+            name: str,
+            lat: num,
+            lng: num,
+            precision: { type: "string", enum: [...PLACE_TYPES] },
+            inside_region: bool,
+            confidence,
+          },
+          required: ["name", "lat", "lng", "precision", "inside_region", "confidence"],
+        },
+      },
+    },
+    required: ["places"],
+  },
+  brief: {
+    type: "object",
+    properties: {
+      critical_count: { type: "integer" },
+      headline: str,
+      worst_areas: strArray,
+      roads_and_bridges: strArray,
+      evacuations: strArray,
+      needs: strArray,
+      first_nations_affected: strArray,
+      summary: str,
+      cited_report_ids: strArray,
+    },
+    required: [
+      "critical_count",
+      "headline",
+      "worst_areas",
+      "roads_and_bridges",
+      "evacuations",
+      "needs",
+      "first_nations_affected",
+      "summary",
+      "cited_report_ids",
+    ],
+  },
+  verify: {
+    type: "object",
+    properties: {
+      verifications: {
+        type: "array",
+        items: {
+          type: "object",
+          properties: {
+            i: { type: "integer" },
+            claim_type: { type: "string", enum: [...CLAIM_TYPES] },
+            expected_source: str,
+            expected_source_url: str,
+            verification_status: { type: "string", enum: [...VERIFICATION_STATUSES] },
+            confidence,
+            note: str,
+          },
+          required: [
+            "i",
+            "claim_type",
+            "expected_source",
+            "expected_source_url",
+            "verification_status",
+            "confidence",
+          ],
+        },
+      },
+    },
+    required: ["verifications"],
+  },
+  routes: {
+    type: "object",
+    properties: {
+      routes: {
+        type: "array",
+        items: {
+          type: "object",
+          properties: {
+            from: str,
+            to: str,
+            to_kind: str,
+            distance_km: num,
+            drive_time: str,
+            via: str,
+            shelter: str,
+            note: str,
+          },
+          required: ["from", "to", "to_kind", "distance_km", "drive_time", "via", "shelter"],
+        },
+      },
+    },
+    required: ["routes"],
+  },
+};
+
 /** Validate a task response. Invalid items go to review rather than being guessed at. */
 export function validate(task: AiTask, data: unknown) {
   switch (task) {

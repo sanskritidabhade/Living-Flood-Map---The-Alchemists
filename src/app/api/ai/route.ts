@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { z } from "zod";
 import { callAi, isMockMode } from "@/lib/ai/client";
 import { promptFor } from "@/lib/ai/prompts";
-import { validate, zProfile, type AiTask } from "@/lib/ai/schema";
+import { RESPONSE_SCHEMAS, validate, zProfile, type AiTask } from "@/lib/ai/schema";
 
 /** The only place the AI is called. The key stays here. */
 
@@ -28,7 +28,10 @@ export async function POST(req: Request) {
 
   try {
     const prompt = promptFor(task, body.profile);
-    const result = await callAi(task, body.input, { prompt });
+    const result = await callAi(task, body.input, {
+      prompt,
+      responseSchema: RESPONSE_SCHEMAS[task],
+    });
     // Invalid items go to review rather than onto the map as guesses.
     const data = validate(task, result.data);
     return NextResponse.json({

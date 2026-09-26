@@ -66,10 +66,19 @@ export type AiResult = {
   requests_remaining: number | null;
 };
 
+/** The organizers' endpoint takes one string; prompt and input are joined here. */
+function buildContents(prompt: string, input: unknown): string {
+  if (input === undefined || input === null) return prompt;
+  return `${prompt}\n\n${typeof input === "string" ? input : JSON.stringify(input)}`;
+}
+
 /**
  * One call per user action. Never call this in a loop or on page load.
- * TODO(live): confirm the request shape against the organizers' API docs at 8:30
- * before the first live call, and pass their response_schema option as given.
+ *
+ * POST {base}/api/generate
+ *   headers: X-API-Key
+ *   body:    { contents, model?, response_schema? }
+ *   returns: { text, requests_remaining } — `text` is a JSON *string*.
  */
 export async function callAi(
   task: AiTask,
@@ -87,27 +96,41 @@ export async function callAi(
     return { data: hit, source: "cache", requests_remaining: null };
   }
 
-  const url = process.env.HACKATHON_API_URL;
+  const base = process.env.HACKATHON_API_URL;
   const apiKey = process.env.HACKATHON_API_KEY;
-  if (!url || !apiKey) throw new Error("HACKATHON_API_URL and HACKATHON_API_KEY are required in live mode");
+  if (!base || !apiKey) {
+    throw new Error("HACKATHON_API_URL and HACKATHON_API_KEY are required in live mode");
+  }
 
-  const res = await fetch(url, {
+  const res = await fetch(`${base.replace(/\/$/, "")}/api/generate`, {
     method: "POST",
-    headers: { "Content-Type": "application/json", Authorization: `Bearer ${apiKey}` },
+    headers: { "Content-Type": "application/json", "X-API-Key": apiKey },
     body: JSON.stringify({
+      contents: buildContents(opts.prompt, input),
       model: model(),
-      prompt: opts.prompt,
-      input,
       ...(opts.responseSchema ? { response_schema: opts.responseSchema } : {}),
     }),
   });
 
   if (!res.ok) {
-    throw new Error(`AI request failed: ${res.status} ${await res.text().catch(() => "")}`.trim());
+    // Never echo the response body verbatim — it can carry request details back.
+    throw new Error(`AI request failed: ${res.status} ${res.statusText}`.trim());
   }
 
-  const body = (await res.json()) as { data?: unknown; requests_remaining?: number };
-  const data = body.data ?? body;
+  const body = (await res.json()) as { text?: string; requests_remaining?: number };
+  const remaining = body.requests_remaining ?? null;
+
+  if (typeof body.text !== "string") {
+    throw new Error("AI response had no text field");
+  }
+
+  let data: unknown;
+  try {
+    data = JSON.parse(body.text);
+  } catch {
+    throw new Error(`AI returned text that is not JSON for task "${task}"`);
+  }
+
   await cacheSet(key, data);
-  return { data, source: "live", requests_remaining: body.requests_remaining ?? null };
+  return { data, source: "live", requests_remaining: remaining };
 }
