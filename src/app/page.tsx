@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { DatasetTable } from "@/components/dataset-table";
@@ -29,7 +29,10 @@ const MODEL = "gemini-3-flash-preview (mock)";
 
 /** Slice 1: the whole flow on mocks. No Leaflet, no live AI. */
 export default function Home() {
-  const [unlocked, setUnlocked] = useState(false);
+  // Read once during init rather than in an effect, so there is no flash of the gate.
+  const [unlocked, setUnlocked] = useState(
+    () => typeof window !== "undefined" && sessionStorage.getItem(OCAP_SESSION_FLAG) === "true",
+  );
   const [step, setStep] = useState<Step>("start");
   const [tab, setTab] = useState<Tab>("explorer");
 
@@ -45,11 +48,6 @@ export default function Home() {
   const [done, setDone] = useState(0);
   const [total, setTotal] = useState(0);
   const [found, setFound] = useState(0);
-
-  // Survives hot reloads within a session; a real refresh clears sessionStorage.
-  useEffect(() => {
-    if (sessionStorage.getItem(OCAP_SESSION_FLAG) === "true") setUnlocked(true);
-  }, []);
 
   async function postTask(task: string, input: unknown, withProfile?: Profile) {
     const res = await fetch("/api/ai", {
