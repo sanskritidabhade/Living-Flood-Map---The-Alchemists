@@ -157,11 +157,33 @@ export function countByUrgency(reports: Report[]) {
   };
 }
 
-/** Splits a tweet around the exact words the model used to place it, for highlighting. */
+/**
+ * Splits a tweet around the words the model used to place it, for highlighting.
+ * Prefers an exact match, then falls back to case-insensitive and hashtag forms
+ * ("high river" -> "#highriver") so a near-miss still shows its evidence.
+ */
+function findEvidence(text: string, evidence: string): [number, number] | null {
+  const exact = text.indexOf(evidence);
+  if (exact !== -1) return [exact, evidence.length];
+
+  const lower = text.toLowerCase();
+  const insensitive = lower.indexOf(evidence.toLowerCase());
+  if (insensitive !== -1) return [insensitive, evidence.length];
+
+  const collapsed = evidence.toLowerCase().replace(/[^a-z0-9]/g, "");
+  if (collapsed.length >= 4) {
+    const tag = lower.indexOf(`#${collapsed}`);
+    if (tag !== -1) return [tag, collapsed.length + 1];
+  }
+  return null;
+}
+
 export function splitOnEvidence(text: string, evidence?: string) {
   if (!evidence) return [{ text, match: false }];
-  const at = text.indexOf(evidence);
-  if (at === -1) return [{ text, match: false }];
+  const found = findEvidence(text, evidence);
+  if (!found) return [{ text, match: false }];
+  const [at, length] = found;
+  evidence = text.slice(at, at + length);
   return [
     { text: text.slice(0, at), match: false },
     { text: evidence, match: true },
