@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Flag, Megaphone, X } from "lucide-react";
+import { Flag, Megaphone, TriangleAlert, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { splitOnEvidence, type Report } from "@/lib/pipeline/reports";
 import { ConfidenceBadge, UrgencyBadge, VerificationBadge } from "./urgency-badge";
@@ -52,11 +52,13 @@ function Field({
 
 export function ReportCard({
   report,
+  contradiction,
   flagged,
   onFlag,
   onClose,
 }: {
   report: Report;
+  contradiction?: { reason: string; withIds: string[] };
   flagged: boolean;
   onFlag: (id: string) => void;
   onClose: () => void;
@@ -84,6 +86,18 @@ export function ReportCard({
           <X className="h-4 w-4" aria-hidden />
         </Button>
       </div>
+
+      {contradiction ? (
+        <div className="border-b border-warning bg-warning/10 px-4 py-2">
+          <p className="flex items-start gap-2 text-sm font-semibold">
+            <TriangleAlert className="mt-0.5 h-4 w-4 shrink-0" aria-hidden />
+            Conflicting reports from this area — verify before acting.
+          </p>
+          <p className="mt-1 pl-6 text-xs text-muted-foreground">
+            {contradiction.reason}. See {contradiction.withIds.slice(0, 3).join(", ")}.
+          </p>
+        </div>
+      ) : null}
 
       <div className="flex flex-1 flex-col overflow-y-auto xl:flex-row">
         {/* Left: what was actually posted. */}

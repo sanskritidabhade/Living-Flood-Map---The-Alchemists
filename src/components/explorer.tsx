@@ -2,8 +2,9 @@
 
 import { useMemo, useState } from "react";
 import dynamic from "next/dynamic";
-import { Loader2 } from "lucide-react";
+import { Loader2, TriangleAlert } from "lucide-react";
 import type { Profile } from "@/lib/ai/schema";
+import { findContradictions } from "@/lib/pipeline/contradictions";
 import {
   affectedPlaces,
   applyFilters,
@@ -66,6 +67,7 @@ export function Explorer({
     [visible, filters.affectedOnly],
   );
   const filterKey = useMemo(() => JSON.stringify(filters), [filters]);
+  const contradictions = useMemo(() => findContradictions(reports), [reports]);
   const selected = visible.find((r) => r.report_id === selectedId) ?? null;
 
   function toggleFlag(id: string) {
@@ -159,6 +161,7 @@ export function Explorer({
         {selected ? (
           <ReportCard
             report={selected}
+            contradiction={contradictions.get(selected.report_id)}
             flagged={flagged.has(selected.report_id)}
             onFlag={toggleFlag}
             onClose={() => setSelectedId(null)}
@@ -173,6 +176,7 @@ export function Explorer({
               total={reports.filter((r) => r.result.rel).length}
               unmappedCount={unmapped.length}
               onShowUnmapped={() => setTab("unmapped")}
+              contradictionCount={contradictions.size}
             />
             <ul className="flex-1 space-y-2 overflow-y-auto p-3">
               {visible.length === 0 ? (
@@ -201,6 +205,12 @@ export function Explorer({
                       <p className="mt-2 text-sm">{report.clean_text}</p>
                       <div className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1">
                         <span className="text-xs font-medium">{report.result.cat}</span>
+                        {contradictions.has(report.report_id) ? (
+                          <span className="inline-flex items-center gap-1 text-xs font-semibold text-warning-text">
+                            <TriangleAlert className="h-3 w-3" aria-hidden />
+                            Conflicting reports
+                          </span>
+                        ) : null}
                         <ConfidenceBadge confidence={report.result.conf} />
                         {report.verification ? (
                           <VerificationBadge verification={report.verification} />

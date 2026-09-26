@@ -1,6 +1,6 @@
 "use client";
 
-import { MapPinOff, Search, SlidersHorizontal } from "lucide-react";
+import { MapPinOff, Search, SlidersHorizontal, TriangleAlert } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -48,6 +48,7 @@ export function FilterBar({
   total,
   unmappedCount,
   onShowUnmapped,
+  contradictionCount,
 }: {
   filters: Filters;
   onChange: (f: Filters) => void;
@@ -56,6 +57,7 @@ export function FilterBar({
   total: number;
   unmappedCount: number;
   onShowUnmapped: () => void;
+  contradictionCount: number;
 }) {
   const active = activeFilterCount(filters);
 
@@ -170,6 +172,13 @@ export function FilterBar({
       <p className="tabular text-sm text-muted-foreground">
         Showing {shown.toLocaleString()} of {total.toLocaleString()} reports
       </p>
+
+      {contradictionCount > 0 ? (
+        <p className="tabular flex items-center gap-2 rounded-sm border border-warning bg-warning/10 px-2 py-1 text-xs font-medium">
+          <TriangleAlert className="h-3.5 w-3.5 shrink-0" aria-hidden />
+          {contradictionCount} reports conflict with others from the same area
+        </p>
+      ) : null}
 
       {unmappedCount > 0 ? (
         <button
