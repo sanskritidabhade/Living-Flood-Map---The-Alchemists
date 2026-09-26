@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
-import { callAi, useMock } from "@/lib/ai/client";
+import { callAi, isMockMode } from "@/lib/ai/client";
 import { promptFor } from "@/lib/ai/prompts";
 import { validate, zProfile, type AiTask } from "@/lib/ai/schema";
 
@@ -35,7 +35,7 @@ export async function POST(req: Request) {
       data,
       source: result.source,
       requests_remaining: result.requests_remaining,
-      mode: useMock() ? "MOCK" : "LIVE",
+      mode: isMockMode() ? "MOCK" : "LIVE",
     });
   } catch (err) {
     const message = err instanceof Error ? err.message : "The AI request could not be completed.";

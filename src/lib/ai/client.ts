@@ -14,7 +14,7 @@ import type { AiTask } from "./schema";
 const MOCK_DELAY_MS = 800;
 const CACHE_DIR = path.join(process.cwd(), ".cache");
 
-export function useMock(): boolean {
+export function isMockMode(): boolean {
   return (process.env.USE_MOCK ?? "true") !== "false";
 }
 
@@ -76,7 +76,7 @@ export async function callAi(
   input: unknown,
   opts: { prompt: string; responseSchema?: unknown },
 ): Promise<AiResult> {
-  if (useMock()) {
+  if (isMockMode()) {
     await new Promise((r) => setTimeout(r, MOCK_DELAY_MS));
     return { data: await readMock(task), source: "mock", requests_remaining: null };
   }
