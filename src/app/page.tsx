@@ -12,7 +12,7 @@ import { StartScreen } from "@/components/start-screen";
 import type { Classified, Profile, ResolvedPlace, Verification } from "@/lib/ai/schema";
 import { classifyAll, fanOutToDuplicates, type ClassifiedRow } from "@/lib/pipeline/batch";
 import { FALLBACK_BANNER, quickSort } from "@/lib/pipeline/fallback";
-import { cleanRows, type CleanRow } from "@/lib/pipeline/clean";
+import { cleanRows, sampleForProfile, type CleanRow } from "@/lib/pipeline/clean";
 import type { IngestResult } from "@/lib/pipeline/ingest";
 import {
   attachResults,
@@ -92,7 +92,8 @@ export default function Home() {
     setTotal(cleaned.unique.length);
     setFound(0);
     try {
-      const sampled = cleaned.unique.slice(0, 150).map((r) => r.clean_text);
+      // 60 tweets is plenty to identify an event, and returns far quicker than 150.
+      const sampled = sampleForProfile(cleaned.unique, 60).map((r) => r.clean_text);
       const p = (await postTask("profile", { tweets: sampled })) as Profile;
       setProfile(p);
       sessionStorage.removeItem("lfm-sample");

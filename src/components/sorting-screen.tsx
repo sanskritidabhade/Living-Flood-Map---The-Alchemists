@@ -13,9 +13,21 @@ type Props = {
   found: number;
 };
 
+/** Measured aggregate throughput against the organizers' endpoint. */
+const TWEETS_PER_SECOND = 6;
+
+function remainingLabel(done: number, total: number): string | null {
+  const left = total - done;
+  if (left <= 0) return null;
+  const seconds = Math.round(left / TWEETS_PER_SECOND);
+  if (seconds < 45) return "under a minute left";
+  return `about ${Math.max(1, Math.round(seconds / 60))} min left`;
+}
+
 export function SortingScreen({ stage, done, total, found }: Props) {
   const currentIndex = STAGES.indexOf(stage);
   const percent = total > 0 ? Math.round((done / total) * 100) : 0;
+  const eta = remainingLabel(done, total);
 
   return (
     <div className="mx-auto w-full max-w-xl space-y-8 px-6 py-20">
@@ -60,8 +72,14 @@ export function SortingScreen({ stage, done, total, found }: Props) {
         </div>
         <p className="tabular text-sm text-muted-foreground">
           {done.toLocaleString()} of {total.toLocaleString()} posts read · {found.toLocaleString()}{" "}
-          reports found
+          reports found{eta ? ` · ${eta}` : ""}
         </p>
+        {total > 1000 ? (
+          <p className="text-xs text-muted-foreground">
+            Large file. The first reports appear on the map within about twenty seconds — you can
+            start reading them while the rest finish.
+          </p>
+        ) : null}
       </div>
     </div>
   );

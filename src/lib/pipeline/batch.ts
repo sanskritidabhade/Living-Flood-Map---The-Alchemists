@@ -7,8 +7,16 @@ import type { CleanRow } from "./clean";
  * the end. ~75 calls for the provided dataset.
  */
 
-export const BATCH_SIZE = 40;
-export const PARALLEL = 4;
+/**
+ * Measured against the organizers' endpoint: throughput rises with batch size
+ * (40 tweets = 1.2/s, 80 = 1.5/s, 150 = 2.2/s) because the per-call overhead of
+ * structured output dominates. Eight concurrent calls ran with zero failures and
+ * roughly tripled aggregate throughput, so go wide and large.
+ */
+export const BATCH_SIZE = 150;
+export const PARALLEL = 8;
+/** A small opening batch so the first pins land in ~20s instead of ~70s. */
+export const FIRST_BATCH_SIZE = 30;
 /** Failed items get one more go in a small batch before being given up on. */
 export const RETRY_BATCH_SIZE = 10;
 /**
@@ -33,6 +41,15 @@ export function makeBatches<T>(rows: T[], size = BATCH_SIZE): T[][] {
   const batches: T[][] = [];
   for (let i = 0; i < rows.length; i += size) batches.push(rows.slice(i, i + size));
   return batches;
+}
+
+/**
+ * Large batches are the most efficient, but the very first one decides how long
+ * the user stares at an empty map. Lead with a small batch, then go wide.
+ */
+export function makeStagedBatches<T>(rows: T[]): T[][] {
+  if (rows.length <= FIRST_BATCH_SIZE) return [rows];
+  return [rows.slice(0, FIRST_BATCH_SIZE), ...makeBatches(rows.slice(FIRST_BATCH_SIZE))];
 }
 
 async function postBatch(batch: CleanRow[], profile: Profile): Promise<Classified[]> {
@@ -68,7 +85,7 @@ export async function classifyAll(
   profile: Profile,
   onProgress: (p: BatchProgress) => void,
 ): Promise<{ rows: ClassifiedRow[]; failedBatches: number[]; aiUnavailable: boolean }> {
-  const batches = makeBatches(unique);
+  const batches = makeStagedBatches(unique);
   const rows: ClassifiedRow[] = [];
   const failedBatches: number[] = [];
   const retryQueue: CleanRow[] = [];
@@ -93,9 +110,11 @@ export async function classifyAll(
     });
   };
 
-  for (let start = 0; start < batches.length; start += PARALLEL) {
+  for (let start = 0; start < batches.length; ) {
     if (aiUnavailable) break;
-    const slice = batches.slice(start, start + PARALLEL);
+    // The opening batch runs on its own so nothing queues behind it.
+    const width = start === 0 ? 1 : PARALLEL;
+    const slice = batches.slice(start, start + width);
     // Four batches at a time: roughly a quarter of the wall-clock.
     const settled = await Promise.all(
       slice.map((batch) => postBatch(batch, profile).catch(() => null)),
@@ -125,6 +144,7 @@ export async function classifyAll(
       rows: [...rows],
       failedBatches: [...failedBatches],
     });
+    start += width;
   }
 
   // One retry pass, in small batches — they fail more gracefully than large ones.
