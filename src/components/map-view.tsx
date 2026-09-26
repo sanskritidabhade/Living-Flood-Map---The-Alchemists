@@ -186,6 +186,18 @@ function Pins({
     };
   }, [map]);
 
+  // Framing lives in its own effect: folding it into the marker rebuild meant
+  // the early-return guard could skip it before the bounding box arrived.
+  useEffect(() => {
+    if (fitted.current || !clusterReady || !bbox) return;
+    map.invalidateSize();
+    map.fitBounds(
+      L.latLngBounds([bbox[1], bbox[0]], [bbox[3], bbox[2]]).pad(0.05),
+      { maxZoom: 11 },
+    );
+    fitted.current = true;
+  }, [map, bbox, clusterReady]);
+
   const lastSignature = useRef("");
 
   useEffect(() => {
@@ -216,15 +228,7 @@ function Pins({
 
     cluster.addLayers(markers);
 
-    // Frame the map exactly once. Re-fitting on every streamed batch forced a
-    // full tile reload each time, which is what made the basemap disappear.
-    if (!fitted.current && markers.length > 0) {
-      const bounds = bbox
-        ? L.latLngBounds([bbox[1], bbox[0]], [bbox[3], bbox[2]])
-        : cluster.getBounds();
-      map.fitBounds(bounds.pad(0.05), { maxZoom: 11 });
-      fitted.current = true;
-    }
+
   }, [reports, flagged, map, onSelect, clusterReady, bbox, hazards]);
 
   return null;
