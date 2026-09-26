@@ -30,12 +30,14 @@ Spend boldness in one place: the moment the messy input becomes a clean draft. S
 - No gradient washes, no glassmorphism, no decorative blobs.
 
 ## Trust patterns (this is what the judges care about)
-- AI output is labelled "Draft" until a person approves it.
+- AI results appear as soon as they are ready. No approval queue, no report-by-report sign-off — during a flood, waiting is the harm.
+- Confidence drives pin style: high = solid, medium = outlined, low = dimmed and hidden behind a "show low confidence" toggle. Style carries the meaning, so it must survive alongside the urgency colour, never replace it.
 - Each important field shows its confidence (icon + word) and lets you see the source text it came from.
-- Fields that need review are flagged and listed in a banner at the top of the draft.
-- Editing is inline and obvious. The approve button says what it does ("Approve invoice", not "Submit").
-- After approval, show who approved, when, and what was changed.
-- A short line near the action: "Nothing is saved until you approve."
+- AI text is labelled where it appears, with a timestamp. The situation brief reads "AI-generated — not verified".
+- Correcting is inline and obvious. Anyone can flag or correct a pin and the change takes effect immediately, attributed to them.
+- The only approval gate is the export. One analyst, one click. The button says what it does ("Publish export", not "Submit").
+- After publishing, show who published, when, and how many corrections were made. The file carries the same stamp.
+- A short line near the action: "Nothing leaves the tool until you publish."
 
 ## States (every screen has all four)
 - Loading: skeleton plus plain progress words ("Reading the invoice", "Checking the totals").
