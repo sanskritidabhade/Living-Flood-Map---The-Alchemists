@@ -1,6 +1,6 @@
 "use client";
 
-import { Search, SlidersHorizontal } from "lucide-react";
+import { MapPinOff, Search, SlidersHorizontal } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -46,12 +46,16 @@ export function FilterBar({
   communities,
   shown,
   total,
+  unmappedCount,
+  onShowUnmapped,
 }: {
   filters: Filters;
   onChange: (f: Filters) => void;
   communities: string[];
   shown: number;
   total: number;
+  unmappedCount: number;
+  onShowUnmapped: () => void;
 }) {
   const active = activeFilterCount(filters);
 
@@ -166,6 +170,17 @@ export function FilterBar({
       <p className="tabular text-sm text-muted-foreground">
         Showing {shown.toLocaleString()} of {total.toLocaleString()} reports
       </p>
+
+      {unmappedCount > 0 ? (
+        <button
+          type="button"
+          onClick={onShowUnmapped}
+          className="tabular flex w-full items-center gap-2 rounded-sm border border-border px-2 py-1 text-left text-xs text-muted-foreground hover:bg-muted"
+        >
+          <MapPinOff className="h-3.5 w-3.5 shrink-0" aria-hidden />
+          {unmappedCount.toLocaleString()} reports have no location — view list
+        </button>
+      ) : null}
     </div>
   );
 }

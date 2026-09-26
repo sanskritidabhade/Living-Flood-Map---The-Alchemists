@@ -10,6 +10,7 @@ import {
   communitiesIn,
   countByUrgency,
   EMPTY_FILTERS,
+  unmappedReports,
   type Report,
 } from "@/lib/pipeline/reports";
 import { EvacuationRoutes } from "./evacuation-routes";
@@ -28,7 +29,7 @@ const MapView = dynamic(() => import("./map-view"), {
   ),
 });
 
-type Tab = "reports" | "brief" | "evacuation";
+type Tab = "reports" | "brief" | "evacuation" | "unmapped";
 
 export function Explorer({
   reports,
@@ -54,6 +55,14 @@ export function Explorer({
   const counts = useMemo(() => countByUrgency(notFlagged), [notFlagged]);
   const communities = useMemo(() => communitiesIn(reports), [reports]);
   const origins = useMemo(() => affectedPlaces(reports), [reports]);
+  const unmapped = useMemo(() => unmappedReports(visible), [visible]);
+  const plottedCount = useMemo(
+    () =>
+      visible.filter(
+        (r) => r.place && (!filters.affectedOnly || r.result.places[0]?.role === "affected"),
+      ).length,
+    [visible, filters.affectedOnly],
+  );
   const filterKey = useMemo(() => JSON.stringify(filters), [filters]);
   const selected = visible.find((r) => r.report_id === selectedId) ?? null;
 
@@ -82,13 +91,38 @@ export function Explorer({
           </p>
         ) : null}
 
+        <div className="flex items-center gap-2">
+          <button
+            type="button"
+            aria-pressed={filters.affectedOnly}
+            onClick={() => setFilters({ ...filters, affectedOnly: !filters.affectedOnly })}
+            className={`rounded-sm border px-2 py-1 text-xs font-medium transition-colors ${
+              filters.affectedOnly
+                ? "border-secondary bg-secondary text-secondary-foreground"
+                : "border-border bg-surface hover:bg-muted"
+            }`}
+          >
+            {filters.affectedOnly ? "Affected areas only" : "All mentioned places"}
+          </button>
+          <span className="text-xs text-muted-foreground">
+            {filters.affectedOnly
+              ? "Places the reports say are being hit"
+              : "Dashed = aid coming from there · faded = mentioned only"}
+          </span>
+        </div>
+
         <div className="min-h-[340px] flex-1 overflow-hidden rounded-md border border-border">
-          <MapView reports={visible} flagged={flagged} onSelect={setSelectedId} />
+          <MapView
+            reports={visible}
+            flagged={flagged}
+            affectedOnly={filters.affectedOnly}
+            onSelect={setSelectedId}
+          />
         </div>
 
         <p className="tabular text-xs text-muted-foreground">
-          {visible.filter((r) => r.place).length} of {visible.length} reports plotted ·{" "}
-          {counts.critical} critical · {counts.urgent} urgent
+          {plottedCount} of {visible.length} reports plotted · {counts.critical} critical ·{" "}
+          {counts.urgent} urgent
           {!hasTime
             ? " · no timestamps in this file, so the map shows where reports concentrate, not how they spread"
             : ""}
@@ -129,6 +163,8 @@ export function Explorer({
               communities={communities}
               shown={visible.length}
               total={reports.filter((r) => r.result.rel).length}
+              unmappedCount={unmapped.length}
+              onShowUnmapped={() => setTab("unmapped")}
             />
             <ul className="flex-1 space-y-2 overflow-y-auto p-3">
               {visible.length === 0 ? (
@@ -168,6 +204,38 @@ export function Explorer({
               })}
             </ul>
           </>
+        ) : tab === "unmapped" ? (
+          <div className="flex flex-1 flex-col overflow-hidden">
+            <div className="border-b border-border px-4 py-3">
+              <p className="text-sm font-semibold">Reports with no location</p>
+              <p className="tabular mt-1 text-xs text-muted-foreground">
+                {unmapped.length} related reports name no place we could put on the map. They are
+                still in the dataset and the export.
+              </p>
+            </div>
+            <ul className="flex-1 space-y-2 overflow-y-auto p-3">
+              {unmapped.map((r) => (
+                <li key={r.report_id}>
+                  <button
+                    type="button"
+                    onClick={() => setSelectedId(r.report_id)}
+                    className="w-full rounded-md border border-border p-3 text-left transition-colors hover:bg-muted"
+                  >
+                    <div className="flex items-center justify-between gap-2">
+                      <UrgencyBadge urgency={r.result.urg} />
+                      <span className="tabular text-xs text-muted-foreground">{r.report_id}</span>
+                    </div>
+                    <p className="mt-2 text-sm">{r.clean_text}</p>
+                    <p className="mt-1 text-xs text-muted-foreground">
+                      {r.result.places[0]
+                        ? `Named "${r.result.places[0].name}" — no coordinates found`
+                        : "No place named"}
+                    </p>
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </div>
         ) : tab === "brief" ? (
           <SituationBrief reports={notFlagged} filterKey={filterKey} profile={profile} />
         ) : (

@@ -45,6 +45,7 @@ const CATEGORY_PATHS: Record<string, string> = {
 function pinIcon(report: Report, flagged: boolean): L.DivIcon {
   const urg = report.result.urg;
   const conf = report.result.conf;
+  const role = report.result.places[0]?.role ?? "mentioned";
   const fill = URGENCY_FILL[urg];
   const stroke = URGENCY_STROKE[urg];
   const path = CATEGORY_PATHS[report.result.cat] ?? CATEGORY_PATHS["Other related"];
@@ -52,8 +53,13 @@ function pinIcon(report: Report, flagged: boolean): L.DivIcon {
   // high = solid, medium = outlined, low = dimmed
   const background = conf === "h" ? fill : conf === "m" ? "#FFFCF7" : fill;
   const glyph = conf === "m" ? stroke : "#FFFFFF";
-  const opacity = conf === "l" ? 0.45 : 1;
   const borderWidth = conf === "m" ? 2 : 1.5;
+
+  // Role rides on top of urgency colour: aid origins are dashed, passing
+  // mentions are faded, so "Edmonton sent help" never reads as "Edmonton flooded".
+  const borderStyle = role === "help_from" ? "dashed" : "solid";
+  const roleOpacity = role === "mentioned" ? 0.4 : 1;
+  const opacity = (conf === "l" ? 0.45 : 1) * roleOpacity;
 
   return L.divIcon({
     className: "lfm-pin",
@@ -62,7 +68,7 @@ function pinIcon(report: Report, flagged: boolean): L.DivIcon {
     html: `<span style="
         display:flex;align-items:center;justify-content:center;
         width:26px;height:26px;border-radius:9999px;
-        background:${background};border:${borderWidth}px solid ${stroke};
+        background:${background};border:${borderWidth}px ${borderStyle} ${stroke};
         opacity:${opacity};box-shadow:0 1px 2px rgba(0,0,0,.28);position:relative;">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="${glyph}"
              stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round">
@@ -136,13 +142,23 @@ function Pins({
 export default function MapView({
   reports,
   flagged,
+  affectedOnly,
   onSelect,
 }: {
   reports: Report[];
   flagged: Set<string>;
+  affectedOnly: boolean;
   onSelect: (id: string) => void;
 }) {
-  const plotted = useMemo(() => reports.filter((r) => r.place), [reports]);
+  const plotted = useMemo(
+    () =>
+      reports.filter((r) => {
+        if (!r.place) return false;
+        if (!affectedOnly) return true;
+        return r.result.places[0]?.role === "affected";
+      }),
+    [reports, affectedOnly],
+  );
 
   return (
     <MapContainer

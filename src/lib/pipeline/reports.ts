@@ -65,6 +65,11 @@ export type Filters = {
   needsVerification: boolean;
   /** On by default: low-confidence pins are guesswork until someone looks. */
   hideLowConfidence: boolean;
+  /**
+   * Map only. On by default so places that are merely *mentioned* (Edmonton
+   * sending help, commentary) do not read as flooded.
+   */
+  affectedOnly: boolean;
 };
 
 export const EMPTY_FILTERS: Filters = {
@@ -75,6 +80,7 @@ export const EMPTY_FILTERS: Filters = {
   eyewitnessOnly: false,
   needsVerification: false,
   hideLowConfidence: true,
+  affectedOnly: true,
 };
 
 /** How many filters the user has actually changed, for the badge. */
@@ -87,6 +93,7 @@ export function activeFilterCount(f: Filters): number {
   if (f.eyewitnessOnly) n += 1;
   if (f.needsVerification) n += 1;
   if (!f.hideLowConfidence) n += 1;
+  if (!f.affectedOnly) n += 1;
   return n;
 }
 
@@ -109,6 +116,11 @@ export function applyFilters(reports: Report[], filters: Filters): Report[] {
     }
     return true;
   });
+}
+
+/** Related reports whose place could not be given coordinates — never silently dropped. */
+export function unmappedReports(reports: Report[]): Report[] {
+  return reports.filter((r) => r.result.rel && !r.place);
 }
 
 /** Dropdown options built from what the model actually found. */
