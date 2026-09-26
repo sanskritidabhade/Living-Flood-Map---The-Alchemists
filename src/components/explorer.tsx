@@ -90,8 +90,8 @@ export function Explorer({
     /* The row must not grow with its content: an uncapped flex row let the
        report list stretch the map container to thousands of pixels tall, which
        made Leaflet render hundreds of tiles and mis-frame every fitBounds. */
-    <div className="flex min-h-0 flex-1 flex-col gap-4 overflow-hidden px-6 py-4 lg:h-[calc(100vh-7.5rem)] lg:flex-row">
-      <section className="flex min-h-[380px] flex-col gap-2 lg:h-full lg:min-h-0 lg:w-3/5">
+    <div className="flex flex-1 flex-col gap-4 px-6 py-4 lg:flex-row">
+      <section className="flex flex-col gap-2 lg:w-3/5">
         {fallback ? (
           <p className="rounded-sm border border-warning bg-warning/10 px-3 py-1.5 text-sm">
             Quick sort — AI unavailable, using keyword matching
@@ -137,7 +137,7 @@ export function Explorer({
           </span>
         </div>
 
-        <div className="min-h-[340px] flex-1 overflow-hidden rounded-md border border-border">
+        <div className="h-[560px] overflow-hidden rounded-md border border-border">
           <MapView
             reports={visible}
             flagged={flagged}
@@ -157,7 +157,7 @@ export function Explorer({
         </p>
       </section>
 
-      <section className="flex min-h-[380px] flex-col overflow-hidden rounded-md border border-border bg-surface lg:h-full lg:min-h-0 lg:w-2/5">
+      <section className="flex h-[620px] flex-col overflow-hidden rounded-md border border-border bg-surface lg:w-2/5">
         <div className="flex border-b border-border" role="tablist">
           {tabs.map((t) => (
             <button
