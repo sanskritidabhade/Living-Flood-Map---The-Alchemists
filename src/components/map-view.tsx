@@ -232,7 +232,14 @@ function Pins({
     const markers = reports
       .filter((r) => r.place)
       .map((r) => {
-        const marker = L.marker([r.place!.lat, r.place!.lng], {
+        // Many reports name the same city, so their coordinates are identical.
+        // A tiny deterministic offset keeps clusters from exploding into a
+        // starburst of perfectly stacked pins.
+        const seed = [...r.report_id].reduce((a, c) => a + c.charCodeAt(0), 0);
+        const jitter = 0.0012;
+        const lat = r.place!.lat + (((seed % 17) / 17) - 0.5) * jitter;
+        const lng = r.place!.lng + ((((seed * 7) % 19) / 19) - 0.5) * jitter;
+        const marker = L.marker([lat, lng], {
           icon: isHazard(r) ? hazardIcon(r) : pinIcon(r, flagged.has(r.report_id)),
           title: r.result.places[0]?.name ?? r.report_id,
         });

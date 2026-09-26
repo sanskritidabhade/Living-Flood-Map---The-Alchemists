@@ -14,17 +14,21 @@ import type { CleanRow } from "./clean";
  * roughly tripled aggregate throughput, so go wide and large.
  */
 export const BATCH_SIZE = 150;
-export const PARALLEL = 8;
+/**
+ * Eight concurrent 150-tweet calls put 1,200 tweets in flight and pushed each
+ * call past the abort timeout, which tripped the keyword fallback even though
+ * the API was healthy. Four keeps every call comfortably inside the timeout.
+ */
+export const PARALLEL = 4;
 /** A small opening batch so the first pins land in ~20s instead of ~70s. */
 export const FIRST_BATCH_SIZE = 30;
 /** Failed items get one more go in a small batch before being given up on. */
 export const RETRY_BATCH_SIZE = 10;
 /**
- * A measured 50-tweet classify batch takes ~27s against the organizers' endpoint.
- * The old 15s ceiling aborted every call, which tripped the keyword fallback and
- * made a working API look dead. Keep generous headroom.
+ * A 150-tweet batch takes ~67s alone and longer under concurrency. Timeouts here
+ * are indistinguishable from a dead API to the caller, so leave real headroom.
  */
-const CALL_TIMEOUT_MS = 90_000;
+const CALL_TIMEOUT_MS = 240_000;
 
 export type BatchProgress = {
   stage: "Reading tweets" | "Finding places" | "Placing on map" | "Done";
@@ -134,7 +138,10 @@ export async function classifyAll(
       done += batch.length;
     });
 
-    if (consecutiveFailures >= 3) aiUnavailable = true;
+    // Three failures in a row only means the API is gone if nothing has ever
+    // succeeded. Otherwise keep going: partial AI results beat discarding them
+    // all for keyword matching.
+    if (consecutiveFailures >= 3 && rows.length === 0) aiUnavailable = true;
 
     onProgress({
       stage: "Reading tweets",
