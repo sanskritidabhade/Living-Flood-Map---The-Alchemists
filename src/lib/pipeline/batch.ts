@@ -7,11 +7,16 @@ import type { CleanRow } from "./clean";
  * the end. ~75 calls for the provided dataset.
  */
 
-export const BATCH_SIZE = 50;
+export const BATCH_SIZE = 40;
 export const PARALLEL = 4;
 /** Failed items get one more go in a small batch before being given up on. */
 export const RETRY_BATCH_SIZE = 10;
-const CALL_TIMEOUT_MS = 15_000;
+/**
+ * A measured 50-tweet classify batch takes ~27s against the organizers' endpoint.
+ * The old 15s ceiling aborted every call, which tripped the keyword fallback and
+ * made a working API look dead. Keep generous headroom.
+ */
+const CALL_TIMEOUT_MS = 90_000;
 
 export type BatchProgress = {
   stage: "Reading tweets" | "Finding places" | "Placing on map" | "Done";

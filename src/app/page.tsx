@@ -115,7 +115,11 @@ export default function Home() {
   ): Promise<ResolvedPlace[]> {
     const have = new Set(known.map((p) => p.name));
     const missing = uniquePlaceNames(classified).filter((n) => !have.has(n));
-    if (missing.length === 0) return known;
+    console.log(`[places] sending ${missing.length} place names to resolve`);
+    if (missing.length === 0) {
+      console.log("[places] nothing to resolve — no place names were extracted");
+      return known;
+    }
     try {
       const resolved = (await postTask("places", { places: missing }, withProfile)) as {
         places: ResolvedPlace[];
@@ -144,6 +148,9 @@ export default function Home() {
           seen.add(name);
         }
       }
+      console.log(
+        `[places] resolved ${merged.length - known.length} of ${missing.length} names`,
+      );
       return merged;
     } catch {
       // Losing coordinates is survivable — the reports stay in the unmapped list.

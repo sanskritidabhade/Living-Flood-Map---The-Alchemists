@@ -41,6 +41,7 @@ export async function POST(req: Request) {
       mode: isMockMode() ? "MOCK" : "LIVE",
     });
   } catch (err) {
+    console.error(`[api/ai] task=${task}`, err instanceof Error ? err.message : err);
     const message = err instanceof Error ? err.message : "The AI request could not be completed.";
     // The caller falls back to the keyword scorer, so the app never dead-ends.
     return NextResponse.json({ error: message, fallback: true }, { status: 502 });

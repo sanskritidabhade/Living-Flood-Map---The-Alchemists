@@ -63,7 +63,10 @@ export type Filters = {
   search: string;
   eyewitnessOnly: boolean;
   needsVerification: boolean;
-  /** On by default: low-confidence pins are guesswork until someone looks. */
+  /**
+   * Off by default. Fallback results are all low confidence, so defaulting this
+   * on could hide every report at exactly the moment things had gone wrong.
+   */
   hideLowConfidence: boolean;
   /**
    * Map only. On by default so places that are merely *mentioned* (Edmonton
@@ -79,7 +82,7 @@ export const EMPTY_FILTERS: Filters = {
   search: "",
   eyewitnessOnly: false,
   needsVerification: false,
-  hideLowConfidence: true,
+  hideLowConfidence: false,
   affectedOnly: true,
 };
 
@@ -92,7 +95,7 @@ export function activeFilterCount(f: Filters): number {
   if (f.search.trim()) n += 1;
   if (f.eyewitnessOnly) n += 1;
   if (f.needsVerification) n += 1;
-  if (!f.hideLowConfidence) n += 1;
+  if (f.hideLowConfidence) n += 1;
   if (!f.affectedOnly) n += 1;
   return n;
 }

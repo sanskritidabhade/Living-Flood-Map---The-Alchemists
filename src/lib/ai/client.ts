@@ -113,12 +113,21 @@ export async function callAi(
   });
 
   if (!res.ok) {
-    // Never echo the response body verbatim — it can carry request details back.
-    throw new Error(`AI request failed: ${res.status} ${res.statusText}`.trim());
+    // Log the real reason server-side; a 429 and a 500 need different responses.
+    const detail = await res.text().catch(() => "");
+    console.error(`[ai] ${task} failed ${res.status} ${res.statusText}: ${detail.slice(0, 300)}`);
+    const err = new Error(`AI request failed: ${res.status} ${res.statusText}`.trim()) as Error & {
+      status?: number;
+    };
+    err.status = res.status;
+    throw err;
   }
 
   const body = (await res.json()) as { text?: string; requests_remaining?: number };
   const remaining = body.requests_remaining ?? null;
+  if (remaining !== null && remaining < 200) {
+    console.warn(`[ai] only ${remaining} requests left`);
+  }
 
   if (typeof body.text !== "string") {
     throw new Error("AI response had no text field");
