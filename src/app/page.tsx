@@ -251,6 +251,11 @@ export default function Home() {
           // Not fatal: streaming resolution below still fills these in.
         }
         setStage("Reading tweets");
+        // Straight into the Explorer. Waiting on a spinner while batches run is
+        // what made this feel slow — the map and filters are usable now, and
+        // reports stream in behind them.
+        setReports([]);
+        setStep("explorer");
         let placeCallsMade = 0;
         let placeCallInFlight = false;
         const MAX_STREAMING_PLACE_CALLS = 6;

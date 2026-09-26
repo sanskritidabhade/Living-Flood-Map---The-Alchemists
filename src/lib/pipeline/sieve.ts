@@ -129,10 +129,10 @@ export type SieveResult = {
 
 /**
  * Above this many tweets, classify the highest-signal ones first and stop.
- * An unseen 18,000-row file is otherwise close to an hour of API time, which is
- * no use to anyone during an emergency or a two-minute demo.
+ * Sized so a large file reaches a usable map in a few minutes rather than an
+ * hour. Everything past the cap stays in the dataset and the export.
  */
-export const CLASSIFY_CAP = 4000;
+export const CLASSIFY_CAP = 1200;
 
 export function sieve(rows: CleanRow[], profile: Profile): SieveResult {
   const keep = matcher(profile);
