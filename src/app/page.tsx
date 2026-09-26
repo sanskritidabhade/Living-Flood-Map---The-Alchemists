@@ -95,6 +95,39 @@ export default function Home() {
     }
   }
 
+
+  /**
+   * Names the classifier produced that we have no coordinates for yet.
+   * One extra call resolves them all; in mock mode it costs nothing.
+   */
+  async function resolveMissingPlaces(
+    classified: ClassifiedRow[],
+    known: ResolvedPlace[],
+    withProfile: Profile,
+  ): Promise<ResolvedPlace[]> {
+    const have = new Set(known.map((p) => p.name));
+    const missing = uniquePlaceNames(classified).filter((n) => !have.has(n));
+    if (missing.length === 0) return known;
+    try {
+      const resolved = (await postTask("places", { places: missing }, withProfile)) as {
+        places: ResolvedPlace[];
+      };
+      const merged = [...known];
+      const seen = new Set(have);
+      for (const p of resolved.places) {
+        if (!seen.has(p.name)) {
+          merged.push(p);
+          seen.add(p.name);
+        }
+      }
+      return merged;
+    } catch {
+      // Losing coordinates is survivable — the reports stay in the unmapped list.
+      toast.warning(`${missing.length} place names could not be resolved.`);
+      return known;
+    }
+  }
+
   async function sortTweets(confirmed: Profile) {
     setProfile(confirmed);
     setStep("sorting");
@@ -128,6 +161,8 @@ export default function Home() {
           setReports(buildReports(classified.slice(0, seen), places, verifications));
           await new Promise((r) => setTimeout(r, 140));
         }
+        setStage("Finding places");
+        places = await resolveMissingPlaces(classified, places, confirmed);
       } else {
         // Every unique tweet in the file, in batches of 100, 4 at a time.
         setTotal(unique.length);
@@ -151,11 +186,7 @@ export default function Home() {
         classified = fanOutToDuplicates(rows, classifiedUnique);
 
         setStage("Finding places");
-        const names = uniquePlaceNames(classified);
-        const resolved = (await postTask("places", { places: names }, confirmed)) as {
-          places: ResolvedPlace[];
-        };
-        places = resolved.places;
+        places = await resolveMissingPlaces(classified, [], confirmed);
 
         const claims = claimRows(classified);
         if (claims.length) {
