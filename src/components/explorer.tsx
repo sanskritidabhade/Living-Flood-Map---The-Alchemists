@@ -278,6 +278,7 @@ export function Explorer({
           <AnalystChat
             reports={notFlagged}
             profile={profile}
+            cacheKey={filterKey}
             onCite={(id) => setSelectedId(id)}
           />
         ) : tab === "brief" ? (

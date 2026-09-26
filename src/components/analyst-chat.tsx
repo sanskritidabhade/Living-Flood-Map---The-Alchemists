@@ -12,7 +12,54 @@ type Turn = {
   question: string;
   answer?: Answer;
   at?: string;
+  /** Answered locally or from cache — no API call, no credit spent. */
+  instant?: boolean;
 };
+
+/**
+ * Small talk never needs the model: answering "hi" used to send 120 reports and
+ * take 12 seconds. These are handled locally, instantly, for zero credits.
+ */
+const GREETING = /^(hi|hey|hello|yo|hiya|good (morning|afternoon|evening)|how are you|thanks|thank you|ta|cheers|ok|okay|test)\b[\s!.?]*$/i;
+
+function smallTalk(q: string): string | null {
+  if (GREETING.test(q.trim())) {
+    return "Hello. Ask me anything about the reports currently on screen — which communities are affected, what people need, which roads are closed. I only answer from the reports matching your filters.";
+  }
+  return null;
+}
+
+/**
+ * Send the reports that bear on the question rather than all of them. Fewer
+ * reports means a markedly faster answer, and the model stays grounded because
+ * everything it sees is still real data.
+ */
+const STOP = new Set([
+  "the","a","an","is","are","was","were","of","in","on","at","to","for","and","or","what","which",
+  "who","where","how","many","much","do","does","did","any","there","that","this","it","be","been",
+  "report","reports","me","tell","show","about","from","with","have","has",
+]);
+
+function pickRelevant(reports: Report[], question: string, cap: number): Report[] {
+  const terms = question
+    .toLowerCase()
+    .split(/[^a-z0-9']+/)
+    .filter((w) => w.length > 2 && !STOP.has(w));
+
+  const order = { critical: 0, urgent: 1, information: 2 } as const;
+  const scored = reports.map((r) => {
+    const hay = `${r.clean_text} ${r.result.cat} ${r.result.places[0]?.name ?? ""} ${
+      r.result.fn ?? ""
+    } ${r.result.needs.join(" ")}`.toLowerCase();
+    let score = 0;
+    for (const t of terms) if (hay.includes(t)) score += 1;
+    // Break ties toward the reports an analyst would want anyway.
+    return { r, score: score * 10 + (2 - order[r.result.urg]) };
+  });
+
+  scored.sort((a, b) => b.score - a.score);
+  return scored.slice(0, cap).map((x) => x.r);
+}
 
 /** Questions worth one click — they show an analyst what this is for. */
 const SUGGESTIONS = [
@@ -25,39 +72,62 @@ const SUGGESTIONS = [
 export function AnalystChat({
   reports,
   profile,
+  cacheKey,
   onCite,
 }: {
   reports: Report[];
   profile: Profile | null;
+  cacheKey: string;
   onCite: (reportId: string) => void;
 }) {
   const [turns, setTurns] = useState<Turn[]>([]);
   const [value, setValue] = useState("");
   const [loading, setLoading] = useState(false);
   const endRef = useRef<HTMLDivElement>(null);
+  // Asking the same thing twice under the same filters should be instant.
+  const cache = useRef<Map<string, Answer>>(new Map());
 
   async function ask(question: string) {
     const q = question.trim();
     if (!q || loading) return;
     setValue("");
+
+    const canned = smallTalk(q);
+    if (canned) {
+      setTurns((t) => [
+        ...t,
+        {
+          question: q,
+          answer: { answer: canned, cited_report_ids: [], grounded: true },
+          at: new Date().toLocaleTimeString("en-CA"),
+          instant: true,
+        },
+      ]);
+      return;
+    }
+
+    const key = `${cacheKey}::${q.toLowerCase()}`;
+    const hit = cache.current.get(key);
+    if (hit) {
+      setTurns((t) => [
+        ...t,
+        { question: q, answer: hit, at: new Date().toLocaleTimeString("en-CA"), instant: true },
+      ]);
+      return;
+    }
+
     setTurns((t) => [...t, { question: q }]);
     setLoading(true);
     try {
-      // Critical and urgent first so the most important reports survive the cap.
-      const order = { critical: 0, urgent: 1, information: 2 } as const;
-      const context = [...reports]
-        .sort((a, b) => order[a.result.urg] - order[b.result.urg])
-        .slice(0, 120)
-        .map((r) => ({
-          id: r.report_id,
-          text: r.clean_text.slice(0, 180),
-          cat: r.result.cat,
-          urg: r.result.urg,
-          place: r.result.places[0]?.name,
-          role: r.result.places[0]?.role,
-          fn: r.result.fn,
-          needs: r.result.needs,
-        }));
+      const context = pickRelevant(reports, q, 45).map((r) => ({
+        id: r.report_id,
+        text: r.clean_text.slice(0, 140),
+        cat: r.result.cat,
+        urg: r.result.urg,
+        place: r.result.places[0]?.name,
+        fn: r.result.fn,
+        needs: r.result.needs.length ? r.result.needs : undefined,
+      }));
 
       const res = await fetch("/api/ai", {
         method: "POST",
@@ -66,6 +136,7 @@ export function AnalystChat({
       });
       if (!res.ok) throw new Error("ask failed");
       const body = await res.json();
+      cache.current.set(key, body.data as Answer);
       setTurns((t) =>
         t.map((turn, i) =>
           i === t.length - 1
@@ -90,8 +161,8 @@ export function AnalystChat({
           Ask about these reports
         </p>
         <p className="tabular mt-1 text-xs text-muted-foreground">
-          Answers come only from the {Math.min(reports.length, 120).toLocaleString()} reports
-          matching your current filters.
+          Answers come only from the reports matching your current filters. The most relevant
+          ones are sent, so replies stay fast.
         </p>
       </div>
 
@@ -139,9 +210,11 @@ export function AnalystChat({
                 ) : null}
 
                 <p className="mt-3 border-t border-border pt-2 text-xs text-muted-foreground">
-                  {turn.answer.grounded
-                    ? `AI-generated · ${turn.at} · answered from the reports above`
-                    : `AI-generated · ${turn.at} · not answerable from these reports`}
+                  {turn.instant
+                    ? `${turn.at} · answered instantly, no AI call`
+                    : turn.answer.grounded
+                      ? `AI-generated · ${turn.at} · answered from the reports above`
+                      : `AI-generated · ${turn.at} · not answerable from these reports`}
                 </p>
               </div>
             ) : (

@@ -12,7 +12,10 @@ import type { AiTask } from "./schema";
  */
 
 const MOCK_DELAY_MS = 800;
-const CACHE_DIR = path.join(process.cwd(), ".cache");
+const CACHE_DIR =
+  process.env.NODE_ENV === "production"
+    ? path.join("/tmp", "lfm-cache")
+    : path.join(process.cwd(), ".cache");
 
 export function isMockMode(): boolean {
   return (process.env.USE_MOCK ?? "true") !== "false";
@@ -26,9 +29,14 @@ export function cacheKey(task: AiTask, input: unknown): string {
   return createHash("sha256").update(`${task}:${model()}:${JSON.stringify(input)}`).digest("hex").slice(0, 32);
 }
 
-/** Vercel's filesystem is read-only outside /tmp, so the file cache is dev-only. */
+/**
+ * Two layers. Memory is the fast path within a warm process; the file cache
+ * survives restarts and, on Vercel, warm-lambda reuse. Vercel's filesystem is
+ * read-only outside /tmp, so point there in production rather than disabling
+ * the cache entirely — repeat work is exactly what makes a demo feel slow.
+ */
 const memoryCache = new Map<string, unknown>();
-const canUseFileCache = process.env.NODE_ENV !== "production";
+const canUseFileCache = true;
 
 async function cacheGet(key: string): Promise<unknown | undefined> {
   if (memoryCache.has(key)) return memoryCache.get(key);
