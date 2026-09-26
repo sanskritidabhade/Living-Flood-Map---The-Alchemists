@@ -126,6 +126,16 @@ function Pins({
   const clusterRef = useRef<L.MarkerClusterGroup | null>(null);
   const fitted = useRef(false);
 
+  useEffect(() => {
+    const stop = () => {
+      fitted.current = true;
+    };
+    map.on("dragstart zoomstart", stop);
+    return () => {
+      map.off("dragstart zoomstart", stop);
+    };
+  }, [map]);
+
   const [clusterReady, setClusterReady] = useState(false);
 
   useEffect(() => {
@@ -165,10 +175,22 @@ function Pins({
 
     cluster.addLayers(markers);
 
-    // Frame the data once, then leave the view alone so pins can stream in.
+    // Keep the data framed as pins stream in, but stop the moment the user
+    // takes control of the map. Frame the bulk of the pins rather than the
+    // extremes: one tweet mentioning Ontario should not zoom the map out to
+    // continental scale and push the real cluster off screen.
     if (!fitted.current && markers.length > 0) {
-      map.fitBounds(cluster.getBounds().pad(0.2));
-      fitted.current = true;
+      const lats = reports.map((r) => r.place!.lat).sort((a, b) => a - b);
+      const lngs = reports.map((r) => r.place!.lng).sort((a, b) => a - b);
+      const at = (arr: number[], q: number) => arr[Math.min(arr.length - 1, Math.floor(arr.length * q))];
+      const bounds =
+        markers.length >= 8
+          ? L.latLngBounds(
+              [at(lats, 0.05), at(lngs, 0.05)],
+              [at(lats, 0.95), at(lngs, 0.95)],
+            )
+          : cluster.getBounds();
+      map.fitBounds(bounds.pad(0.25), { maxZoom: 11 });
     }
   }, [reports, flagged, map, onSelect, clusterReady]);
 
@@ -214,13 +236,19 @@ export default function MapView({
     <MapContainer
       center={[51.0447, -114.0719]}
       zoom={8}
+      // Leaflet's fade-in leaves tiles stuck at opacity 0 under Turbopack; the
+      // tiles load fine (HTTP 200) but never become visible. Disabling the fade
+      // also stops every pan from flickering during the demo.
+      fadeAnimation={false}
       scrollWheelZoom
       className="h-full w-full rounded-md"
       style={{ background: "#F5F0E8" }}
     >
       <TileLayer
-        url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
-        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
+        // CARTO's Positron endpoint started demanding an API key, so use OSM
+        // standard tiles: no key, no account, attribution shown as required.
+        url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
+        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         maxZoom={19}
       />
       <Pins reports={plotted} flagged={flagged} onSelect={onSelect} />
