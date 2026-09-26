@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-09-26T15:17:24.400Z",
-  "note": "Precomputed with the real API so the demo costs zero credits. profile + classify are live AI output; coordinates come from a curated Alberta gazetteer (places task skipped to stay in budget); verify not run.",
+  "generated_at": "2026-09-26T15:44:50.008Z",
+  "note": "Precomputed with the real API so the demo costs zero credits: profile, classify and places are all live AI output. verify not run.",
   "source_csv": "data/samples/alberta-2013.csv",
-  "ai_calls_used": 3,
+  "ai_calls_used": 4,
   "tweets": [
     "Camping tomorrow. That would be fun.",
     "Happy Canada Day!!! #canadaday #july1st #lethbridge #hendersonpark #fun under the #sun #tan #mapleleaf http://t.co/Oa1XFXHj0a",
@@ -3438,6 +3438,46 @@
         "confidence": "h"
       },
       {
+        "name": "#yyc",
+        "lat": 51.0447,
+        "lng": -114.0719,
+        "precision": "city",
+        "inside_region": true,
+        "confidence": "h"
+      },
+      {
+        "name": "Millennium Park",
+        "lat": 51.0461,
+        "lng": -114.0886,
+        "precision": "landmark",
+        "inside_region": true,
+        "confidence": "h"
+      },
+      {
+        "name": "Western Canada",
+        "lat": 55,
+        "lng": -115,
+        "precision": "region",
+        "inside_region": false,
+        "confidence": "m"
+      },
+      {
+        "name": "Siska",
+        "lat": 50.15,
+        "lng": -121.5833,
+        "precision": "other",
+        "inside_region": false,
+        "confidence": "l"
+      },
+      {
+        "name": "#YYC",
+        "lat": 51.0447,
+        "lng": -114.0719,
+        "precision": "city",
+        "inside_region": true,
+        "confidence": "h"
+      },
+      {
         "name": "#Calgary",
         "lat": 51.0447,
         "lng": -114.0719,
@@ -3447,6 +3487,22 @@
       },
       {
         "name": "Alberta",
+        "lat": 53.9333,
+        "lng": -116.5765,
+        "precision": "region",
+        "inside_region": false,
+        "confidence": "h"
+      },
+      {
+        "name": "Fort McMurray",
+        "lat": 56.7264,
+        "lng": -111.3803,
+        "precision": "city",
+        "inside_region": false,
+        "confidence": "h"
+      },
+      {
+        "name": "#yycflood",
         "lat": 51.0447,
         "lng": -114.0719,
         "precision": "city",
@@ -3454,8 +3510,32 @@
         "confidence": "h"
       },
       {
+        "name": "Southern Alberta",
+        "lat": 50.5,
+        "lng": -113.5,
+        "precision": "region",
+        "inside_region": true,
+        "confidence": "h"
+      },
+      {
+        "name": "Peace Bridge",
+        "lat": 51.0543,
+        "lng": -114.0792,
+        "precision": "landmark",
+        "inside_region": true,
+        "confidence": "h"
+      },
+      {
+        "name": "Marda Loop",
+        "lat": 51.0264,
+        "lng": -114.1105,
+        "precision": "neighbourhood",
+        "inside_region": true,
+        "confidence": "h"
+      },
+      {
         "name": "Downtown Calgary",
-        "lat": 51.0478,
+        "lat": 51.0486,
         "lng": -114.0708,
         "precision": "neighbourhood",
         "inside_region": true,
@@ -3463,49 +3543,145 @@
       },
       {
         "name": "Mission",
-        "lat": 51.0325,
-        "lng": -114.0711,
+        "lat": 51.0345,
+        "lng": -114.0705,
         "precision": "neighbourhood",
         "inside_region": true,
-        "confidence": "m"
+        "confidence": "h"
+      },
+      {
+        "name": "Cliff Bungalow",
+        "lat": 51.0335,
+        "lng": -114.0772,
+        "precision": "neighbourhood",
+        "inside_region": true,
+        "confidence": "h"
+      },
+      {
+        "name": "Beltline",
+        "lat": 51.04,
+        "lng": -114.075,
+        "precision": "neighbourhood",
+        "inside_region": true,
+        "confidence": "h"
+      },
+      {
+        "name": "Victoria Park",
+        "lat": 51.0388,
+        "lng": -114.0594,
+        "precision": "neighbourhood",
+        "inside_region": true,
+        "confidence": "h"
+      },
+      {
+        "name": "5th Ave flyover",
+        "lat": 51.0494,
+        "lng": -114.0536,
+        "precision": "street",
+        "inside_region": true,
+        "confidence": "h"
       },
       {
         "name": "Canmore",
-        "lat": 51.0884,
-        "lng": -115.3479,
+        "lat": 51.089,
+        "lng": -115.344,
         "precision": "town",
         "inside_region": true,
         "confidence": "h"
       },
       {
         "name": "High River",
-        "lat": 50.5806,
-        "lng": -113.8686,
+        "lat": 50.5808,
+        "lng": -113.8744,
         "precision": "town",
         "inside_region": true,
         "confidence": "h"
       },
       {
         "name": "Okotoks",
-        "lat": 50.7256,
+        "lat": 50.7255,
         "lng": -113.9749,
         "precision": "town",
         "inside_region": true,
         "confidence": "h"
       },
       {
+        "name": "Lethbridge",
+        "lat": 49.6935,
+        "lng": -112.8418,
+        "precision": "city",
+        "inside_region": true,
+        "confidence": "h"
+      },
+      {
+        "name": "Nanaimo",
+        "lat": 49.1659,
+        "lng": -123.9401,
+        "precision": "city",
+        "inside_region": false,
+        "confidence": "h"
+      },
+      {
+        "name": "Canada",
+        "lat": 56.1304,
+        "lng": -106.3468,
+        "precision": "other",
+        "inside_region": false,
+        "confidence": "h"
+      },
+      {
         "name": "Bow River",
-        "lat": 51.0525,
-        "lng": -114.0631,
-        "precision": "region",
+        "lat": 51.045,
+        "lng": -114.06,
+        "precision": "landmark",
+        "inside_region": true,
+        "confidence": "h"
+      },
+      {
+        "name": "Pincher Creek",
+        "lat": 49.4847,
+        "lng": -113.9481,
+        "precision": "town",
+        "inside_region": false,
+        "confidence": "h"
+      },
+      {
+        "name": "16th ave",
+        "lat": 51.0673,
+        "lng": -114.0844,
+        "precision": "street",
         "inside_region": true,
         "confidence": "m"
       },
       {
         "name": "Bowness",
-        "lat": 51.0889,
-        "lng": -114.1944,
+        "lat": 51.0872,
+        "lng": -114.2081,
         "precision": "neighbourhood",
+        "inside_region": true,
+        "confidence": "h"
+      },
+      {
+        "name": "4804 Edmonton Trail NE",
+        "lat": 51.0957,
+        "lng": -114.0514,
+        "precision": "street",
+        "inside_region": true,
+        "confidence": "h"
+      },
+      {
+        "name": "Ontario",
+        "lat": 51.2538,
+        "lng": -85.3232,
+        "precision": "region",
+        "inside_region": false,
+        "confidence": "h"
+      },
+      {
+        "name": "Starbucks on 4th Street SW in Mission",
+        "lat": 51.0345,
+        "lng": -114.0725,
+        "precision": "landmark",
         "inside_region": true,
         "confidence": "h"
       },
@@ -3518,12 +3694,60 @@
         "confidence": "h"
       },
       {
+        "name": "Alberta College of Art and Design",
+        "lat": 51.0645,
+        "lng": -114.0898,
+        "precision": "landmark",
+        "inside_region": true,
+        "confidence": "h"
+      },
+      {
+        "name": "Memorial Drive",
+        "lat": 51.0526,
+        "lng": -114.043,
+        "precision": "street",
+        "inside_region": true,
+        "confidence": "h"
+      },
+      {
+        "name": "Deer Run",
+        "lat": 50.9328,
+        "lng": -114.0118,
+        "precision": "neighbourhood",
+        "inside_region": true,
+        "confidence": "h"
+      },
+      {
         "name": "Saddledome",
         "lat": 51.0374,
         "lng": -114.0519,
         "precision": "landmark",
         "inside_region": true,
         "confidence": "h"
+      },
+      {
+        "name": "Elbow Park",
+        "lat": 51.0185,
+        "lng": -114.0838,
+        "precision": "neighbourhood",
+        "inside_region": true,
+        "confidence": "h"
+      },
+      {
+        "name": "Prince's Island Park",
+        "lat": 51.0545,
+        "lng": -114.0685,
+        "precision": "landmark",
+        "inside_region": true,
+        "confidence": "h"
+      },
+      {
+        "name": "Queen Elizabeth II Highway",
+        "lat": 51.5,
+        "lng": -114,
+        "precision": "street",
+        "inside_region": true,
+        "confidence": "m"
       }
     ]
   },

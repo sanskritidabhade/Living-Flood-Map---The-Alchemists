@@ -159,10 +159,9 @@ export default function Home() {
           setFound(classified.slice(0, seen).filter((c) => c.result.rel).length);
           // Pins land batch by batch rather than all at once at the end.
           setReports(buildReports(classified.slice(0, seen), places, verifications));
-          await new Promise((r) => setTimeout(r, 140));
+          await new Promise((r) => setTimeout(r, 55));
         }
-        setStage("Finding places");
-        places = await resolveMissingPlaces(classified, places, confirmed);
+        // No classify, places or verify calls on this path — every field is precomputed.
       } else {
         // Every unique tweet in the file, in batches of 100, 4 at a time.
         setTotal(unique.length);
