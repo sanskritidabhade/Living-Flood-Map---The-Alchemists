@@ -16,8 +16,10 @@ export type CleanRow = {
   hashtags: string[];
   mentions: string[];
   link_count: number;
-  /** How many rows share this clean_text — amplification, worth showing. */
+  /** How many rows share this group — amplification, worth showing. */
   echo_count: number;
+  /** Normalised key used to group duplicates and retweets. Join on this, not on text. */
+  group_key: string;
   posted_at?: string;
   author?: string;
   label?: string;
@@ -55,7 +57,7 @@ export function cleanText(raw: string): string {
   return decodeEntities(raw).replace(/\s+/g, " ").trim();
 }
 
-function normalizeForGrouping(text: string): string {
+export function normalizeForGrouping(text: string): string {
   return text
     .replace(RT_PREFIX, "")
     .replace(URL_RE, "")
@@ -79,6 +81,7 @@ export function cleanRows(rows: RawRow[], mapping: ColumnMapping): CleanResult {
 
     const body = decoded.replace(RT_PREFIX, "");
     const clean: CleanRow = {
+      group_key: normalizeForGrouping(body),
       report_id: `R-${String(index + 1).padStart(5, "0")}`,
       source_row: index + 1,
       text: original,

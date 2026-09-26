@@ -1,4 +1,5 @@
 import type { Classified, ResolvedPlace, Verification } from "@/lib/ai/schema";
+import type { ClassifiedRow } from "./batch";
 import type { CleanRow } from "./clean";
 
 /** What the Explorer and the Dataset table actually render. */
@@ -8,28 +9,50 @@ export type Report = CleanRow & {
   verification?: Verification;
 };
 
+/**
+ * Joins on report_id, not on array position. `result.i` is only ever an index
+ * within one batch, so using it across the whole file silently mismatches rows.
+ */
 export function buildReports(
-  rows: CleanRow[],
-  results: Classified[],
+  classified: ClassifiedRow[],
   places: ResolvedPlace[],
-  verifications: Verification[],
+  verifications: Map<string, Verification>,
 ): Report[] {
   const placeByName = new Map(places.map((p) => [p.name, p]));
-  const verificationByIndex = new Map(verifications.map((v) => [v.i, v]));
 
+  return classified.map((row): Report => {
+    const primary = row.result.places[0];
+    return {
+      ...row,
+      place: primary ? placeByName.get(primary.name) : undefined,
+      verification: verifications.get(row.report_id),
+    };
+  });
+}
+
+/** The precomputed sample stores plain results; attach them to their rows by position. */
+export function attachResults(rows: CleanRow[], results: Classified[]): ClassifiedRow[] {
   return results
-    .map((result): Report | undefined => {
+    .map((result) => {
       const row = rows[result.i];
-      if (!row) return undefined;
-      const primary = result.places[0];
-      return {
-        ...row,
-        result,
-        place: primary ? placeByName.get(primary.name) : undefined,
-        verification: verificationByIndex.get(result.i),
-      };
+      return row ? { ...row, result } : undefined;
     })
-    .filter((r): r is Report => r !== undefined);
+    .filter((r): r is ClassifiedRow => r !== undefined);
+}
+
+/** Every distinct place the model named, so we resolve each one once. */
+export function uniquePlaceNames(classified: ClassifiedRow[]): string[] {
+  const names = new Set<string>();
+  for (const row of classified) {
+    if (!row.result.rel) continue;
+    for (const place of row.result.places) names.add(place.name);
+  }
+  return [...names];
+}
+
+/** Only tweets that assert something about official status go to the verify task. */
+export function claimRows(classified: ClassifiedRow[]): ClassifiedRow[] {
+  return classified.filter((row) => row.result.rel && row.result.claim);
 }
 
 export type Filters = {

@@ -9,9 +9,16 @@ import { Explorer } from "@/components/explorer";
 import { SortingScreen, type SortStage } from "@/components/sorting-screen";
 import { StartScreen } from "@/components/start-screen";
 import type { Classified, Profile, ResolvedPlace, Verification } from "@/lib/ai/schema";
+import { classifyAll, fanOutToDuplicates, type ClassifiedRow } from "@/lib/pipeline/batch";
 import { cleanRows, type CleanRow } from "@/lib/pipeline/clean";
 import type { IngestResult } from "@/lib/pipeline/ingest";
-import { buildReports, type Report } from "@/lib/pipeline/reports";
+import {
+  attachResults,
+  buildReports,
+  claimRows,
+  uniquePlaceNames,
+  type Report,
+} from "@/lib/pipeline/reports";
 
 type Step = "start" | "brief" | "sorting" | "explorer";
 type Tab = "explorer" | "dataset";
@@ -24,12 +31,15 @@ export default function Home() {
   const [tab, setTab] = useState<Tab>("explorer");
 
   const [rows, setRows] = useState<CleanRow[]>([]);
+  /** One row per duplicate group — this is what actually goes to the model. */
+  const [unique, setUnique] = useState<CleanRow[]>([]);
   const [hasTime, setHasTime] = useState(false);
   const [profile, setProfile] = useState<Profile | null>(null);
   const [reports, setReports] = useState<Report[]>([]);
 
   const [stage, setStage] = useState<SortStage>("Reading tweets");
   const [done, setDone] = useState(0);
+  const [total, setTotal] = useState(0);
   const [found, setFound] = useState(0);
 
   async function postTask(task: string, input: unknown, withProfile?: Profile) {
@@ -52,6 +62,7 @@ export default function Home() {
         { text: "tweet" },
       );
       setRows(cleaned.rows);
+      setUnique(cleaned.unique);
       setHasTime(false);
       setProfile(sample.profile as Profile);
       // Stash the precomputed results so Confirm goes straight to the map.
@@ -65,10 +76,12 @@ export default function Home() {
   async function readFile(result: IngestResult) {
     const cleaned = cleanRows(result.rows, result.mapping);
     setRows(cleaned.rows);
+    setUnique(cleaned.unique);
     setHasTime(result.hasTime);
     setStage("Reading tweets");
     setStep("sorting");
     setDone(0);
+    setTotal(cleaned.unique.length);
     setFound(0);
     try {
       const sampled = cleaned.unique.slice(0, 150).map((r) => r.clean_text);
@@ -91,47 +104,70 @@ export default function Home() {
 
     try {
       const cached = sessionStorage.getItem("lfm-sample");
-      let classified: Classified[];
+      let classified: ClassifiedRow[];
       let places: ResolvedPlace[];
-      let verifications: Verification[];
+      const verifications = new Map<string, Verification>();
 
       if (cached) {
+        // Precomputed sample: no AI calls at all.
         const sample = JSON.parse(cached);
-        classified = sample.classify.results;
-        places = sample.places.places;
-        verifications = sample.verify.verifications;
-        // Walk the counter so the stages are visible, per DESIGN.md loading rules.
+        classified = attachResults(rows, sample.classify.results as Classified[]);
+        places = sample.places.places as ResolvedPlace[];
+        for (const v of sample.verify.verifications as Verification[]) {
+          const row = rows[v.i];
+          if (row) verifications.set(row.report_id, v);
+        }
+        setTotal(rows.length);
         for (let i = 0; i <= rows.length; i += Math.max(1, Math.ceil(rows.length / 10))) {
-          setDone(Math.min(i, rows.length));
-          setFound(classified.slice(0, i).filter((c) => c.rel).length);
+          const seen = Math.min(i, rows.length);
+          setDone(seen);
+          setFound(classified.slice(0, seen).filter((c) => c.result.rel).length);
           await new Promise((r) => setTimeout(r, 60));
         }
       } else {
-        const batch = (await postTask(
-          "classify",
-          { tweets: rows.slice(0, 100).map((r, i) => ({ i, text: r.clean_text })) },
+        // Every unique tweet in the file, in batches of 100, 4 at a time.
+        setTotal(unique.length);
+        const { rows: classifiedUnique, failedBatches } = await classifyAll(
+          unique,
           confirmed,
-        )) as { results: Classified[] };
-        classified = batch.results;
-        setDone(rows.length);
-        setFound(classified.filter((c) => c.rel).length);
+          (p) => {
+            setDone(p.done);
+            setFound(p.found);
+          },
+        );
+        if (failedBatches.length) {
+          toast.warning(
+            `${failedBatches.length} batches could not be read. The rest are on the map.`,
+          );
+        }
+        // Duplicates and retweets inherit their group's classification.
+        classified = fanOutToDuplicates(rows, classifiedUnique);
 
         setStage("Finding places");
-        const resolved = (await postTask("places", { places: [] }, confirmed)) as {
+        const names = uniquePlaceNames(classified);
+        const resolved = (await postTask("places", { places: names }, confirmed)) as {
           places: ResolvedPlace[];
         };
         places = resolved.places;
 
-        const verified = (await postTask("verify", { tweets: [] }, confirmed)) as {
-          verifications: Verification[];
-        };
-        verifications = verified.verifications;
+        const claims = claimRows(classified);
+        if (claims.length) {
+          const verified = (await postTask(
+            "verify",
+            { tweets: claims.map((row, i) => ({ i, text: row.clean_text })) },
+            confirmed,
+          )) as { verifications: Verification[] };
+          for (const v of verified.verifications) {
+            const row = claims[v.i];
+            if (row) verifications.set(row.report_id, v);
+          }
+        }
       }
 
       setStage("Placing on map");
       await new Promise((r) => setTimeout(r, 400));
 
-      const built = buildReports(rows, classified, places, verifications);
+      const built = buildReports(classified, places, verifications);
       setReports(built);
       setStage("Done");
       setStep("explorer");
@@ -151,7 +187,7 @@ export default function Home() {
   }
 
   if (step === "sorting") {
-    return <SortingScreen stage={stage} done={done} total={rows.length} found={found} />;
+    return <SortingScreen stage={stage} done={done} total={total} found={found} />;
   }
 
   return (

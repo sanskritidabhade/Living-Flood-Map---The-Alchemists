@@ -14,6 +14,8 @@ export type BatchProgress = {
   stage: "Reading tweets" | "Finding places" | "Placing on map" | "Done";
   done: number;
   total: number;
+  /** Relevant reports found so far — the number the counter shows. */
+  found: number;
   failedBatches: number[];
 };
 
@@ -58,6 +60,7 @@ export async function classifyAll(
   const rows: ClassifiedRow[] = [];
   const failedBatches: number[] = [];
   let done = 0;
+  let found = 0;
 
   for (let start = 0; start < batches.length; start += PARALLEL) {
     const slice = batches.slice(start, start + PARALLEL);
@@ -68,8 +71,12 @@ export async function classifyAll(
       const batch = batches[batchIndex];
       if (outcome.status === "fulfilled") {
         for (const result of outcome.value) {
+          // result.i is the index within this batch, not the whole file.
           const row = batch[result.i];
-          if (row) rows.push({ ...row, result });
+          if (row) {
+            rows.push({ ...row, result });
+            if (result.rel) found += 1;
+          }
         }
       } else {
         failedBatches.push(batchIndex);
@@ -77,18 +84,29 @@ export async function classifyAll(
       done += batch.length;
     });
 
-    onProgress({ stage: "Reading tweets", done, total: unique.length, failedBatches: [...failedBatches] });
+    // Fires after every group of batches, so the counter moves on the upload path too.
+    onProgress({
+      stage: "Reading tweets",
+      done,
+      total: unique.length,
+      found,
+      failedBatches: [...failedBatches],
+    });
   }
 
   return { rows, failedBatches };
 }
 
-/** Duplicates and retweets inherit the classification of their group representative. */
+/**
+ * Duplicates and retweets inherit the classification of their group representative.
+ * Joins on group_key: the representative's raw text differs from its group members'
+ * (different URLs, punctuation, RT prefix), so matching on text drops rows.
+ */
 export function fanOutToDuplicates(all: CleanRow[], classified: ClassifiedRow[]): ClassifiedRow[] {
-  const byText = new Map(classified.map((row) => [row.clean_text, row.result]));
+  const byGroup = new Map(classified.map((row) => [row.group_key, row.result]));
   const out: ClassifiedRow[] = [];
   for (const row of all) {
-    const result = byText.get(row.clean_text);
+    const result = byGroup.get(row.group_key);
     if (result) out.push({ ...row, result });
   }
   return out;
