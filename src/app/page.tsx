@@ -114,12 +114,28 @@ export default function Home() {
       const resolved = (await postTask("places", { places: missing }, withProfile)) as {
         places: ResolvedPlace[];
       };
+      // The model often returns a tidied name ("Memorial Drive, Calgary") for
+      // what we asked about ("Memorial Drive"). Reports are joined on the name
+      // the classifier produced, so store each result under the requested name.
+      const norm = (v: string) => v.toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
+      const unclaimed = [...resolved.places];
       const merged = [...known];
       const seen = new Set(have);
-      for (const p of resolved.places) {
-        if (!seen.has(p.name)) {
-          merged.push(p);
-          seen.add(p.name);
+
+      for (const name of missing) {
+        const n = norm(name);
+        let at = unclaimed.findIndex((p) => norm(p.name) === n);
+        if (at === -1) {
+          at = unclaimed.findIndex((p) => {
+            const pn = norm(p.name);
+            return pn.startsWith(n) || n.startsWith(pn) || pn.includes(n) || n.includes(pn);
+          });
+        }
+        if (at === -1) continue;
+        const [hit] = unclaimed.splice(at, 1);
+        if (!seen.has(name)) {
+          merged.push({ ...hit, name });
+          seen.add(name);
         }
       }
       return merged;
