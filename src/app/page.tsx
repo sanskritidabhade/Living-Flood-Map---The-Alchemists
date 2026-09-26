@@ -1,12 +1,13 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { DatasetTable } from "@/components/dataset-table";
 import { EventBriefCard } from "@/components/event-brief-card";
 import { Explorer } from "@/components/explorer";
 import { SortingScreen, type SortStage } from "@/components/sorting-screen";
+import { OcapGate, OCAP_SESSION_FLAG } from "@/components/ocap-gate";
 import { StartScreen } from "@/components/start-screen";
 import type { Classified, Profile, ResolvedPlace, Verification } from "@/lib/ai/schema";
 import { classifyAll, fanOutToDuplicates, type ClassifiedRow } from "@/lib/pipeline/batch";
@@ -28,6 +29,7 @@ const MODEL = "gemini-3-flash-preview (mock)";
 
 /** Slice 1: the whole flow on mocks. No Leaflet, no live AI. */
 export default function Home() {
+  const [unlocked, setUnlocked] = useState(false);
   const [step, setStep] = useState<Step>("start");
   const [tab, setTab] = useState<Tab>("explorer");
 
@@ -43,6 +45,11 @@ export default function Home() {
   const [done, setDone] = useState(0);
   const [total, setTotal] = useState(0);
   const [found, setFound] = useState(0);
+
+  // Survives hot reloads within a session; a real refresh clears sessionStorage.
+  useEffect(() => {
+    if (sessionStorage.getItem(OCAP_SESSION_FLAG) === "true") setUnlocked(true);
+  }, []);
 
   async function postTask(task: string, input: unknown, withProfile?: Profile) {
     const res = await fetch("/api/ai", {
@@ -242,6 +249,10 @@ export default function Home() {
       toast.error("Sorting stopped partway. Nothing was lost — try again.");
       setStep("brief");
     }
+  }
+
+  if (!unlocked) {
+    return <OcapGate onUnlock={() => setUnlocked(true)} />;
   }
 
   if (step === "start") {
