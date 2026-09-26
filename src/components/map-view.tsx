@@ -70,6 +70,31 @@ const CATEGORY_PATHS: Record<string, string> = {
   "Other related": "M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20",
 };
 
+/** Roads, bridges and utilities — what stops a responder or an evacuee getting through. */
+export const HAZARD_CATEGORIES = ["Road or bridge closed", "Power water and services"];
+export const isHazard = (r: Report) => HAZARD_CATEGORIES.includes(r.result.cat);
+
+/** Hazards are a triangle in near-black, so they never read as an urgency pin. */
+function hazardIcon(report: Report): L.DivIcon {
+  const conf = report.result.conf;
+  const opacity = conf === "h" ? 1 : conf === "m" ? 0.75 : 0.4;
+  return L.divIcon({
+    className: "lfm-hazard",
+    iconSize: [26, 26],
+    iconAnchor: [13, 15],
+    html: `<span style="display:flex;align-items:center;justify-content:center;
+        width:26px;height:26px;opacity:${opacity};
+        filter:drop-shadow(0 1px 2px rgba(0,0,0,.35));">
+        <svg width="24" height="24" viewBox="0 0 24 24">
+          <path d="M12 3 L22.5 21 L1.5 21 Z" fill="#1A1A18" stroke="#FFFCF7" stroke-width="1.5"
+                stroke-linejoin="round"/>
+          <path d="M12 9.5v4.5M12 17.2h.01" stroke="#FFFCF7" stroke-width="2"
+                stroke-linecap="round"/>
+        </svg>
+      </span>`,
+  });
+}
+
 function pinIcon(report: Report, flagged: boolean): L.DivIcon {
   const urg = report.result.urg;
   const conf = report.result.conf;
@@ -117,11 +142,13 @@ function Pins({
   reports,
   flagged,
   bbox,
+  hazards,
   onSelect,
 }: {
   reports: Report[];
   flagged: Set<string>;
   bbox?: [number, number, number, number];
+  hazards: boolean;
   onSelect: (id: string) => void;
 }) {
   const map = useMap();
@@ -168,7 +195,7 @@ function Pins({
       .filter((r) => r.place)
       .map((r) => {
         const marker = L.marker([r.place!.lat, r.place!.lng], {
-          icon: pinIcon(r, flagged.has(r.report_id)),
+          icon: isHazard(r) ? hazardIcon(r) : pinIcon(r, flagged.has(r.report_id)),
           title: r.result.places[0]?.name ?? r.report_id,
         });
         marker.on("click", () => onSelect(r.report_id));
@@ -189,7 +216,7 @@ function Pins({
         : cluster.getBounds();
       map.fitBounds(bounds.pad(0.05), { maxZoom: 11 });
     }
-  }, [reports, flagged, map, onSelect, clusterReady, bbox]);
+  }, [reports, flagged, map, onSelect, clusterReady, bbox, hazards]);
 
   return null;
 }
@@ -199,22 +226,26 @@ export default function MapView({
   flagged,
   affectedOnly,
   bbox,
+  hazards,
   onSelect,
 }: {
   reports: Report[];
   flagged: Set<string>;
   affectedOnly: boolean;
   bbox?: [number, number, number, number];
+  hazards: boolean;
   onSelect: (id: string) => void;
 }) {
   const plotted = useMemo(
     () =>
       reports.filter((r) => {
         if (!r.place) return false;
+        // The hazard layer is a separate toggle, not an urgency pin.
+        if (isHazard(r)) return hazards;
         if (!affectedOnly) return true;
         return r.result.places[0]?.role === "affected";
       }),
-    [reports, affectedOnly],
+    [reports, affectedOnly, hazards],
   );
 
   // Leaflet needs a real viewport; an empty state is better than a blank grey box.
@@ -250,7 +281,7 @@ export default function MapView({
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         maxZoom={19}
       />
-      <Pins reports={plotted} flagged={flagged} bbox={bbox} onSelect={onSelect} />
+      <Pins reports={plotted} flagged={flagged} bbox={bbox} hazards={hazards} onSelect={onSelect} />
     </MapContainer>
   );
 }

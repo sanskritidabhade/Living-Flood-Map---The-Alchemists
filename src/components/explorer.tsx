@@ -49,6 +49,7 @@ export function Explorer({
   const [tab, setTab] = useState<Tab>("reports");
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [flagged, setFlagged] = useState<Set<string>>(new Set());
+  const [hazards, setHazards] = useState(true);
 
   const visible = useMemo(() => applyFilters(reports, filters), [reports, filters]);
   const notFlagged = useMemo(
@@ -113,6 +114,19 @@ export function Explorer({
           >
             {filters.affectedOnly ? "Affected areas only" : "All mentioned places"}
           </button>
+          <button
+            type="button"
+            aria-pressed={hazards}
+            onClick={() => setHazards(!hazards)}
+            className={`inline-flex items-center gap-2 rounded-sm border px-2 py-1 text-xs font-medium transition-colors ${
+              hazards
+                ? "border-secondary bg-secondary text-secondary-foreground"
+                : "border-border bg-surface hover:bg-muted"
+            }`}
+          >
+            <TriangleAlert className="h-3.5 w-3.5" aria-hidden />
+            Infrastructure hazards
+          </button>
           <span className="text-xs text-muted-foreground">
             {filters.affectedOnly
               ? "Places the reports say are being hit"
@@ -126,6 +140,7 @@ export function Explorer({
             flagged={flagged}
             affectedOnly={filters.affectedOnly}
             bbox={profile?.bbox}
+            hazards={hazards}
             onSelect={setSelectedId}
           />
         </div>
