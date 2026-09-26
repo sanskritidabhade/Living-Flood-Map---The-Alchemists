@@ -1,0 +1,22 @@
+{
+  "event_type": "flood",
+  "event_name": "2013 Southern Alberta floods",
+  "region": "Southern Alberta",
+  "country": "Canada",
+  "bbox": [-115.6, 50.5, -112.9, 51.6],
+  "key_hashtags": ["#yycflood", "#abflood", "#yyc", "#highriver", "#siksika", "#canmore"],
+  "key_places": [
+    "Calgary",
+    "High River",
+    "Canmore",
+    "Siksika Nation",
+    "Bowness",
+    "Inglewood",
+    "Mission",
+    "Medicine Hat",
+    "Okotoks",
+    "Bragg Creek"
+  ],
+  "what_counts_as_related": "The tweet reports, responds to, or gives official information about flooding in southern Alberta in June 2013 — including damage, closures, evacuations, rescues, shelters, donations and sympathy. Job ads, sports and celebrity chatter that merely use the hashtags are not related.",
+  "confidence": "h"
+}

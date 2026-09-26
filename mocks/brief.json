@@ -1,0 +1,26 @@
+{
+  "critical_count": 7,
+  "headline": "7 critical reports. Rescues under way in Bowness and Bragg Creek; High River and Siksika Nation are evacuating.",
+  "worst_areas": [
+    "High River — whole neighbourhoods under water",
+    "Bowness, Calgary — boat rescues in progress",
+    "Siksika Nation — around 1,000 members leaving",
+    "Bragg Creek — people reported on rooftops"
+  ],
+  "roads_and_bridges": [
+    "Highway 1 closed west of Bragg Creek",
+    "Highway 2 closed at High River until further notice",
+    "Highway 22X closed since last night",
+    "Deerfoot Trail closure reported, not yet confirmed"
+  ],
+  "evacuations": [
+    "Siksika Nation — reception centre at the Enmax Centre in Calgary",
+    "Canmore — town-wide evacuation order in effect",
+    "Tsuut'ina Nation — residents near the river leaving within the hour",
+    "Mission, Calgary — families still waiting for transport"
+  ],
+  "needs": ["boat rescue", "helicopter", "cots", "bottled water", "sandbags", "generators", "temporary housing", "volunteers"],
+  "first_nations_affected": ["Siksika Nation", "Stoney Nakoda Nation", "Tsuut'ina Nation"],
+  "summary": "Water is still rising along the Bow and Highwood rivers. The most urgent reports are people stranded in homes in Bowness and on rooftops near Bragg Creek. High River is the worst-hit town in this set. Three First Nations are reporting damage or evacuation: Siksika, Stoney Nakoda and Tsuut'ina, with Siksika the largest at roughly 1,000 members moving to the Enmax Centre. Road access into the southwest is cut in several places, so aid coming from Edmonton and Okotoks should expect detours. Two claims about official status — a Deerfoot Trail closure and the Okotoks shelter being full — have not been confirmed against a source.",
+  "cited_report_ids": ["R-00001", "R-00002", "R-00005", "R-00013", "R-00015", "R-00023", "R-00025", "R-00027", "R-00030"]
+}

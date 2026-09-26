@@ -1,0 +1,1100 @@
+{
+  "profile": {
+    "event_type": "flood",
+    "event_name": "2013 Southern Alberta floods",
+    "region": "Southern Alberta",
+    "country": "Canada",
+    "bbox": [
+      -115.6,
+      50.5,
+      -112.9,
+      51.6
+    ],
+    "key_hashtags": [
+      "#yycflood",
+      "#abflood",
+      "#yyc",
+      "#highriver",
+      "#siksika",
+      "#canmore"
+    ],
+    "key_places": [
+      "Calgary",
+      "High River",
+      "Canmore",
+      "Siksika Nation",
+      "Bowness",
+      "Inglewood",
+      "Mission",
+      "Medicine Hat",
+      "Okotoks",
+      "Bragg Creek"
+    ],
+    "what_counts_as_related": "The tweet reports, responds to, or gives official information about flooding in southern Alberta in June 2013 — including damage, closures, evacuations, rescues, shelters, donations and sympathy. Job ads, sports and celebrity chatter that merely use the hashtags are not related.",
+    "confidence": "h"
+  },
+  "classify": {
+    "results": [
+      {
+        "i": 0,
+        "rel": true,
+        "conf": "h",
+        "cat": "People needing help",
+        "urg": "critical",
+        "eye": true,
+        "claim": false,
+        "places": [
+          {
+            "text": "Bowness",
+            "name": "Bowness, Calgary",
+            "type": "neighbourhood",
+            "role": "affected"
+          }
+        ],
+        "time": {
+          "text": "right now",
+          "type": "now"
+        },
+        "who": "elderly couple on the second floor",
+        "needs": [
+          "boat rescue"
+        ],
+        "src": "resident"
+      },
+      {
+        "i": 1,
+        "rel": true,
+        "conf": "h",
+        "cat": "Evacuation or shelter",
+        "urg": "urgent",
+        "eye": false,
+        "claim": true,
+        "places": [
+          {
+            "text": "Siksika",
+            "name": "Siksika Nation",
+            "type": "community",
+            "role": "affected"
+          }
+        ],
+        "time": {
+          "text": "this morning",
+          "type": "past"
+        },
+        "who": "roughly 1,000 members",
+        "needs": [
+          "cots",
+          "bottled water"
+        ],
+        "src": "official",
+        "fn": "Siksika Nation"
+      },
+      {
+        "i": 2,
+        "rel": true,
+        "conf": "h",
+        "cat": "Road or bridge closed",
+        "urg": "urgent",
+        "eye": true,
+        "claim": true,
+        "places": [
+          {
+            "text": "Highway 22X",
+            "name": "Highway 22X, Calgary",
+            "type": "street",
+            "role": "affected"
+          }
+        ],
+        "time": {
+          "text": "since last night",
+          "type": "past"
+        },
+        "needs": [],
+        "src": "resident"
+      },
+      {
+        "i": 3,
+        "rel": false,
+        "conf": "h",
+        "why": "Job ad using the event hashtag",
+        "cat": "Other related",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [],
+        "needs": [],
+        "src": "organization"
+      },
+      {
+        "i": 4,
+        "rel": true,
+        "conf": "h",
+        "cat": "Flooding or damage",
+        "urg": "critical",
+        "eye": true,
+        "claim": false,
+        "places": [
+          {
+            "text": "High River",
+            "name": "High River, Alberta",
+            "type": "town",
+            "role": "affected"
+          }
+        ],
+        "time": {
+          "text": "an hour ago",
+          "type": "past"
+        },
+        "who": "whole neighbourhoods",
+        "needs": [],
+        "src": "media"
+      },
+      {
+        "i": 5,
+        "rel": true,
+        "conf": "m",
+        "why": "Mentions water but location unclear",
+        "cat": "Flooding or damage",
+        "urg": "information",
+        "eye": true,
+        "claim": false,
+        "places": [
+          {
+            "text": "downtown",
+            "name": "Downtown Calgary",
+            "type": "neighbourhood",
+            "role": "affected"
+          }
+        ],
+        "needs": [],
+        "src": "resident"
+      },
+      {
+        "i": 6,
+        "rel": true,
+        "conf": "h",
+        "cat": "Official warning or update",
+        "urg": "urgent",
+        "eye": false,
+        "claim": true,
+        "places": [
+          {
+            "text": "Glenmore Dam",
+            "name": "Glenmore Dam, Calgary",
+            "type": "landmark",
+            "role": "affected"
+          }
+        ],
+        "time": {
+          "text": "tonight",
+          "type": "forecast"
+        },
+        "needs": [],
+        "src": "official"
+      },
+      {
+        "i": 7,
+        "rel": true,
+        "conf": "h",
+        "cat": "Donations and volunteers",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [
+          {
+            "text": "Edmonton",
+            "name": "Edmonton, Alberta",
+            "type": "city",
+            "role": "help_from"
+          }
+        ],
+        "needs": [
+          "blankets",
+          "diapers"
+        ],
+        "src": "organization"
+      },
+      {
+        "i": 8,
+        "rel": false,
+        "conf": "h",
+        "why": "Canada Day plans, unrelated to the flooding",
+        "cat": "Other related",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [],
+        "needs": [],
+        "src": "unknown"
+      },
+      {
+        "i": 9,
+        "rel": true,
+        "conf": "h",
+        "cat": "Power water and services",
+        "urg": "urgent",
+        "eye": true,
+        "claim": true,
+        "places": [
+          {
+            "text": "Inglewood",
+            "name": "Inglewood, Calgary",
+            "type": "neighbourhood",
+            "role": "affected"
+          }
+        ],
+        "time": {
+          "text": "since 4am",
+          "type": "past"
+        },
+        "who": "about 300 homes",
+        "needs": [
+          "generators"
+        ],
+        "src": "resident"
+      },
+      {
+        "i": 10,
+        "rel": true,
+        "conf": "h",
+        "cat": "Evacuation or shelter",
+        "urg": "urgent",
+        "eye": false,
+        "claim": true,
+        "places": [
+          {
+            "text": "Canmore",
+            "name": "Canmore, Alberta",
+            "type": "town",
+            "role": "affected"
+          }
+        ],
+        "needs": [],
+        "src": "official"
+      },
+      {
+        "i": 11,
+        "rel": true,
+        "conf": "h",
+        "cat": "Support and sympathy",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [
+          {
+            "text": "Calgary",
+            "name": "Calgary, Alberta",
+            "type": "city",
+            "role": "mentioned"
+          }
+        ],
+        "needs": [],
+        "src": "unknown"
+      },
+      {
+        "i": 12,
+        "rel": true,
+        "conf": "h",
+        "cat": "People needing help",
+        "urg": "critical",
+        "eye": true,
+        "claim": false,
+        "places": [
+          {
+            "text": "Mission",
+            "name": "Mission, Calgary",
+            "type": "neighbourhood",
+            "role": "affected"
+          }
+        ],
+        "time": {
+          "text": "now",
+          "type": "now"
+        },
+        "who": "family with a newborn",
+        "needs": [
+          "evacuation help"
+        ],
+        "src": "resident"
+      },
+      {
+        "i": 13,
+        "rel": false,
+        "conf": "m",
+        "why": "Hockey chatter using #yyc",
+        "cat": "Other related",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [],
+        "needs": [],
+        "src": "unknown"
+      },
+      {
+        "i": 14,
+        "rel": true,
+        "conf": "h",
+        "cat": "Road or bridge closed",
+        "urg": "critical",
+        "eye": true,
+        "claim": true,
+        "places": [
+          {
+            "text": "Trans-Canada",
+            "name": "Highway 1, Bragg Creek",
+            "type": "street",
+            "role": "affected"
+          }
+        ],
+        "time": {
+          "text": "this afternoon",
+          "type": "past"
+        },
+        "needs": [],
+        "src": "media"
+      },
+      {
+        "i": 15,
+        "rel": true,
+        "conf": "h",
+        "cat": "Flooding or damage",
+        "urg": "urgent",
+        "eye": true,
+        "claim": false,
+        "places": [
+          {
+            "text": "Saddledome",
+            "name": "Scotiabank Saddledome, Calgary",
+            "type": "landmark",
+            "role": "affected"
+          }
+        ],
+        "who": "arena staff",
+        "needs": [],
+        "src": "media"
+      },
+      {
+        "i": 16,
+        "rel": true,
+        "conf": "m",
+        "why": "Reports a closure, no source named",
+        "cat": "Road or bridge closed",
+        "urg": "urgent",
+        "eye": false,
+        "claim": true,
+        "places": [
+          {
+            "text": "Deerfoot",
+            "name": "Deerfoot Trail, Calgary",
+            "type": "street",
+            "role": "affected"
+          }
+        ],
+        "needs": [],
+        "src": "unknown"
+      },
+      {
+        "i": 17,
+        "rel": true,
+        "conf": "h",
+        "cat": "Evacuation or shelter",
+        "urg": "urgent",
+        "eye": false,
+        "claim": true,
+        "places": [
+          {
+            "text": "Enmax Centre",
+            "name": "Enmax Centre, Calgary",
+            "type": "landmark",
+            "role": "help_from"
+          }
+        ],
+        "needs": [
+          "volunteers"
+        ],
+        "src": "organization",
+        "fn": "Siksika Nation"
+      },
+      {
+        "i": 18,
+        "rel": true,
+        "conf": "l",
+        "why": "Place name ambiguous outside region",
+        "cat": "Flooding or damage",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [
+          {
+            "text": "Mission",
+            "name": "Mission, British Columbia",
+            "type": "city",
+            "role": "mentioned"
+          }
+        ],
+        "needs": [],
+        "src": "unknown"
+      },
+      {
+        "i": 19,
+        "rel": true,
+        "conf": "h",
+        "cat": "Official warning or update",
+        "urg": "critical",
+        "eye": false,
+        "claim": true,
+        "places": [
+          {
+            "text": "Bow River",
+            "name": "Bow River, Calgary",
+            "type": "region",
+            "role": "affected"
+          }
+        ],
+        "time": {
+          "text": "overnight",
+          "type": "forecast"
+        },
+        "needs": [],
+        "src": "official"
+      },
+      {
+        "i": 20,
+        "rel": true,
+        "conf": "h",
+        "cat": "Donations and volunteers",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [
+          {
+            "text": "Okotoks",
+            "name": "Okotoks, Alberta",
+            "type": "town",
+            "role": "help_from"
+          }
+        ],
+        "needs": [
+          "sandbags",
+          "volunteers"
+        ],
+        "src": "organization"
+      },
+      {
+        "i": 21,
+        "rel": true,
+        "conf": "h",
+        "cat": "Power water and services",
+        "urg": "urgent",
+        "eye": false,
+        "claim": true,
+        "places": [
+          {
+            "text": "Medicine Hat",
+            "name": "Medicine Hat, Alberta",
+            "type": "city",
+            "role": "affected"
+          }
+        ],
+        "needs": [
+          "bottled water"
+        ],
+        "src": "official"
+      },
+      {
+        "i": 22,
+        "rel": true,
+        "conf": "m",
+        "why": "Secondhand account of a rescue",
+        "cat": "People needing help",
+        "urg": "critical",
+        "eye": false,
+        "claim": false,
+        "places": [
+          {
+            "text": "Bragg Creek",
+            "name": "Bragg Creek, Alberta",
+            "type": "town",
+            "role": "affected"
+          }
+        ],
+        "who": "two people on a rooftop",
+        "needs": [
+          "helicopter"
+        ],
+        "src": "resident"
+      },
+      {
+        "i": 23,
+        "rel": false,
+        "conf": "h",
+        "why": "Hiring post, event hashtag only",
+        "cat": "Other related",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [],
+        "needs": [],
+        "src": "organization"
+      },
+      {
+        "i": 24,
+        "rel": true,
+        "conf": "h",
+        "cat": "Flooding or damage",
+        "urg": "urgent",
+        "eye": true,
+        "claim": false,
+        "places": [
+          {
+            "text": "Stoney Nakoda",
+            "name": "Stoney Nakoda Nation, Morley",
+            "type": "community",
+            "role": "affected"
+          }
+        ],
+        "time": {
+          "text": "yesterday",
+          "type": "past"
+        },
+        "who": "several families",
+        "needs": [
+          "temporary housing"
+        ],
+        "src": "resident",
+        "fn": "Stoney Nakoda Nation"
+      },
+      {
+        "i": 25,
+        "rel": true,
+        "conf": "h",
+        "cat": "Support and sympathy",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [
+          {
+            "text": "High River",
+            "name": "High River, Alberta",
+            "type": "town",
+            "role": "mentioned"
+          }
+        ],
+        "needs": [],
+        "src": "unknown"
+      },
+      {
+        "i": 26,
+        "rel": true,
+        "conf": "h",
+        "cat": "Evacuation or shelter",
+        "urg": "critical",
+        "eye": true,
+        "claim": false,
+        "places": [
+          {
+            "text": "Tsuut'ina",
+            "name": "Tsuut'ina Nation",
+            "type": "community",
+            "role": "affected"
+          }
+        ],
+        "time": {
+          "text": "in the next hour",
+          "type": "forecast"
+        },
+        "who": "residents near the river",
+        "needs": [
+          "transport"
+        ],
+        "src": "resident",
+        "fn": "Tsuut'ina Nation"
+      },
+      {
+        "i": 27,
+        "rel": true,
+        "conf": "m",
+        "why": "Claims shelter is full, unconfirmed",
+        "cat": "Evacuation or shelter",
+        "urg": "urgent",
+        "eye": false,
+        "claim": true,
+        "places": [
+          {
+            "text": "Okotoks",
+            "name": "Okotoks Recreation Centre",
+            "type": "landmark",
+            "role": "affected"
+          }
+        ],
+        "needs": [],
+        "src": "unknown"
+      },
+      {
+        "i": 28,
+        "rel": false,
+        "conf": "m",
+        "why": "Celebrity retweet, no flood content",
+        "cat": "Other related",
+        "urg": "information",
+        "eye": false,
+        "claim": false,
+        "places": [],
+        "needs": [],
+        "src": "unknown"
+      },
+      {
+        "i": 29,
+        "rel": true,
+        "conf": "h",
+        "cat": "Road or bridge closed",
+        "urg": "urgent",
+        "eye": false,
+        "claim": true,
+        "places": [
+          {
+            "text": "Highway 2",
+            "name": "Highway 2, High River",
+            "type": "street",
+            "role": "affected"
+          }
+        ],
+        "time": {
+          "text": "until further notice",
+          "type": "now"
+        },
+        "needs": [],
+        "src": "official"
+      }
+    ]
+  },
+  "places": {
+    "places": [
+      {
+        "name": "Calgary, Alberta",
+        "lat": 51.0447,
+        "lng": -114.0719,
+        "precision": "city",
+        "inside_region": true,
+        "confidence": "h"
+      },
+      {
+        "name": "High River, Alberta",
+        "lat": 50.5806,
+        "lng": -113.8686,
+        "precision": "town",
+        "inside_region": true,
+        "confidence": "h"
+      },
+      {
+        "name": "Canmore, Alberta",
+        "lat": 51.0884,
+        "lng": -115.3479,
+        "precision": "town",
+        "inside_region": true,
+        "confidence": "h"
+      },
+      {
+        "name": "Siksika Nation",
+        "lat": 50.7722,
+        "lng": -112.8975,
+        "precision": "community",
+        "inside_region": true,
+        "confidence": "h"
+      },
+      {
+        "name": "Stoney Nakoda Nation, Morley",
+        "lat": 51.1664,
+        "lng": -114.8386,
+        "precision": "community",
+        "inside_region": true,
+        "confidence": "h"
+      },
+      {
+        "name": "Tsuut'ina Nation",
+        "lat": 50.9564,
+        "lng": -114.2261,
+        "precision": "community",
+        "inside_region": true,
+        "confidence": "h"
+      },
+      {
+        "name": "Bowness, Calgary",
+        "lat": 51.0889,
+        "lng": -114.1944,
+        "precision": "neighbourhood",
+        "inside_region": true,
+        "confidence": "h"
+      },
+      {
+        "name": "Inglewood, Calgary",
+        "lat": 51.0389,
+        "lng": -114.0325,
+        "precision": "neighbourhood",
+        "inside_region": true,
+        "confidence": "h"
+      },
+      {
+        "name": "Mission, Calgary",
+        "lat": 51.0325,
+        "lng": -114.0711,
+        "precision": "neighbourhood",
+        "inside_region": true,
+        "confidence": "m"
+      },
+      {
+        "name": "Downtown Calgary",
+        "lat": 51.0478,
+        "lng": -114.0708,
+        "precision": "neighbourhood",
+        "inside_region": true,
+        "confidence": "h"
+      },
+      {
+        "name": "Bragg Creek, Alberta",
+        "lat": 50.9483,
+        "lng": -114.5711,
+        "precision": "town",
+        "inside_region": true,
+        "confidence": "h"
+      },
+      {
+        "name": "Okotoks, Alberta",
+        "lat": 50.7256,
+        "lng": -113.9749,
+        "precision": "town",
+        "inside_region": true,
+        "confidence": "h"
+      },
+      {
+        "name": "Okotoks Recreation Centre",
+        "lat": 50.7297,
+        "lng": -113.9803,
+        "precision": "landmark",
+        "inside_region": true,
+        "confidence": "m"
+      },
+      {
+        "name": "Medicine Hat, Alberta",
+        "lat": 50.0421,
+        "lng": -110.6764,
+        "precision": "city",
+        "inside_region": false,
+        "confidence": "h"
+      },
+      {
+        "name": "Scotiabank Saddledome, Calgary",
+        "lat": 51.0374,
+        "lng": -114.0519,
+        "precision": "landmark",
+        "inside_region": true,
+        "confidence": "h"
+      },
+      {
+        "name": "Enmax Centre, Calgary",
+        "lat": 51.0361,
+        "lng": -114.0531,
+        "precision": "landmark",
+        "inside_region": true,
+        "confidence": "m"
+      },
+      {
+        "name": "Glenmore Dam, Calgary",
+        "lat": 51.0011,
+        "lng": -114.1069,
+        "precision": "landmark",
+        "inside_region": true,
+        "confidence": "h"
+      },
+      {
+        "name": "Bow River, Calgary",
+        "lat": 51.0525,
+        "lng": -114.0631,
+        "precision": "region",
+        "inside_region": true,
+        "confidence": "m"
+      },
+      {
+        "name": "Deerfoot Trail, Calgary",
+        "lat": 51.0528,
+        "lng": -114.0122,
+        "precision": "street",
+        "inside_region": true,
+        "confidence": "h"
+      },
+      {
+        "name": "Highway 22X, Calgary",
+        "lat": 50.9219,
+        "lng": -114.0083,
+        "precision": "street",
+        "inside_region": true,
+        "confidence": "m"
+      },
+      {
+        "name": "Highway 2, High River",
+        "lat": 50.6089,
+        "lng": -113.8697,
+        "precision": "street",
+        "inside_region": true,
+        "confidence": "m"
+      },
+      {
+        "name": "Highway 1, Bragg Creek",
+        "lat": 51.0761,
+        "lng": -114.5203,
+        "precision": "street",
+        "inside_region": true,
+        "confidence": "m"
+      },
+      {
+        "name": "Edmonton, Alberta",
+        "lat": 53.5461,
+        "lng": -113.4938,
+        "precision": "city",
+        "inside_region": false,
+        "confidence": "h"
+      },
+      {
+        "name": "Mission, British Columbia",
+        "lat": 49.1329,
+        "lng": -122.3247,
+        "precision": "city",
+        "inside_region": false,
+        "confidence": "l"
+      }
+    ]
+  },
+  "brief": {
+    "critical_count": 7,
+    "headline": "7 critical reports. Rescues under way in Bowness and Bragg Creek; High River and Siksika Nation are evacuating.",
+    "worst_areas": [
+      "High River — whole neighbourhoods under water",
+      "Bowness, Calgary — boat rescues in progress",
+      "Siksika Nation — around 1,000 members leaving",
+      "Bragg Creek — people reported on rooftops"
+    ],
+    "roads_and_bridges": [
+      "Highway 1 closed west of Bragg Creek",
+      "Highway 2 closed at High River until further notice",
+      "Highway 22X closed since last night",
+      "Deerfoot Trail closure reported, not yet confirmed"
+    ],
+    "evacuations": [
+      "Siksika Nation — reception centre at the Enmax Centre in Calgary",
+      "Canmore — town-wide evacuation order in effect",
+      "Tsuut'ina Nation — residents near the river leaving within the hour",
+      "Mission, Calgary — families still waiting for transport"
+    ],
+    "needs": [
+      "boat rescue",
+      "helicopter",
+      "cots",
+      "bottled water",
+      "sandbags",
+      "generators",
+      "temporary housing",
+      "volunteers"
+    ],
+    "first_nations_affected": [
+      "Siksika Nation",
+      "Stoney Nakoda Nation",
+      "Tsuut'ina Nation"
+    ],
+    "summary": "Water is still rising along the Bow and Highwood rivers. The most urgent reports are people stranded in homes in Bowness and on rooftops near Bragg Creek. High River is the worst-hit town in this set. Three First Nations are reporting damage or evacuation: Siksika, Stoney Nakoda and Tsuut'ina, with Siksika the largest at roughly 1,000 members moving to the Enmax Centre. Road access into the southwest is cut in several places, so aid coming from Edmonton and Okotoks should expect detours. Two claims about official status — a Deerfoot Trail closure and the Okotoks shelter being full — have not been confirmed against a source.",
+    "cited_report_ids": [
+      "R-00001",
+      "R-00002",
+      "R-00005",
+      "R-00013",
+      "R-00015",
+      "R-00023",
+      "R-00025",
+      "R-00027",
+      "R-00030"
+    ]
+  },
+  "verify": {
+    "verifications": [
+      {
+        "i": 6,
+        "claim_type": "dam_status",
+        "expected_source": "City of Calgary Emergency Management Agency",
+        "expected_source_url": "https://www.calgary.ca/emergency.html",
+        "verification_status": "contradicts",
+        "confidence": "h",
+        "note": "Tweet says the Glenmore Dam has been breached. The City reported the dam holding and releasing in a controlled way."
+      },
+      {
+        "i": 16,
+        "claim_type": "road_closure",
+        "expected_source": "Alberta 511",
+        "expected_source_url": "https://511.alberta.ca/",
+        "verification_status": "contradicts",
+        "confidence": "m",
+        "note": "Tweet reports Deerfoot Trail fully closed in both directions. Alberta 511 listed southbound lanes open at the time."
+      },
+      {
+        "i": 27,
+        "claim_type": "shelter_capacity",
+        "expected_source": "Town of Okotoks",
+        "expected_source_url": "https://www.okotoks.ca/",
+        "verification_status": "contradicts",
+        "confidence": "m",
+        "note": "Tweet says the Okotoks Recreation Centre is full and turning people away. The Town was still listing it as accepting evacuees."
+      },
+      {
+        "i": 1,
+        "claim_type": "evacuation_order",
+        "expected_source": "Siksika Nation Emergency Management",
+        "expected_source_url": "https://siksikanation.com/",
+        "verification_status": "verified",
+        "confidence": "h",
+        "note": "Mandatory evacuation of low-lying areas confirmed by the Nation."
+      },
+      {
+        "i": 10,
+        "claim_type": "evacuation_order",
+        "expected_source": "Town of Canmore",
+        "expected_source_url": "https://canmore.ca/",
+        "verification_status": "verified",
+        "confidence": "h"
+      },
+      {
+        "i": 19,
+        "claim_type": "river_level",
+        "expected_source": "Alberta Environment River Basin Forecasting",
+        "expected_source_url": "https://rivers.alberta.ca/",
+        "verification_status": "unverified",
+        "confidence": "m",
+        "note": "Predicts an overnight peak. Plausible, but no gauge reading published at the time of the tweet."
+      },
+      {
+        "i": 2,
+        "claim_type": "road_closure",
+        "expected_source": "Alberta 511",
+        "expected_source_url": "https://511.alberta.ca/",
+        "verification_status": "verified",
+        "confidence": "h"
+      },
+      {
+        "i": 21,
+        "claim_type": "other_official",
+        "expected_source": "City of Medicine Hat",
+        "expected_source_url": "https://www.medicinehat.ca/",
+        "verification_status": "verified",
+        "confidence": "h",
+        "note": "Boil water advisory confirmed."
+      },
+      {
+        "i": 9,
+        "claim_type": "other_official",
+        "expected_source": "ENMAX Power",
+        "expected_source_url": "https://www.enmax.com/outages",
+        "verification_status": "unverified",
+        "confidence": "l",
+        "note": "Outage count of about 300 homes could not be matched to a published figure."
+      },
+      {
+        "i": 14,
+        "claim_type": "road_closure",
+        "expected_source": "Alberta 511",
+        "expected_source_url": "https://511.alberta.ca/",
+        "verification_status": "cannot_check",
+        "confidence": "l",
+        "note": "No archived closure record for this stretch at this hour."
+      },
+      {
+        "i": 29,
+        "claim_type": "road_closure",
+        "expected_source": "Alberta 511",
+        "expected_source_url": "https://511.alberta.ca/",
+        "verification_status": "verified",
+        "confidence": "h"
+      },
+      {
+        "i": 17,
+        "claim_type": "shelter_capacity",
+        "expected_source": "City of Calgary Emergency Management Agency",
+        "expected_source_url": "https://www.calgary.ca/emergency.html",
+        "verification_status": "verified",
+        "confidence": "m",
+        "note": "Enmax Centre confirmed as a reception centre for Siksika Nation evacuees."
+      }
+    ]
+  },
+  "routes": {
+    "routes": [
+      {
+        "from": "Siksika Nation",
+        "to": "Calgary",
+        "to_kind": "city outside the affected area",
+        "distance_km": 88,
+        "drive_time": "about 1 hour",
+        "via": "Highway 1 west",
+        "shelter": "Enmax Centre reception centre, Calgary",
+        "note": "Main reception centre for Siksika evacuees. Check in at the north entrance."
+      },
+      {
+        "from": "High River",
+        "to": "Okotoks",
+        "to_kind": "town outside the affected area",
+        "distance_km": 18,
+        "drive_time": "about 20 minutes",
+        "via": "Highway 2 north",
+        "shelter": "Okotoks Recreation Centre",
+        "note": "Highway 2 southbound is closed at High River. Leave to the north."
+      },
+      {
+        "from": "Canmore",
+        "to": "Cochrane",
+        "to_kind": "town outside the affected area",
+        "distance_km": 75,
+        "drive_time": "about 50 minutes",
+        "via": "Highway 1A east",
+        "shelter": "Cochrane Arena",
+        "note": "Highway 1 is closed in sections near Bragg Creek. Take 1A."
+      },
+      {
+        "from": "Bowness",
+        "to": "Edmonton",
+        "to_kind": "city well outside the affected area",
+        "distance_km": 300,
+        "drive_time": "about 3 hours",
+        "via": "Highway 2 north",
+        "shelter": "Northlands Expo Centre, Edmonton",
+        "note": "Use only if Calgary reception centres are full — Calgary itself is inside the affected area."
+      },
+      {
+        "from": "Bragg Creek",
+        "to": "Cochrane",
+        "to_kind": "town outside the affected area",
+        "distance_km": 40,
+        "drive_time": "about 35 minutes",
+        "via": "Highway 22 north",
+        "shelter": "Cochrane Arena",
+        "note": "Highway 1 east toward Calgary is cut. Go north on 22."
+      },
+      {
+        "from": "Tsuut'ina Nation",
+        "to": "Okotoks",
+        "to_kind": "town outside the affected area",
+        "distance_km": 35,
+        "drive_time": "about 30 minutes",
+        "via": "Highway 22X east then Highway 2 south",
+        "shelter": "Okotoks Recreation Centre",
+        "note": "Highway 22X had a reported closure. Confirm before leaving."
+      },
+      {
+        "from": "Stoney Nakoda Nation, Morley",
+        "to": "Cochrane",
+        "to_kind": "town outside the affected area",
+        "distance_km": 45,
+        "drive_time": "about 35 minutes",
+        "via": "Highway 1A east",
+        "shelter": "Cochrane Arena"
+      }
+    ]
+  },
+  "generated_at": "2026-09-26T12:00:00Z",
+  "note": "Precomputed so the demo and the first judge click cost zero credits."
+}

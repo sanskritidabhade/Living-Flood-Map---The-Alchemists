@@ -1,0 +1,28 @@
+{
+  "places": [
+    { "name": "Calgary, Alberta", "lat": 51.0447, "lng": -114.0719, "precision": "city", "inside_region": true, "confidence": "h" },
+    { "name": "High River, Alberta", "lat": 50.5806, "lng": -113.8686, "precision": "town", "inside_region": true, "confidence": "h" },
+    { "name": "Canmore, Alberta", "lat": 51.0884, "lng": -115.3479, "precision": "town", "inside_region": true, "confidence": "h" },
+    { "name": "Siksika Nation", "lat": 50.7722, "lng": -112.8975, "precision": "community", "inside_region": true, "confidence": "h" },
+    { "name": "Stoney Nakoda Nation, Morley", "lat": 51.1664, "lng": -114.8386, "precision": "community", "inside_region": true, "confidence": "h" },
+    { "name": "Tsuut'ina Nation", "lat": 50.9564, "lng": -114.2261, "precision": "community", "inside_region": true, "confidence": "h" },
+    { "name": "Bowness, Calgary", "lat": 51.0889, "lng": -114.1944, "precision": "neighbourhood", "inside_region": true, "confidence": "h" },
+    { "name": "Inglewood, Calgary", "lat": 51.0389, "lng": -114.0325, "precision": "neighbourhood", "inside_region": true, "confidence": "h" },
+    { "name": "Mission, Calgary", "lat": 51.0325, "lng": -114.0711, "precision": "neighbourhood", "inside_region": true, "confidence": "m" },
+    { "name": "Downtown Calgary", "lat": 51.0478, "lng": -114.0708, "precision": "neighbourhood", "inside_region": true, "confidence": "h" },
+    { "name": "Bragg Creek, Alberta", "lat": 50.9483, "lng": -114.5711, "precision": "town", "inside_region": true, "confidence": "h" },
+    { "name": "Okotoks, Alberta", "lat": 50.7256, "lng": -113.9749, "precision": "town", "inside_region": true, "confidence": "h" },
+    { "name": "Okotoks Recreation Centre", "lat": 50.7297, "lng": -113.9803, "precision": "landmark", "inside_region": true, "confidence": "m" },
+    { "name": "Medicine Hat, Alberta", "lat": 50.0421, "lng": -110.6764, "precision": "city", "inside_region": false, "confidence": "h" },
+    { "name": "Scotiabank Saddledome, Calgary", "lat": 51.0374, "lng": -114.0519, "precision": "landmark", "inside_region": true, "confidence": "h" },
+    { "name": "Enmax Centre, Calgary", "lat": 51.0361, "lng": -114.0531, "precision": "landmark", "inside_region": true, "confidence": "m" },
+    { "name": "Glenmore Dam, Calgary", "lat": 51.0011, "lng": -114.1069, "precision": "landmark", "inside_region": true, "confidence": "h" },
+    { "name": "Bow River, Calgary", "lat": 51.0525, "lng": -114.0631, "precision": "region", "inside_region": true, "confidence": "m" },
+    { "name": "Deerfoot Trail, Calgary", "lat": 51.0528, "lng": -114.0122, "precision": "street", "inside_region": true, "confidence": "h" },
+    { "name": "Highway 22X, Calgary", "lat": 50.9219, "lng": -114.0083, "precision": "street", "inside_region": true, "confidence": "m" },
+    { "name": "Highway 2, High River", "lat": 50.6089, "lng": -113.8697, "precision": "street", "inside_region": true, "confidence": "m" },
+    { "name": "Highway 1, Bragg Creek", "lat": 51.0761, "lng": -114.5203, "precision": "street", "inside_region": true, "confidence": "m" },
+    { "name": "Edmonton, Alberta", "lat": 53.5461, "lng": -113.4938, "precision": "city", "inside_region": false, "confidence": "h" },
+    { "name": "Mission, British Columbia", "lat": 49.1329, "lng": -122.3247, "precision": "city", "inside_region": false, "confidence": "l" }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "note": "Hand-checked expectations for the first 200 rows of the provided dataset. Used to sanity-check the pipeline, not as training data.",
+  "dataset": "data/samples/alberta-2013.csv",
+  "event": {
+    "event_type": "flood",
+    "event_name": "2013 Southern Alberta floods",
+    "region": "Southern Alberta",
+    "country": "Canada"
+  },
+  "full_file_profile": {
+    "rows": 8024,
+    "columns": ["tweet"],
+    "exact_duplicates": 462,
+    "retweets": 2225,
+    "unique_to_classify": 7470,
+    "flood_keyword_hits": 4461,
+    "first_nations_mentions": 104,
+    "has_timestamps": false
+  },
+  "top_hashtags": ["#yycflood", "#abflood", "#yyc", "#highriver", "#siksika", "#canmore"],
+  "top_places": {
+    "Calgary": 1672,
+    "Edmonton": 201,
+    "downtown": 159,
+    "Stampede": 126,
+    "High River": 99,
+    "Siksika": 77
+  },
+  "expectations": [
+    { "check": "Edmonton mentions resolve mostly to place_role = help_from, not affected", "why": "Edmonton sent aid; it was not flooded" },
+    { "check": "Tweets containing #job or #hiring classify as relevant = false", "why": "Spam reusing the event hashtag is the main noise source" },
+    { "check": "Canada Day and sports chatter classify as relevant = false", "why": "Same time window, unrelated content" },
+    { "check": "'Mission' resolves to Mission, Calgary and not Mission, British Columbia", "why": "Ambiguous name; the bounding box should decide it" },
+    { "check": "Retweets carry the classification of the tweet they quote", "why": "2,225 rows, classified once via the duplicate group" },
+    { "check": "Rescue and stranded reports classify as urgency = critical", "why": "Drives the red pins and the brief headline" },
+    { "check": "Eyewitness reports are never flagged as claims needing verification", "why": "Residents are not expected to be authoritative" },
+    { "check": "A tweet with no resolvable place stays in the feed and table but is not plotted", "why": "No invented coordinates" }
+  ]
+}

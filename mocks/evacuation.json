@@ -1,0 +1,73 @@
+{
+  "routes": [
+    {
+      "from": "Siksika Nation",
+      "to": "Calgary",
+      "to_kind": "city outside the affected area",
+      "distance_km": 88,
+      "drive_time": "about 1 hour",
+      "via": "Highway 1 west",
+      "shelter": "Enmax Centre reception centre, Calgary",
+      "note": "Main reception centre for Siksika evacuees. Check in at the north entrance."
+    },
+    {
+      "from": "High River",
+      "to": "Okotoks",
+      "to_kind": "town outside the affected area",
+      "distance_km": 18,
+      "drive_time": "about 20 minutes",
+      "via": "Highway 2 north",
+      "shelter": "Okotoks Recreation Centre",
+      "note": "Highway 2 southbound is closed at High River. Leave to the north."
+    },
+    {
+      "from": "Canmore",
+      "to": "Cochrane",
+      "to_kind": "town outside the affected area",
+      "distance_km": 75,
+      "drive_time": "about 50 minutes",
+      "via": "Highway 1A east",
+      "shelter": "Cochrane Arena",
+      "note": "Highway 1 is closed in sections near Bragg Creek. Take 1A."
+    },
+    {
+      "from": "Bowness",
+      "to": "Edmonton",
+      "to_kind": "city well outside the affected area",
+      "distance_km": 300,
+      "drive_time": "about 3 hours",
+      "via": "Highway 2 north",
+      "shelter": "Northlands Expo Centre, Edmonton",
+      "note": "Use only if Calgary reception centres are full — Calgary itself is inside the affected area."
+    },
+    {
+      "from": "Bragg Creek",
+      "to": "Cochrane",
+      "to_kind": "town outside the affected area",
+      "distance_km": 40,
+      "drive_time": "about 35 minutes",
+      "via": "Highway 22 north",
+      "shelter": "Cochrane Arena",
+      "note": "Highway 1 east toward Calgary is cut. Go north on 22."
+    },
+    {
+      "from": "Tsuut'ina Nation",
+      "to": "Okotoks",
+      "to_kind": "town outside the affected area",
+      "distance_km": 35,
+      "drive_time": "about 30 minutes",
+      "via": "Highway 22X east then Highway 2 south",
+      "shelter": "Okotoks Recreation Centre",
+      "note": "Highway 22X had a reported closure. Confirm before leaving."
+    },
+    {
+      "from": "Stoney Nakoda Nation, Morley",
+      "to": "Cochrane",
+      "to_kind": "town outside the affected area",
+      "distance_km": 45,
+      "drive_time": "about 35 minutes",
+      "via": "Highway 1A east",
+      "shelter": "Cochrane Arena"
+    }
+  ]
+}

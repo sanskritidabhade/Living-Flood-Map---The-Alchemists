@@ -1,0 +1,109 @@
+{
+  "verifications": [
+    {
+      "i": 6,
+      "claim_type": "dam_status",
+      "expected_source": "City of Calgary Emergency Management Agency",
+      "expected_source_url": "https://www.calgary.ca/emergency.html",
+      "verification_status": "contradicts",
+      "confidence": "h",
+      "note": "Tweet says the Glenmore Dam has been breached. The City reported the dam holding and releasing in a controlled way."
+    },
+    {
+      "i": 16,
+      "claim_type": "road_closure",
+      "expected_source": "Alberta 511",
+      "expected_source_url": "https://511.alberta.ca/",
+      "verification_status": "contradicts",
+      "confidence": "m",
+      "note": "Tweet reports Deerfoot Trail fully closed in both directions. Alberta 511 listed southbound lanes open at the time."
+    },
+    {
+      "i": 27,
+      "claim_type": "shelter_capacity",
+      "expected_source": "Town of Okotoks",
+      "expected_source_url": "https://www.okotoks.ca/",
+      "verification_status": "contradicts",
+      "confidence": "m",
+      "note": "Tweet says the Okotoks Recreation Centre is full and turning people away. The Town was still listing it as accepting evacuees."
+    },
+    {
+      "i": 1,
+      "claim_type": "evacuation_order",
+      "expected_source": "Siksika Nation Emergency Management",
+      "expected_source_url": "https://siksikanation.com/",
+      "verification_status": "verified",
+      "confidence": "h",
+      "note": "Mandatory evacuation of low-lying areas confirmed by the Nation."
+    },
+    {
+      "i": 10,
+      "claim_type": "evacuation_order",
+      "expected_source": "Town of Canmore",
+      "expected_source_url": "https://canmore.ca/",
+      "verification_status": "verified",
+      "confidence": "h"
+    },
+    {
+      "i": 19,
+      "claim_type": "river_level",
+      "expected_source": "Alberta Environment River Basin Forecasting",
+      "expected_source_url": "https://rivers.alberta.ca/",
+      "verification_status": "unverified",
+      "confidence": "m",
+      "note": "Predicts an overnight peak. Plausible, but no gauge reading published at the time of the tweet."
+    },
+    {
+      "i": 2,
+      "claim_type": "road_closure",
+      "expected_source": "Alberta 511",
+      "expected_source_url": "https://511.alberta.ca/",
+      "verification_status": "verified",
+      "confidence": "h"
+    },
+    {
+      "i": 21,
+      "claim_type": "other_official",
+      "expected_source": "City of Medicine Hat",
+      "expected_source_url": "https://www.medicinehat.ca/",
+      "verification_status": "verified",
+      "confidence": "h",
+      "note": "Boil water advisory confirmed."
+    },
+    {
+      "i": 9,
+      "claim_type": "other_official",
+      "expected_source": "ENMAX Power",
+      "expected_source_url": "https://www.enmax.com/outages",
+      "verification_status": "unverified",
+      "confidence": "l",
+      "note": "Outage count of about 300 homes could not be matched to a published figure."
+    },
+    {
+      "i": 14,
+      "claim_type": "road_closure",
+      "expected_source": "Alberta 511",
+      "expected_source_url": "https://511.alberta.ca/",
+      "verification_status": "cannot_check",
+      "confidence": "l",
+      "note": "No archived closure record for this stretch at this hour."
+    },
+    {
+      "i": 29,
+      "claim_type": "road_closure",
+      "expected_source": "Alberta 511",
+      "expected_source_url": "https://511.alberta.ca/",
+      "verification_status": "verified",
+      "confidence": "h"
+    },
+    {
+      "i": 17,
+      "claim_type": "shelter_capacity",
+      "expected_source": "City of Calgary Emergency Management Agency",
+      "expected_source_url": "https://www.calgary.ca/emergency.html",
+      "verification_status": "verified",
+      "confidence": "m",
+      "note": "Enmax Centre confirmed as a reception centre for Siksika Nation evacuees."
+    }
+  ]
+}
