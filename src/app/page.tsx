@@ -7,7 +7,7 @@ import { DatasetTable } from "@/components/dataset-table";
 import { EventBriefCard } from "@/components/event-brief-card";
 import { Explorer } from "@/components/explorer";
 import { SortingScreen, type SortStage } from "@/components/sorting-screen";
-import { OcapGate, OCAP_SESSION_FLAG } from "@/components/ocap-gate";
+import { OcapGate } from "@/components/ocap-gate";
 import { StartScreen } from "@/components/start-screen";
 import type { Classified, Profile, ResolvedPlace, Verification } from "@/lib/ai/schema";
 import { classifyAll, fanOutToDuplicates, type ClassifiedRow } from "@/lib/pipeline/batch";
@@ -29,10 +29,11 @@ const MODEL = "gemini-3-flash-preview (mock)";
 
 /** Slice 1: the whole flow on mocks. No Leaflet, no live AI. */
 export default function Home() {
-  // Read once during init rather than in an effect, so there is no flash of the gate.
-  const [unlocked, setUnlocked] = useState(
-    () => typeof window !== "undefined" && sessionStorage.getItem(OCAP_SESSION_FLAG) === "true",
-  );
+  // Always starts locked. Reading sessionStorage here would make the server and
+  // client render different trees, and the resulting hydration mismatch makes
+  // React rebuild the whole page. Re-entry after a refresh is the intended
+  // behaviour anyway.
+  const [unlocked, setUnlocked] = useState(false);
   const [step, setStep] = useState<Step>("start");
   const [tab, setTab] = useState<Tab>("explorer");
 
