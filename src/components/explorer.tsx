@@ -20,7 +20,7 @@ import { ReportCard } from "./report-card";
 import { SituationBrief } from "./situation-brief";
 import { ConfidenceBadge, UrgencyBadge, VerificationBadge } from "./urgency-badge";
 
-/** Leaflet touches window on import, so it can never be server-rendered. */
+/** Mapbox GL and Leaflet both touch window on import, so the map is never server-rendered. */
 const MapView = dynamic(() => import("./map-view"), {
   ssr: false,
   loading: () => (
