@@ -42,10 +42,11 @@ body {
   font-variant-numeric: tabular-nums;
 }
 
+/* In the components layer so Tailwind utilities (fixed, inset-*) always win. */
+@layer components {
 /* ---------- Neon floating card ---------- */
 
 .neon-card {
-  position: relative;
   background: linear-gradient(180deg, rgba(13, 20, 33, 0.82), rgba(7, 11, 19, 0.86));
   backdrop-filter: blur(18px) saturate(140%);
   -webkit-backdrop-filter: blur(18px) saturate(140%);
@@ -119,6 +120,7 @@ body {
 :focus-visible {
   outline: 2px solid #22d3ee;
   outline-offset: 2px;
+}
 }
 
 /* ---------- Map pins ---------- */

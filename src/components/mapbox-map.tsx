@@ -56,10 +56,9 @@ export default function MapboxMap({
     const map = new mapboxgl.Map({
       container: container.current,
       style: "mapbox://styles/mapbox/standard",
-      // Monochrome night keeps the basemap quiet so urgency colour and the neon UI
-      // are the loudest things on screen.
+      // Faded keeps the basemap coloured but quiet, so urgency pins still stand out.
       config: {
-        basemap: { theme: "monochrome", lightPreset: "night", showPointOfInterestLabels: false },
+        basemap: { theme: "faded", lightPreset: "day", showPointOfInterestLabels: false },
       },
       center: [-98, 56],
       zoom: 3,
