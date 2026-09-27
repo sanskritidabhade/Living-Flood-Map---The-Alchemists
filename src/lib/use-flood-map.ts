@@ -356,6 +356,12 @@ export function useFloodMap() {
     loadSample,
     readFile,
     sortTweets,
-    reset: () => setStep("start"),
+    reset: () => {
+      setStep("start");
+      setReports([]);
+      setProfile(null);
+      setFallback(false);
+      setStage("Reading tweets");
+    },
   };
 }

@@ -1,73 +1,83 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { useState } from "react";
-import { parseCsv } from "@/lib/pipeline/ingest";
+import { useMemo, useRef, useState } from "react";
+import { ChatWidget } from "@/components/chat-widget";
+import { ControlPane } from "@/components/control-pane";
+import { applyFilters, EMPTY_FILTERS, type Filters } from "@/lib/pipeline/reports";
 import { useFloodMap } from "@/lib/use-flood-map";
+import { useMapPadding } from "@/lib/use-map-padding";
 
 /** Mapbox GL and Leaflet both touch window on import, so the map is never server-rendered. */
-const MapView = dynamic(() => import("@/components/map-view"), { ssr: false });
+const MapView = dynamic(() => import("@/components/map-view"), {
+  ssr: false,
+  loading: () => <div className="h-full w-full bg-[#05070d]" />,
+});
 
-/** Bare shell: every piece of state and every action is wired, nothing is styled. */
 export default function Home() {
   const app = useFloodMap();
-  const [selected, setSelected] = useState<string | null>(null);
+  const [filters, setFilters] = useState<Filters>(EMPTY_FILTERS);
+  const [hazards, setHazards] = useState(true);
+  const [selectedId, setSelectedId] = useState<string | null>(null);
+  const [chatOpen, setChatOpen] = useState(false);
 
-  if (app.step === "start") {
-    return (
-      <main>
-        <h1>Living Flood Map</h1>
-        <button onClick={app.loadSample}>Load sample</button>
-        <input
-          type="file"
-          accept=".csv"
-          onChange={async (e) => {
-            const file = e.target.files?.[0];
-            if (file) app.readFile(parseCsv(await file.text()));
-          }}
-        />
-      </main>
-    );
-  }
+  const pane = useRef<HTMLElement>(null);
+  const chat = useRef<HTMLDivElement>(null);
+  const padding = useMapPadding([pane, chat], [app.step, chatOpen]);
 
-  if (app.step === "brief" && app.profile) {
-    return (
-      <main>
-        <pre>{JSON.stringify(app.profile, null, 2)}</pre>
-        <button onClick={() => app.sortTweets(app.profile!)}>Confirm and sort</button>
-      </main>
-    );
-  }
+  const visible = useMemo(() => applyFilters(app.reports, filters), [app.reports, filters]);
 
-  const { stage, done, total, found } = app.progress;
-  const relevant = app.reports.filter((r) => r.result.rel);
+  const reset = () => {
+    app.reset();
+    setFilters(EMPTY_FILTERS);
+    setSelectedId(null);
+    setChatOpen(false);
+  };
 
   return (
-    <main className="flex h-screen flex-col">
-      <p>
-        {stage} · {done}/{total} read · {found} relevant
-        {app.fallback && " · AI unavailable, keyword fallback used"}
-      </p>
+    <main className="fixed inset-0">
+      <div className="absolute inset-0">
+        <MapView
+          reports={visible}
+          flagged={new Set()}
+          affectedOnly={filters.affectedOnly}
+          hazards={hazards}
+          bbox={app.profile?.bbox}
+          padding={padding}
+          selectedId={selectedId}
+          onSelect={setSelectedId}
+        />
+      </div>
+
+      {/* Soft vignette so the floating glass reads against busy map areas. */}
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_55%,rgba(2,4,10,.55))]" />
+
+      <ControlPane
+        ref={pane}
+        app={{ ...app, reset }}
+        visible={visible}
+        filters={filters}
+        setFilters={setFilters}
+        hazards={hazards}
+        setHazards={setHazards}
+        selectedId={selectedId}
+        onSelect={setSelectedId}
+      />
+
       {app.step === "explorer" && (
-        <div className="flex min-h-0 flex-1">
-          <div className="flex-1">
-            <MapView
-              reports={relevant}
-              flagged={new Set()}
-              affectedOnly
-              hazards
-              stillSorting={stage !== "Done"}
-              onSelect={setSelected}
-            />
-          </div>
-          <ul className="w-96 overflow-auto">
-            {relevant.map((r) => (
-              <li key={r.report_id} style={{ fontWeight: r.report_id === selected ? 700 : 400 }}>
-                [{r.result.urg}] {r.clean_text}
-              </li>
-            ))}
-          </ul>
-        </div>
+        <ChatWidget
+          ref={chat}
+          open={chatOpen}
+          setOpen={setChatOpen}
+          reports={visible}
+          profile={app.profile}
+          launcherBottom={padding.bottom ? padding.bottom - 8 : 16}
+          onCite={(id) => {
+            setSelectedId(id);
+            // On a phone the chat covers the map; get out of the way.
+            if (window.innerWidth < 768) setChatOpen(false);
+          }}
+        />
       )}
     </main>
   );

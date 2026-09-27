@@ -115,4 +115,8 @@ export type MapProps = {
   flagged: Set<string>;
   bbox?: [number, number, number, number];
   onSelect: (id: string) => void;
+  /** Pixels of map hidden behind floating panels. Mapbox only. */
+  padding?: { top: number; right: number; bottom: number; left: number };
+  /** Selecting from the list flies the map here. Mapbox only. */
+  selectedId?: string | null;
 };

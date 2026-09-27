@@ -26,6 +26,8 @@ export default function MapboxMap({
   flagged,
   bbox,
   onSelect,
+  padding,
+  selectedId,
   token,
   onAuthError,
 }: MapProps & { token: string; onAuthError: () => void }) {
@@ -38,7 +40,9 @@ export default function MapboxMap({
   const flaggedRef = useRef(flagged);
   const onSelectRef = useRef(onSelect);
   const onAuthErrorRef = useRef(onAuthError);
+  const selectedRef = useRef(selectedId);
   useEffect(() => {
+    selectedRef.current = selectedId;
     flaggedRef.current = flagged;
     onSelectRef.current = onSelect;
     onAuthErrorRef.current = onAuthError;
@@ -52,16 +56,21 @@ export default function MapboxMap({
     const map = new mapboxgl.Map({
       container: container.current,
       style: "mapbox://styles/mapbox/standard",
-      // Faded keeps the basemap quiet so urgency colour is the loudest thing on screen.
+      // Monochrome night keeps the basemap quiet so urgency colour and the neon UI
+      // are the loudest things on screen.
       config: {
-        basemap: { theme: "faded", lightPreset: "day", showPointOfInterestLabels: false },
+        basemap: { theme: "monochrome", lightPreset: "night", showPointOfInterestLabels: false },
       },
-      center: [-114.0719, 51.0447],
-      zoom: 8,
+      center: [-98, 56],
+      zoom: 3,
+      // The floating panels own the bottom-left and bottom-right corners, so the
+      // logo and attribution (both required by Mapbox) move to the top right.
+      logoPosition: "top-right",
+      attributionControl: false,
     });
     mapRef.current = map;
-    map.addControl(new mapboxgl.NavigationControl({ visualizePitch: true }), "top-right");
-    map.addControl(new mapboxgl.ScaleControl({ unit: "metric" }), "bottom-left");
+    map.addControl(new mapboxgl.AttributionControl({ compact: true }), "top-right");
+    map.addControl(new mapboxgl.NavigationControl({ visualizePitch: true }), "bottom-right");
 
     map.on("error", (e) => {
       const status = (e.error as { status?: number } | undefined)?.status;
@@ -106,7 +115,7 @@ export default function MapboxMap({
           ],
           "circle-radius": ["step", ["get", "point_count"], 15, 25, 19, 100, 24, 500, 30],
           "circle-stroke-width": 2.5,
-          "circle-stroke-color": "#FFFCF7",
+          "circle-stroke-color": "rgba(255,255,255,0.85)",
           "circle-opacity": 0.92,
           "circle-emissive-strength": 1,
         },
@@ -158,19 +167,22 @@ export default function MapboxMap({
         const hazard = isHazard(r);
         const html = hazard ? hazardHtml(r) : pinHtml(r, flaggedRef.current.has(id));
         const existing = markers.get(id);
-        if (existing?.html === html) continue;
+        if (existing?.html === html) {
+          existing.marker.getElement().classList.toggle("lfm-selected", id === selectedRef.current);
+          continue;
+        }
         existing?.marker.remove();
 
         const lngLat = f.geometry.coordinates as [number, number];
         const el = document.createElement("div");
         el.className = hazard ? "lfm-hazard" : pinClassName(r);
+        el.classList.toggle("lfm-selected", id === selectedRef.current);
         el.style.cursor = "pointer";
         el.title = r.result.places[0]?.name ?? id;
         el.innerHTML = html;
         el.addEventListener("click", (ev) => {
           ev.stopPropagation();
           onSelectRef.current(id);
-          map.flyTo({ center: lngLat, zoom: 15, duration: 1500 });
         });
         const marker = new mapboxgl.Marker({ element: el, offset: hazard ? [0, -2] : [0, 0] })
           .setLngLat(lngLat)
@@ -185,7 +197,7 @@ export default function MapboxMap({
       }
     });
 
-    // The Explorer panel settles to its final height after mount.
+    // The map fills the window; keep the canvas in step with it.
     const observer = new ResizeObserver(() => map.resize());
     observer.observe(container.current);
 
@@ -225,6 +237,27 @@ export default function MapboxMap({
     map.triggerRepaint();
   }, [reports, flagged, ready]);
 
+  // Floating panels cover part of the map; padding shifts the visual centre into
+  // the space that is actually visible, so fly-tos and fits land in view.
+  const paddingKey = padding ? `${padding.top},${padding.right},${padding.bottom},${padding.left}` : "";
+  useEffect(() => {
+    const map = mapRef.current;
+    if (!map || !ready || !padding) return;
+    map.easeTo({ padding, duration: 350 });
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- keyed on the numbers, not the object
+  }, [paddingKey, ready]);
+
+  useEffect(() => {
+    const map = mapRef.current;
+    if (!map || !ready || !selectedId) return;
+    const r = byId.current.get(selectedId);
+    if (!r?.place) return;
+    const { lat, lng } = jittered(r);
+    map.flyTo({ center: [lng, lat], zoom: Math.max(map.getZoom(), 15), duration: 1500 });
+    userMoved.current = true;
+    map.triggerRepaint();
+  }, [selectedId, ready]);
+
   useEffect(() => {
     const map = mapRef.current;
     if (!map || !ready || !bbox || userMoved.current) return;
@@ -238,5 +271,5 @@ export default function MapboxMap({
     userMoved.current = true;
   }, [bbox, ready]);
 
-  return <div ref={container} className="h-full w-full overflow-hidden rounded-md" />;
+  return <div ref={container} className="h-full w-full" />;
 }

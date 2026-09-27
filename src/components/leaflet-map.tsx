@@ -163,8 +163,8 @@ export default function LeafletMap(props: MapProps) {
       // also stops every pan from flickering during the demo.
       fadeAnimation={false}
       scrollWheelZoom
-      className="h-full w-full rounded-md"
-      style={{ background: "#F5F0E8" }}
+      className="h-full w-full"
+      style={{ background: "#05070d" }}
     >
       <TileLayer
         url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
