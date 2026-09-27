@@ -93,7 +93,7 @@ export function pinHtml(report: Report, flagged: boolean): string {
 }
 
 export const pinClassName = (r: Report) =>
-  r.result.urg === "critical" ? "lfm-pin lfm-pin-critical sos-pin-pulse" : "lfm-pin";
+  r.result.urg === "critical" ? "lfm-pin lfm-pin-critical" : "lfm-pin";
 
 /**
  * Many reports name the same city, so their coordinates are identical. A tiny

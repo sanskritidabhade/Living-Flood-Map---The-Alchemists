@@ -1,197 +1,32 @@
 @import "tailwindcss";
 
-/**
- * Tokens from docs/BRAND.md. The hex in each comment is the authority —
- * if you change one, recompute the other. Never hardcode hex in components.
- */
-
-:root {
-  /* Brand primary */
-  --primary: 16 77% 45%;            /* #C94A1A — orange-red */
-  --primary-hover: 16 78% 36%;      /* #A63B14 */
-  --primary-foreground: 0 0% 100%;  /* white text on primary */
-
-  /* Secondary and supporting */
-  --secondary: 211 56% 23%;         /* #1A3A5C — dark teal */
-  --secondary-foreground: 0 0% 100%;
-
-  /* Accent (highlights, secondary interactive) */
-  --accent: 211 56% 23%;
-  --accent-foreground: 0 0% 100%;
-
-  /* Focus states */
-  --ring: 16 77% 45%;
-
-  /* Neutral backgrounds — warm-tinted, not grey */
-  --background: 37 39% 94%;         /* #F5F0E8 — brand warm off-white */
-  --foreground: 60 4% 10%;          /* #1A1A18 — near-black warm */
-
-  /* Panels, cards, elevated surfaces */
-  --surface: 38 100% 98%;           /* #FFFCF7 */
-
-  /* Secondary text */
-  --muted: 23 6% 39%;               /* #6B635E — taupe */
-  --muted-foreground: 23 6% 39%;
-
-  /* Muted *surface* (hover rows, inactive tabs) — a step down from the background */
-  --muted-surface: 38 35% 89%;      /* #EDE6DA */
-
-  /* Borders, dividers */
-  --border: 32 20% 87%;             /* #E5DFD8 */
-
-  /* Status colours */
-  --success: 143 64% 24%;           /* #166534 */
-  --success-foreground: 0 0% 100%;
-
-  --warning: 38 92% 50%;            /* #F59E0B — takes black text, never white */
-  --warning-foreground: 0 0% 0%;
-
-  --danger: 0 72% 51%;              /* #DC2626 */
-  --danger-foreground: 0 0% 100%;
-
-  --info: 217 91% 60%;              /* #3B82F6 */
-  --info-foreground: 0 0% 100%;
-
-  /* Status as coloured text on the background */
-  --success-text: 143 64% 24%;      /* #166534 */
-  --warning-text: 26 90% 37%;       /* #B45309 — 4.43:1, large text only */
-  --danger-text: 0 70% 35%;         /* #991B1B */
-  --info-text: 226 71% 40%;         /* #1E40AF */
-
-  /* Pin strokes, so pins read on the CARTO Positron basemap */
-  --pin-critical-stroke: 0 70% 35%; /* #991B1B */
-  --pin-urgent-stroke: 26 90% 37%;  /* #B45309 */
-  --pin-info-stroke: 226 71% 40%;   /* #1E40AF */
-
-  /* Radius varies by role, per DESIGN.md */
-  --radius-sm: 4px;   /* inputs, badges */
-  --radius-md: 8px;   /* panels, cards */
-  --radius-lg: 12px;  /* dialogs */
-}
-
+/* Neutral placeholder tokens so the shadcn/ui primitives render. Replace with your design. */
 @theme inline {
-  --color-background: hsl(var(--background));
-  --color-foreground: hsl(var(--foreground));
-  --color-surface: hsl(var(--surface));
-  --color-border: hsl(var(--border));
-
-  /* shadcn/ui token names, mapped onto the brand palette.
-     bg-muted is a surface; text-muted-foreground is the taupe text colour. */
-  --color-muted: hsl(var(--muted-surface));
-  --color-muted-foreground: hsl(var(--muted));
-  --color-card: hsl(var(--surface));
-  --color-card-foreground: hsl(var(--foreground));
-  --color-popover: hsl(var(--surface));
-  --color-popover-foreground: hsl(var(--foreground));
-  --color-input: hsl(var(--border));
-  --color-destructive: hsl(var(--danger));
-  --color-destructive-foreground: hsl(var(--danger-foreground));
-
-  --color-primary: hsl(var(--primary));
-  --color-primary-hover: hsl(var(--primary-hover));
-  --color-primary-foreground: hsl(var(--primary-foreground));
-  --color-secondary: hsl(var(--secondary));
-  --color-secondary-foreground: hsl(var(--secondary-foreground));
-  --color-accent: hsl(var(--accent));
-  --color-accent-foreground: hsl(var(--accent-foreground));
-  --color-ring: hsl(var(--ring));
-
-  --color-success: hsl(var(--success));
-  --color-success-foreground: hsl(var(--success-foreground));
-  --color-warning: hsl(var(--warning));
-  --color-warning-foreground: hsl(var(--warning-foreground));
-  --color-danger: hsl(var(--danger));
-  --color-danger-foreground: hsl(var(--danger-foreground));
-  --color-info: hsl(var(--info));
-  --color-info-foreground: hsl(var(--info-foreground));
-
-  --color-success-text: hsl(var(--success-text));
-  --color-warning-text: hsl(var(--warning-text));
-  --color-danger-text: hsl(var(--danger-text));
-  --color-info-text: hsl(var(--info-text));
-
-  --color-pin-critical: hsl(var(--danger));
-  --color-pin-critical-stroke: hsl(var(--pin-critical-stroke));
-  --color-pin-urgent: hsl(var(--warning));
-  --color-pin-urgent-stroke: hsl(var(--pin-urgent-stroke));
-  --color-pin-info: hsl(var(--info));
-  --color-pin-info-stroke: hsl(var(--pin-info-stroke));
-
-  /* Radius tokens are declared in :root above — re-declaring them here would
-     make them self-referential. Tailwind's rounded-* already reads them. */
-
-  --font-sans: var(--font-source-sans);
+  --color-background: #ffffff;
+  --color-foreground: #0a0a0a;
+  --color-card: #ffffff;
+  --color-card-foreground: #0a0a0a;
+  --color-popover: #ffffff;
+  --color-popover-foreground: #0a0a0a;
+  --color-primary: #171717;
+  --color-primary-foreground: #fafafa;
+  --color-secondary: #f5f5f5;
+  --color-secondary-foreground: #171717;
+  --color-accent: #f5f5f5;
+  --color-accent-foreground: #171717;
+  --color-muted: #f5f5f5;
+  --color-muted-foreground: #737373;
+  --color-destructive: #dc2626;
+  --color-border: #e5e5e5;
+  --color-input: #e5e5e5;
+  --color-ring: #a3a3a3;
 }
 
-/* No dark mode: the demo records in light mode and the warm off-white is the brand. */
-
-body {
-  background: hsl(var(--background));
-  color: hsl(var(--foreground));
-  font-family: var(--font-source-sans), system-ui, sans-serif;
-  font-size: 16px;
-}
-
-/* Numbers in tables and totals line up, per DESIGN.md. */
-table,
-.tabular {
-  font-variant-numeric: tabular-nums;
-}
-
-:focus-visible {
-  outline: 2px solid hsl(var(--ring));
-  outline-offset: 2px;
-}
-
-/* Wrong access key: a short shake, respected by prefers-reduced-motion. */
-@keyframes lfm-shake {
-  0%, 100% { transform: translateX(0); }
-  20% { transform: translateX(-5px); }
-  40% { transform: translateX(5px); }
-  60% { transform: translateX(-3px); }
-  80% { transform: translateX(3px); }
-}
-
-/* DESIGN.md's one orchestrated moment: the structured draft arrives in sequence. */
-@keyframes lfm-rise {
-  from { opacity: 0; transform: translateY(4px); }
-  to   { opacity: 1; transform: none; }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .lfm-stagger > * {
-    animation: lfm-rise 0.22s ease-out both;
-  }
-  .lfm-stagger > *:nth-child(1) { animation-delay: 0ms; }
-  .lfm-stagger > *:nth-child(2) { animation-delay: 35ms; }
-  .lfm-stagger > *:nth-child(3) { animation-delay: 70ms; }
-  .lfm-stagger > *:nth-child(4) { animation-delay: 105ms; }
-  .lfm-stagger > *:nth-child(5) { animation-delay: 140ms; }
-  .lfm-stagger > *:nth-child(6) { animation-delay: 175ms; }
-  .lfm-stagger > *:nth-child(7) { animation-delay: 210ms; }
-  .lfm-stagger > *:nth-child(8) { animation-delay: 245ms; }
-  .lfm-stagger > *:nth-child(n + 9) { animation-delay: 280ms; }
-
-  .lfm-enter { animation: lfm-rise 0.2s ease-out both; }
-}
-
-/* Critical pins pulse so a rescue case is findable at a glance. */
+/* Critical map pins pulse so a rescue case is findable at a glance. */
 @media (prefers-reduced-motion: no-preference) {
   @keyframes lfm-pulse {
     0%, 100% { box-shadow: 0 1px 2px rgba(0,0,0,.28), 0 0 0 0 rgba(220,38,38,.55); }
     50%      { box-shadow: 0 1px 2px rgba(0,0,0,.28), 0 0 0 7px rgba(220,38,38,0); }
   }
   .lfm-pin-critical > span { animation: lfm-pulse 2s ease-out infinite; }
-}
-
-/* Pulsing effect for critical map pins */
-@keyframes pulse-ring {
-  0% { transform: scale(0.95); opacity: 0.8; }
-  50% { transform: scale(1.4); opacity: 0.3; }
-  100% { transform: scale(0.95); opacity: 0.8; }
-}
-
-.sos-pin-pulse {
-  animation: pulse-ring 1.5s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
-  border-radius: 50%;
 }

@@ -69,19 +69,23 @@ Open [http://localhost:3000](http://localhost:3000) to view the app.
 | `HACKATHON_API_KEY` | API key (server-side only — never exposed to the client) |
 | `AI_MODEL` | Model identifier used for classification |
 | `USE_MOCK` | `true` to serve canned responses from `mocks/` instead of calling the live API |
+| `NEXT_PUBLIC_MAPBOX_TOKEN` | Optional Mapbox public token. Without it the map falls back to Leaflet + OpenStreetMap |
 
 ## Project Structure
 
 ```
 ├── src/
 │   ├── app/
-│   │   └── api/ai/route.ts   # the only server-side entry point that calls the AI
-│   └── lib/ai/                # prompts, schema, and API client
-├── mocks/                      # fake AI responses, validated against the schema
-├── data/samples/                # sample test data + expected output
-├── docs/                        # challenge brief, brand, research, plan
-├── DESIGN.md                    # visual design rules
-└── CLAUDE.md                    # project rules for AI-assisted development
+│   │   ├── page.tsx           # bare UI shell (being redesigned)
+│   │   └── api/ai/route.ts    # the only server-side entry point that calls the AI
+│   ├── components/            # maps (Mapbox + Leaflet fallback) and shadcn/ui primitives
+│   └── lib/
+│       ├── ai/                # prompts, schema, and API client
+│       ├── pipeline/          # ingest, clean, sieve, classify, geocode, export
+│       └── use-flood-map.ts   # the whole pipeline as one React hook
+├── mocks/                     # fake AI responses, validated against the schema
+├── data/samples/              # sample test data + expected output
+└── CLAUDE.md                  # project rules for AI-assisted development
 ```
 
 ## Scripts
