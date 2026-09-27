@@ -13,8 +13,11 @@ import {
   Search,
   Sparkles,
   TriangleAlert,
+  Volume2,
+  VolumeX,
   X,
 } from "lucide-react";
+import { setMuted, useMuted } from "@/lib/feedback";
 import type { Profile } from "@/lib/ai/schema";
 import { parseCsv, type IngestResult } from "@/lib/pipeline/ingest";
 import { countByUrgency, splitOnEvidence, type Filters, type Report } from "@/lib/pipeline/reports";
@@ -49,6 +52,7 @@ type Props = {
  */
 export const ControlPane = forwardRef<HTMLElement, Props>(function ControlPane(props, ref) {
   const [expanded, setExpanded] = useState(true);
+  const muted = useMuted();
   const { app } = props;
 
   return (
@@ -70,6 +74,9 @@ export const ControlPane = forwardRef<HTMLElement, Props>(function ControlPane(p
             {app.profile ? `${app.profile.event_name} · ${app.profile.region}` : "Disaster posts → live map"}
           </p>
         </div>
+        <IconButton label={muted ? "Turn sounds on" : "Mute sounds"} onClick={() => setMuted(!muted)}>
+          {muted ? <VolumeX className="h-4 w-4" /> : <Volume2 className="h-4 w-4" />}
+        </IconButton>
         {app.step !== "start" && (
           <IconButton label="Start over" onClick={app.reset}>
             <RotateCcw className="h-4 w-4" />
@@ -362,6 +369,7 @@ function ExplorerPanel({
             <li key={r.report_id}>
               <button
                 type="button"
+                data-silent
                 onClick={() => onSelect(r.report_id)}
                 className={`group flex w-full gap-3 rounded-xl border p-2.5 text-left transition ${
                   r.report_id === selectedId

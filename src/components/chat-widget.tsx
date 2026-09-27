@@ -3,6 +3,7 @@
 import { forwardRef, useEffect, useRef, useState } from "react";
 import { Bot, Loader2, MessageSquareText, Send, TriangleAlert, X } from "lucide-react";
 import type { Answer, Profile } from "@/lib/ai/schema";
+import { chime } from "@/lib/feedback";
 import type { Report } from "@/lib/pipeline/reports";
 
 type Turn = { question: string; answer?: Answer };
@@ -100,6 +101,7 @@ export const ChatWidget = forwardRef<HTMLDivElement, Props>(function ChatWidget(
       if (!res.ok) throw new Error("ask failed");
       const answer = (await res.json()).data as Answer;
       cache.current.set(key, answer);
+      chime();
       setTurns((t) => t.map((turn, i) => (i === t.length - 1 ? { ...turn, answer } : turn)));
     } catch {
       setTurns((t) =>
@@ -198,6 +200,7 @@ export const ChatWidget = forwardRef<HTMLDivElement, Props>(function ChatWidget(
                           <button
                             key={id}
                             type="button"
+                            data-silent
                             onClick={() => onCite(id)}
                             className="rounded-md border border-cyan-400/30 px-1.5 py-0.5 text-[11px] text-cyan-200 hover:border-cyan-300 hover:shadow-[0_0_8px_rgba(34,211,238,.4)]"
                           >

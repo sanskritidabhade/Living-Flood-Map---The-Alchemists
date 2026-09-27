@@ -1,9 +1,10 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { ChatWidget } from "@/components/chat-widget";
 import { ControlPane } from "@/components/control-pane";
+import { chime, select, tick, toggle } from "@/lib/feedback";
 import { applyFilters, EMPTY_FILTERS, type Filters } from "@/lib/pipeline/reports";
 import { useFloodMap } from "@/lib/use-flood-map";
 import { useMapPadding } from "@/lib/use-map-padding";
@@ -25,6 +26,30 @@ export default function Home() {
   const chat = useRef<HTMLDivElement>(null);
   const padding = useMapPadding([pane, chat], [app.step, chatOpen]);
 
+  // One listener gives every button a click sound; toggles rise or fall with their state.
+  useEffect(() => {
+    const onPress = (e: PointerEvent) => {
+      const el = (e.target as Element).closest<HTMLElement>("button, [role=button]");
+      if (!el || el.hasAttribute("disabled") || el.closest("[data-silent]")) return;
+      const pressed = el.getAttribute("aria-pressed");
+      // pointerdown fires before the click changes anything, so this is the old state.
+      if (pressed !== null) toggle(pressed !== "true");
+      else tick();
+    };
+    document.addEventListener("pointerdown", onPress);
+    return () => document.removeEventListener("pointerdown", onPress);
+  }, []);
+
+  const done = app.progress.stage === "Done" && app.step === "explorer";
+  useEffect(() => {
+    if (done) chime();
+  }, [done]);
+
+  const choose = (id: string | null) => {
+    if (id) select();
+    setSelectedId(id);
+  };
+
   const visible = useMemo(() => applyFilters(app.reports, filters), [app.reports, filters]);
 
   const reset = () => {
@@ -45,7 +70,7 @@ export default function Home() {
           bbox={app.profile?.bbox}
           padding={padding}
           selectedId={selectedId}
-          onSelect={setSelectedId}
+          onSelect={choose}
         />
       </div>
 
@@ -61,7 +86,7 @@ export default function Home() {
         hazards={hazards}
         setHazards={setHazards}
         selectedId={selectedId}
-        onSelect={setSelectedId}
+        onSelect={choose}
       />
 
       {app.step === "explorer" && (
@@ -73,7 +98,7 @@ export default function Home() {
           profile={app.profile}
           launcherBottom={padding.bottom ? padding.bottom - 8 : 16}
           onCite={(id) => {
-            setSelectedId(id);
+            choose(id);
             // On a phone the chat covers the map; get out of the way.
             if (window.innerWidth < 768) setChatOpen(false);
           }}
