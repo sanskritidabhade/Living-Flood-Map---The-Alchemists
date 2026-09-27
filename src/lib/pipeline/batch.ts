@@ -82,8 +82,6 @@ async function postBatch(batch: CleanRow[], profile: Profile): Promise<Classifie
 export type ClassifiedRow = CleanRow & { result: Classified };
 
 /** Consecutive failures across the whole run — three in a row trips the fallback. */
-export class ConsecutiveFailures extends Error {}
-
 export async function classifyAll(
   unique: CleanRow[],
   profile: Profile,

@@ -133,25 +133,6 @@ export function communitiesIn(reports: Report[]): string[] {
   return [...set].sort();
 }
 
-/** Origins for the evacuation tab: places actually being hit. */
-export function affectedPlaces(reports: Report[]): string[] {
-  const set = new Set<string>();
-  for (const r of reports) {
-    if (!r.result.rel) continue;
-    for (const p of r.result.places) if (p.role === "affected") set.add(p.name);
-    if (r.result.fn) set.add(r.result.fn);
-  }
-  return [...set].sort();
-}
-
-export const URGENCY_LABEL = {
-  critical: "Critical",
-  urgent: "Urgent",
-  information: "Information",
-} as const;
-
-export const CONFIDENCE_LABEL = { h: "High", m: "Medium", l: "Low" } as const;
-
 export function countByUrgency(reports: Report[]) {
   return {
     critical: reports.filter((r) => r.result.urg === "critical").length,

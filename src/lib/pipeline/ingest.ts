@@ -94,7 +94,3 @@ export function parseCsv(csv: string): IngestResult {
     hasTime: Boolean(mapping.timestamp),
   };
 }
-
-export function parseCsvFile(file: File): Promise<IngestResult> {
-  return file.text().then(parseCsv);
-}

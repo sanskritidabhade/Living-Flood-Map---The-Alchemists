@@ -6,7 +6,6 @@ import { Loader2, TriangleAlert } from "lucide-react";
 import type { Profile } from "@/lib/ai/schema";
 import { findContradictions } from "@/lib/pipeline/contradictions";
 import {
-  affectedPlaces,
   applyFilters,
   communitiesIn,
   countByUrgency,
@@ -58,7 +57,6 @@ export function Explorer({
   );
   const counts = useMemo(() => countByUrgency(notFlagged), [notFlagged]);
   const communities = useMemo(() => communitiesIn(reports), [reports]);
-  const origins = useMemo(() => affectedPlaces(reports), [reports]);
   const unmapped = useMemo(() => unmappedReports(visible), [visible]);
   const plottedCount = useMemo(
     () =>

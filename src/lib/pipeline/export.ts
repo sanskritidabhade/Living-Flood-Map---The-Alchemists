@@ -132,24 +132,6 @@ export function toExcludedCsv(rows: ReportRow[]): string {
   return Papa.unparse(rows, { columns: [...EXCLUDED_COLUMNS] });
 }
 
-/** One Point per located report. Properties carry every export column. */
-export function toGeoJson(rows: ReportRow[], stamp: PublishStamp) {
-  const features = rows
-    .filter((row) => typeof row.lat === "number" && typeof row.lng === "number")
-    .map((row) => ({
-      type: "Feature" as const,
-      geometry: { type: "Point" as const, coordinates: [row.lng as number, row.lat as number] },
-      properties: row,
-    }));
-
-  return {
-    type: "FeatureCollection" as const,
-    // Stamped so the receiving GIS layer knows who published it and when.
-    metadata: { ...stamp, feature_count: features.length, generator: "Living Flood Map" },
-    features,
-  };
-}
-
 export function download(filename: string, contents: string, type: string) {
   const blob = new Blob([contents], { type });
   const url = URL.createObjectURL(blob);
@@ -158,13 +140,4 @@ export function download(filename: string, contents: string, type: string) {
   a.download = filename;
   a.click();
   URL.revokeObjectURL(url);
-}
-
-/**
- * XLSX sheets: Reports · Excluded · Data dictionary · Run info.
- * TODO(slice 3): SheetJS is first on the cut list — CSV + GeoJSON already meet
- * the requirement, so this stays a stub until the rest of slice 3 is done.
- */
-export async function toXlsx(): Promise<never> {
-  throw new Error("XLSX export is not wired up yet. Use CSV or GeoJSON.");
 }

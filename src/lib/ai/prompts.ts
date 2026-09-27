@@ -102,15 +102,6 @@ verification_status:
 Never mark a tweet verified on the strength of the tweet alone.`;
 }
 
-export function evacuationPrompt(profile: Profile): string {
-  return `${eventContext(profile)}
-Affected-area bounding box [west, south, east, north]: ${JSON.stringify(profile.bbox)}
-
-For each origin, give the nearest realistic destination OUTSIDE the affected area: distance in km, drive time, the highway to take, and a named reception centre or shelter if one is plausible.
-
-Use real roads and real places in this region. If the obvious destination is itself inside the affected area, pick the next safe one and say so in note.`;
-}
-
 export function askPrompt(profile: Profile): string {
   return `${eventContext(profile)}
 
@@ -137,8 +128,6 @@ export function promptFor(task: AiTask, profile?: Profile): string {
       return briefPrompt(profile);
     case "verify":
       return verifyPrompt(profile);
-    case "evacuation":
-      return evacuationPrompt(profile);
     case "ask":
       return askPrompt(profile);
   }

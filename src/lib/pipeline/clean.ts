@@ -117,18 +117,6 @@ export function cleanRows(rows: RawRow[], mapping: ColumnMapping): CleanResult {
   return { rows: cleaned, unique, duplicates, retweets };
 }
 
-/** Top hashtags feed both the profile prompt and the fallback scorer. */
-export function topHashtags(rows: CleanRow[], limit = 12): string[] {
-  const counts = new Map<string, number>();
-  for (const row of rows) {
-    for (const tag of row.hashtags) counts.set(tag, (counts.get(tag) ?? 0) + 1);
-  }
-  return [...counts.entries()]
-    .sort((a, b) => b[1] - a[1])
-    .slice(0, limit)
-    .map(([tag]) => `#${tag}`);
-}
-
 /** Evenly spaced sample so the profile step sees the whole file, not just the top. */
 export function sampleForProfile(rows: CleanRow[], size = 150): CleanRow[] {
   if (rows.length <= size) return rows;

@@ -128,27 +128,12 @@ export const zVerification = z.object({
 export type Verification = z.infer<typeof zVerification>;
 export const zVerifyResult = z.object({ verifications: z.array(zVerification) });
 
-/** Evacuation route card. Inside/outside comes from the profile bbox. */
-export const zRoute = z.object({
-  from: z.string(),
-  to: z.string(),
-  to_kind: z.string(),
-  distance_km: z.number(),
-  drive_time: z.string(),
-  via: z.string(),
-  shelter: z.string(),
-  note: z.string().optional(),
-});
-export type Route = z.infer<typeof zRoute>;
-export const zEvacuationResult = z.object({ routes: z.array(zRoute) });
-
 export type AiTask =
   | "profile"
   | "classify"
   | "places"
   | "brief"
   | "verify"
-  | "evacuation"
   | "ask";
 
 /** Task 7 — ask. An analyst question answered only from the loaded reports. */
@@ -325,29 +310,6 @@ export const RESPONSE_SCHEMAS: Record<AiTask, object> = {
     },
     required: ["answer", "cited_report_ids", "grounded"],
   },
-  evacuation: {
-    type: "object",
-    properties: {
-      routes: {
-        type: "array",
-        items: {
-          type: "object",
-          properties: {
-            from: str,
-            to: str,
-            to_kind: str,
-            distance_km: num,
-            drive_time: str,
-            via: str,
-            shelter: str,
-            note: str,
-          },
-          required: ["from", "to", "to_kind", "distance_km", "drive_time", "via", "shelter"],
-        },
-      },
-    },
-    required: ["routes"],
-  },
 };
 
 /** Validate a task response. Invalid items go to review rather than being guessed at. */
@@ -363,8 +325,6 @@ export function validate(task: AiTask, data: unknown) {
       return zBrief.parse(data);
     case "verify":
       return zVerifyResult.parse(data);
-    case "evacuation":
-      return zEvacuationResult.parse(data);
     case "ask":
       return zAnswer.parse(data);
   }
